@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="com.ajayhao.simpleboot.test">
+<test name="algorithm">
+    <classes>
+        <class name="com.ajayhao.simpleboot.test.algorithm.TestSinglyLinkedList" />
+        <class name="com.ajayhao.simpleboot.test.algorithm.TestBinaryTree" />
+        <class name="com.ajayhao.simpleboot.test.reflect.TestReflect" />
+    </classes>
+</test>
+
+</suite>
