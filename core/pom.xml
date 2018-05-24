@@ -22,6 +22,7 @@
         <commons-dbcp2.version>2.3.0</commons-dbcp2.version>
         <jodd.version>3.7.1</jodd.version>
         <guava.version>20.0</guava.version>
+        <org.dom4j.version>2.0.0</org.dom4j.version>
         <!-- tests -->
         <testng.version>6.10</testng.version>
 
@@ -59,6 +60,12 @@
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-core</artifactId>
             <version>${jackson.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.dom4j</groupId>
+            <artifactId>dom4j</artifactId>
+            <version>${org.dom4j.version}</version>
         </dependency>
 
         <dependency>

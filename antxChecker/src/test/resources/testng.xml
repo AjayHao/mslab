@@ -2,9 +2,7 @@
 <suite name="com.ajayhao.simpleboot.test">
 <test name="algorithm">
     <classes>
-        <class name="com.ajayhao.mslab.antxchecker.test.algorithm.TestSinglyLinkedList" />
-        <class name="com.ajayhao.mslab.antxchecker.test.algorithm.TestBinaryTree" />
-        <class name="com.ajayhao.mslab.antxchecker.test.reflect.TestReflect" />
+        <class name="com.ajayhao.mslab.antxchecker.service.test.AntxCheckerServiceTest" />
     </classes>
 </test>
 

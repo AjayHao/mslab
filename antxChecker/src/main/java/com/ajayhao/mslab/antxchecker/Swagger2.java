@@ -27,12 +27,12 @@ public class Swagger2 {
     public Docket createRestApi() {
 
         return new Docket(DocumentationType.SWAGGER_2).select()
-                .apis(RequestHandlerSelectors.basePackage("com.ajayhao.simpleboot")).paths(PathSelectors.any()).build()
+                .apis(RequestHandlerSelectors.basePackage("com.ajayhao.mslab.antxchecker")).paths(PathSelectors.any()).build()
                 .apiInfo(apiInfo()).produces(Sets.newHashSet(MediaType.APPLICATION_JSON_UTF8_VALUE));
     }
 
     private ApiInfo apiInfo() {
-        return new ApiInfoBuilder().title("Spring Boot中使用Swagger2构建RESTful APIs").description("Simple Boot Lab,/simplebootlab")
+        return new ApiInfoBuilder().title("Spring Boot中使用Swagger2构建RESTful APIs").description("Simple Boot Lab,/mslab/antxchecker")
                 .version("1.0").build();
     }
 }

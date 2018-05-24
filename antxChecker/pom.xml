@@ -2,23 +2,21 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.ajayhao.simplebootlab</groupId>
-    <artifactId>simplebootlab</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
+    <groupId>com.ajayhao.mslab</groupId>
+    <artifactId>antxchecker</artifactId>
+    <version>0.0.1</version>
 
 
-    <url>https://github.com/ajayhao/simplebootlab</url>
+    <url>https://github.com/ajayhao/mslab</url>
 
     <properties>
         <!-- dependencies -->
         <java.version>1.8</java.version>
-        <ajayhao.framework.core.version>1.0.0</ajayhao.framework.core.version>
+        <ajayhao.mslab.core.version>1.0.0</ajayhao.mslab.core.version>
         <lombok.version>1.16.12</lombok.version>
         <spring-boot-starter-web.version>1.5.4.RELEASE</spring-boot-starter-web.version>
         <spring-boot-starter-freemarker.version>1.5.4.RELEASE</spring-boot-starter-freemarker.version>
-        <spring-boot-devtools.version>1.5.4.RELEASE</spring-boot-devtools.version>
         <spring-boot-starter-test.version>1.5.4.RELEASE</spring-boot-starter-test.version>
-        <mybatis-boot.version>1.1.1</mybatis-boot.version>
         <commons-lang3.version>3.6</commons-lang3.version>
         <commons-dbcp2.version>2.3.0</commons-dbcp2.version>
         <commons-collections.version>3.2.2</commons-collections.version>
@@ -27,7 +25,6 @@
         <jodd.version>3.7.1</jodd.version>
         <guava.version>20.0</guava.version>
         <org.dom4j.version>2.0.0</org.dom4j.version>
-        <org.javassist.version>3.21.0-GA</org.javassist.version>
         <!-- tests -->
         <testng.version>6.10</testng.version>
         <!-- plugins -->
@@ -46,9 +43,9 @@
     <dependencies>
 
         <dependency>
-            <groupId>com.ajayhao.framework</groupId>
+            <groupId>com.ajayhao.mslab</groupId>
             <artifactId>core</artifactId>
-            <version>${ajayhao.framework.core.version}</version>
+            <version>${ajayhao.mslab.core.version}</version>
         </dependency>
 
         <dependency>
@@ -94,25 +91,6 @@
             <version>${guava.version}</version>
         </dependency>
 
-        <dependency>
-            <groupId>org.dom4j</groupId>
-            <artifactId>dom4j</artifactId>
-            <version>${org.dom4j.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.javassist</groupId>
-            <artifactId>javassist</artifactId>
-            <version>${org.javassist.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-devtools</artifactId>
-            <version>${spring-boot-devtools.version}</version>
-            <optional>true</optional> <!-- 这个需要为 true 热部署才有效 -->
-        </dependency>
-
         <!-- 数据源 -->
         <dependency>
             <groupId>org.apache.commons</groupId>
@@ -138,12 +116,6 @@
             <version>${springfox-swagger2.version}</version>
         </dependency>
 
-        <!-- 集成mybatis -->
-        <dependency>
-            <groupId>org.mybatis.spring.boot</groupId>
-            <artifactId>mybatis-spring-boot-starter</artifactId>
-            <version>${mybatis-boot.version}</version>
-        </dependency>
 
         <!--************* lombok 编译辅助  *************** -->
         <dependency>

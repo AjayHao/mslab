@@ -34,6 +34,9 @@ public enum RespCodeType implements BaseResultType {
 
     //0100-0999 内部异常信息
     WRONG_STATUS_TRANSITION("0100", "错误的状态迁移终态"),
+    FILE_NOT_EXIST("0101", "文件不存在"),
+    XML_PARSE_ERROR("0102", "XML解析错误"),
+    INVALID_PARAM("0103", "参数错误"),
 
     // 9000-9999 失败相关
     FAIL("9000", "业务处理失败"),

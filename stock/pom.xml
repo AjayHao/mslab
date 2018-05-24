@@ -4,7 +4,7 @@
 
     <groupId>com.ajayhao.mslab</groupId>
     <artifactId>stock</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
+    <version>0.0.1</version>
 
 
     <url>https://github.com/ajayhao/mslab</url>
@@ -26,8 +26,6 @@
         <commons-dbcp2.version>2.3.0</commons-dbcp2.version>
         <jodd.version>3.7.1</jodd.version>
         <guava.version>20.0</guava.version>
-        <org.dom4j.version>2.0.0</org.dom4j.version>
-        <org.javassist.version>3.21.0-GA</org.javassist.version>
         <!-- tests -->
         <testng.version>6.10</testng.version>
         <!-- plugins -->
@@ -92,18 +90,6 @@
             <groupId>com.google.guava</groupId>
             <artifactId>guava</artifactId>
             <version>${guava.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.dom4j</groupId>
-            <artifactId>dom4j</artifactId>
-            <version>${org.dom4j.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.javassist</groupId>
-            <artifactId>javassist</artifactId>
-            <version>${org.javassist.version}</version>
         </dependency>
 
         <dependency>
