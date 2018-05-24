@@ -32,8 +32,7 @@ public final class JsonUtil {
     private static final Logger LOGGER         = LoggerFactory.getLogger(JsonUtil.class);
 
     /** Map  TypeReference**/
-    public static final TypeReference<Map<String, String>> TYPE_REFERENCE = new TypeReference<Map<String, String>>() {
-                                                                          };
+    public static final TypeReference<Map<String, String>> TYPE_REFERENCE = new TypeReference<Map<String, String>>() {};
 
     private static ObjectMapper objectMapper   = JsonObjectMapperFactory.getInstance();
 
