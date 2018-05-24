@@ -12,7 +12,7 @@
     <properties>
         <!-- dependencies -->
         <java.version>1.8</java.version>
-        <ajayhao.framework.core.version>1.0.0</ajayhao.framework.core.version>
+        <ajayhao.mslab.core.version>1.0.0</ajayhao.mslab.core.version>
         <lombok.version>1.16.12</lombok.version>
         <spring-boot-starter-web.version>1.5.4.RELEASE</spring-boot-starter-web.version>
         <spring-boot-starter-freemarker.version>1.5.4.RELEASE</spring-boot-starter-freemarker.version>
@@ -46,9 +46,9 @@
     <dependencies>
 
         <dependency>
-            <groupId>com.ajayhao.framework</groupId>
+            <groupId>com.ajayhao.mslab</groupId>
             <artifactId>core</artifactId>
-            <version>${ajayhao.framework.core.version}</version>
+            <version>${ajayhao.mslab.core.version}</version>
         </dependency>
 
         <dependency>
