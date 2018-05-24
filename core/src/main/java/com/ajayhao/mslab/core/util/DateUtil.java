@@ -1,6 +1,5 @@
 package com.ajayhao.mslab.core.util;
 
-import com.ajayhao.mslab.core.common.enums.RespCodeType;
 import com.ajayhao.mslab.core.common.exception.BusinessBizException;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.time.DateFormatUtils;
