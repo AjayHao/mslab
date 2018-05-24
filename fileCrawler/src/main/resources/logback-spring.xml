@@ -21,12 +21,12 @@
     </appender>
 
     <springProfile name="dev,staging">
-        <logger name="com.ajayhao.simpleboot.filecrawler" level="DEBUG" additivity="false">
+        <logger name="com.ajayhao.filecrawler.filecrawler" level="DEBUG" additivity="false">
             <appender-ref ref="CONSOLE"/>
         </logger>
     </springProfile>
     <springProfile name="production">
-        <logger name="com.ajayhao.simpleboot.filecrawler" level="INFO" additivity="false">
+        <logger name="com.ajayhao.filecrawler.filecrawler" level="INFO" additivity="false">
             <appender-ref ref="FILE"/>
         </logger>
     </springProfile>
