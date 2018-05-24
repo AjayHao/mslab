@@ -11,6 +11,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
+import static com.ajayhao.mslab.core.common.enums.RespCodeType.PARSE_DATE_ERROR;
 import static java.lang.Math.ceil;
 
 /**
@@ -71,7 +72,7 @@ public class DateUtil {
         try {
             return DateUtils.parseDate(str, DATE_FORMAT_YYYY_MM_DD);
         } catch (ParseException e) {
-            throw new BusinessBizException(RespCodeType.PARSE_DATE_ERROR, e);
+            throw new BusinessBizException(PARSE_DATE_ERROR, e);
         }
     }
 
@@ -85,7 +86,7 @@ public class DateUtil {
         try {
             return DateUtils.parseDate(str, DATE_FORMAT_YYYYMMDD);
         } catch (ParseException e) {
-            throw new BusinessBizException(RespCodeType.PARSE_DATE_ERROR, e);
+            throw new BusinessBizException(PARSE_DATE_ERROR, e);
         }
     }
 
@@ -99,7 +100,7 @@ public class DateUtil {
         try {
             return DateUtils.parseDate(str, DATE_FORMAT_YYYYMMDDHHMMSS);
         } catch (ParseException e) {
-            throw new BusinessBizException(RespCodeType.PARSE_DATE_ERROR, e);
+            throw new BusinessBizException(PARSE_DATE_ERROR, e);
         }
     }
 
@@ -113,7 +114,7 @@ public class DateUtil {
         try {
             return DateUtils.parseDate(str, DATE_FORMAT_YYYYMMDD_HHMMSS);
         } catch (ParseException e) {
-            throw new BusinessBizException(RespCodeType.PARSE_DATE_ERROR, e);
+            throw new BusinessBizException(PARSE_DATE_ERROR, e);
         }
 
     }
@@ -215,7 +216,7 @@ public class DateUtil {
         try {
             return DateUtils.parseDate(date, pattern);
         } catch (ParseException e) {
-            throw new BusinessBizException(RespCodeType.PARSE_DATE_ERROR, e);
+            throw new BusinessBizException(PARSE_DATE_ERROR, e);
         }
     }
 

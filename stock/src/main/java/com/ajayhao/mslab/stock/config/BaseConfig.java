@@ -1,6 +1,6 @@
 package com.ajayhao.mslab.stock.config;
 
-import com.ajayhao.mslab.stock.util.JsonUtil;
+import com.ajayhao.mslab.core.util.JsonUtil;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.converter.StringHttpMessageConverter;

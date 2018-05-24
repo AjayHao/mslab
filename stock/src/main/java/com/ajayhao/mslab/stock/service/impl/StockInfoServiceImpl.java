@@ -1,19 +1,19 @@
 package com.ajayhao.mslab.stock.service.impl;
 
-import com.ajayhao.mslab.stock.common.enums.YesNoEnum;
-import com.ajayhao.mslab.stock.common.exception.BusinessBizException;
+import com.ajayhao.mslab.core.common.enums.RespCodeType;
+import com.ajayhao.mslab.core.common.enums.YesNoEnum;
+import com.ajayhao.mslab.core.common.exception.BusinessBizException;
+import com.ajayhao.mslab.core.util.DateUtil;
 import com.ajayhao.mslab.stock.dal.dataobject.StockInfoDO;
-import com.ajayhao.mslab.stock.remote.dto.JuHeStockBasicDto;
-import com.ajayhao.mslab.stock.service.StockInfoService;
-import com.ajayhao.mslab.stock.util.DateUtil;
-import com.ajayhao.mslab.stock.common.enums.RespCodeType;
 import com.ajayhao.mslab.stock.dto.StockInfoReq;
 import com.ajayhao.mslab.stock.dto.StockInfoResp;
 import com.ajayhao.mslab.stock.remote.StockRemoteService;
+import com.ajayhao.mslab.stock.remote.dto.JuHeStockBasicDto;
 import com.ajayhao.mslab.stock.remote.dto.JuHeStockDto;
 import com.ajayhao.mslab.stock.remote.dto.request.JuHeStockReq;
 import com.ajayhao.mslab.stock.remote.dto.response.JuHeRemoteResp;
 import com.ajayhao.mslab.stock.repository.StockRepository;
+import com.ajayhao.mslab.stock.service.StockInfoService;
 import org.apache.commons.collections.CollectionUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,8 +23,8 @@ import org.springframework.stereotype.Service;
 import java.util.Date;
 import java.util.List;
 
-import static com.ajayhao.mslab.stock.common.LabConstant.SYSTEM_CREATOR;
-import static com.ajayhao.mslab.stock.common.LabConstant.SYSTEM_MODIFIER;
+import static com.ajayhao.mslab.core.common.LabConstant.SYSTEM_CREATOR;
+import static com.ajayhao.mslab.core.common.LabConstant.SYSTEM_MODIFIER;
 
 /**
  * Created by AjayHao on 2018/5/21.

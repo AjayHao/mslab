@@ -6,6 +6,7 @@ import lombok.*;
 import java.io.Serializable;
 import java.util.Date;
 
+import static com.ajayhao.mslab.core.common.LabConstant.SHARE_DEFAULT_FORMAT;
 import static com.ajayhao.mslab.core.common.enums.RespCodeType.*;
 
 /**
@@ -24,7 +25,7 @@ public class BaseResp implements Serializable {
     private static final long serialVersionUID = -5027854375055011927L;
 
     /** 响应时间 **/
-    @JsonFormat(pattern = LabConstant.SHARE_DEFAULT_FORMAT, timezone = "GMT+8")
+    @JsonFormat(pattern = SHARE_DEFAULT_FORMAT, timezone = "GMT+8")
     private Date              respDate         = new Date();
 
     /** 响应CODE **/

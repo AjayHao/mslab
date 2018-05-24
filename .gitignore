@@ -1,4 +1,3 @@
-*/target/
 */.idea/
-stock/stock.iml
+*/target
 */*.iml

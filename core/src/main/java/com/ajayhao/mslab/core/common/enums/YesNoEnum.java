@@ -1,6 +1,5 @@
 package com.ajayhao.mslab.core.common.enums;
 
-
 import com.ajayhao.mslab.core.common.BaseResultType;
 import com.ajayhao.mslab.core.util.EnumUtil;
 import lombok.AllArgsConstructor;
