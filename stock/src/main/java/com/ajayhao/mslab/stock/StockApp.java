@@ -10,7 +10,7 @@ import org.springframework.context.annotation.ComponentScan;
  */
 @SpringBootApplication
 @EnableAutoConfiguration
-@ComponentScan(basePackages = { "com.ajayhao.mslab" })
+@ComponentScan(basePackages = { "com.ajayhao.mslab.stock" })
 public class StockApp {
 
     public static void main(String[] args) throws Exception {
