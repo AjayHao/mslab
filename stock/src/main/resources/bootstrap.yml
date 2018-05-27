@@ -1,0 +1,11 @@
+spring:
+  application:
+    name: mslab-stock
+  cloud:
+    config:
+      uri: http://localhost:8888/
+      label: ${DEPLOY_ENV:master} #配置服务器远程文件分支
+      profile: dev
+
+server:
+  port: 8080

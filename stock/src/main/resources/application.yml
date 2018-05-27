@@ -1,0 +1,37 @@
+#PROFILE
+#spring.profiles.active=prd
+spring:
+  profiles:
+    default: dev
+#FREEMARKER (FreeMarkerAutoConfiguration)
+spring:
+  freemarker:
+    allow-request-override: false
+    cache: true
+    check-template-location: true
+    charset: UTF-8
+    content-type: text/html
+    expose-request-attributes: false
+    expose-session-attributes: false
+    expose-spring-macro-helpers: false
+    request-context-attribute: request
+#spring.freemarker.prefix=
+#spring.freemarker.settings.*=
+#spring.freemarker.suffix=.ftl
+#spring.freemarker.template-loader-path=classpath:/templates/ #comma-separated list
+#spring.freemarker.view-names= # whitelist of view names that can be resolved
+
+# 数据库
+#jdbc:
+#  oracle:
+#    driver: oracle.jdbc.driver.OracleDriver
+#    url: jdbc:oracle:thin:@localhost:1521:orcl
+#    username: ajlab
+#    password: ajlab
+
+
+#swagger配置
+swagger:
+  switch: true
+  config:
+    basePackage: com.ajayhao.mslab.stock
