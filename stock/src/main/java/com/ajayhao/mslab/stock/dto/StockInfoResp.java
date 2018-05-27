@@ -1,6 +1,5 @@
 package com.ajayhao.mslab.stock.dto;
 
-
 import com.ajayhao.mslab.core.common.BaseResp;
 import lombok.Getter;
 import lombok.Setter;

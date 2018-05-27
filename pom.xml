@@ -11,8 +11,7 @@
     <packaging>pom</packaging>
 
     <modules>
-        <!--<module>mslab-parent</module>-->
-        <module>core</module>
+        <module>mslab-support</module>
         <module>msc</module>
         <module>stock</module>
         <module>antxchecker</module>
