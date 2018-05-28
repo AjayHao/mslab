@@ -13,7 +13,7 @@ import java.nio.charset.Charset;
  * Created by AjayHao on 2018/2/17.
  */
 @Configuration
-public class BaseConfig {
+public class RestTemplateConfig {
 
     @Bean("restTemplate")
     RestTemplate getRestTemplate(){

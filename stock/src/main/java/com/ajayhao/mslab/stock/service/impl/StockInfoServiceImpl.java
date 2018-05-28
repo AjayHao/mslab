@@ -4,6 +4,7 @@ import com.ajayhao.mslab.core.common.enums.RespCodeType;
 import com.ajayhao.mslab.core.common.enums.YesNoEnum;
 import com.ajayhao.mslab.core.common.exception.BusinessBizException;
 import com.ajayhao.mslab.core.util.DateUtil;
+import com.ajayhao.mslab.stock.config.RemoteConfig;
 import com.ajayhao.mslab.stock.dal.dataobject.StockInfoDO;
 import com.ajayhao.mslab.stock.dto.StockInfoReq;
 import com.ajayhao.mslab.stock.dto.StockInfoResp;
@@ -38,7 +39,8 @@ public class StockInfoServiceImpl implements StockInfoService {
     @Autowired
     private StockRemoteService stockRemoteService;
 
-    private String key = "dc585fdc8fc24cebbad73134920f9e73";
+    @Autowired
+    private RemoteConfig remoteConfig;
 
     private BeanCopier bc = BeanCopier.create(JuHeStockBasicDto.class, StockInfoDO.class, false);
 
@@ -51,7 +53,7 @@ public class StockInfoServiceImpl implements StockInfoService {
             JuHeStockReq remoteReq = new JuHeStockReq();
             remoteReq.setGid(req.getGid());
             remoteReq.setType(req.getType());
-            remoteReq.setKey(key);
+            remoteReq.setKey(remoteConfig.getJuheKey());
             JuHeRemoteResp<List<JuHeStockDto>> remoteResp = stockRemoteService.queryStockInfo(remoteReq);
             if(remoteResp.isSuccess()){
                 StockInfoDO newStockInfoDO = resolveRemoteResp(remoteResp.getResult());

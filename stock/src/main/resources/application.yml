@@ -15,11 +15,11 @@ spring:
     expose-session-attributes: false
     expose-spring-macro-helpers: false
     request-context-attribute: request
-#spring.freemarker.prefix=
-#spring.freemarker.settings.*=
-#spring.freemarker.suffix=.ftl
-#spring.freemarker.template-loader-path=classpath:/templates/ #comma-separated list
-#spring.freemarker.view-names= # whitelist of view names that can be resolved
+    #prefix:
+    #settings.*:
+    #suffix: .ftl
+    #template-loader-path: classpath:/templates/ #comma-separated list
+    #view-names: # whitelist of view names that can be resolved
 
 # 数据库
 #jdbc:
@@ -31,7 +31,7 @@ spring:
 
 
 #swagger配置
-swagger:
-  switch: true
-  config:
-    basePackage: com.ajayhao.mslab.stock
+#swagger:
+#  switch: true
+#  config:
+#    basePackage: com.ajayhao.mslab.stock

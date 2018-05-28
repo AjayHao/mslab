@@ -1,6 +1,6 @@
 package com.ajayhao.mslab.stock;
 
-import com.ajayhao.mslab.stock.config.BaseConfig;
+import com.ajayhao.mslab.stock.config.RestTemplateConfig;
 import org.springframework.context.annotation.*;
 
 /**
@@ -8,7 +8,7 @@ import org.springframework.context.annotation.*;
  */
 @Configuration
 @ImportResource("/spring/spring-persistence.xml")
-@Import(BaseConfig.class)
+@Import(RestTemplateConfig.class)
 public class StockBootConfig {
 
 }

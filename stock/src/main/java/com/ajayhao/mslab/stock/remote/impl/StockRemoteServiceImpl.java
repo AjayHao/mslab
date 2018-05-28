@@ -1,6 +1,7 @@
 package com.ajayhao.mslab.stock.remote.impl;
 
 import com.ajayhao.mslab.core.util.JsonUtil;
+import com.ajayhao.mslab.stock.config.RemoteConfig;
 import com.ajayhao.mslab.stock.remote.StockRemoteService;
 import com.ajayhao.mslab.stock.remote.dto.JuHeStockDto;
 import com.ajayhao.mslab.stock.remote.dto.request.JuHeStockReq;
@@ -21,11 +22,12 @@ public class StockRemoteServiceImpl implements StockRemoteService{
     @Autowired
     private RestTemplate restTemplate;
 
-    private String url = "http://web.juhe.cn:8080/finance/stock/hs?gid={gid}&key={key}";
+    @Autowired
+    private RemoteConfig remoteConfig;
 
     @Override
     public JuHeRemoteResp<List<JuHeStockDto>> queryStockInfo(JuHeStockReq stockReq){
-        String remoteRespStr = restTemplate.getForObject(url, String.class, stockReq.getGid(), stockReq.getKey());
+        String remoteRespStr = restTemplate.getForObject(remoteConfig.getJuheServiceUrl(), String.class, stockReq.getGid(), stockReq.getKey());
         JuHeRemoteResp<List<JuHeStockDto>> remoteResp = JsonUtil.parse(remoteRespStr, new TypeReference<JuHeRemoteResp<List<JuHeStockDto>>>() {});
         return remoteResp;
     }
