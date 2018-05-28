@@ -6,7 +6,7 @@
     <file>${user.home}/logs/mslab/stock/main.log</file>
 
         <rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
-            <FileNamePattern>logs/mslab/stocklab/main.%i.log.zip</FileNamePattern>
+            <FileNamePattern>logs/mslab/stock/main.%i.log.zip</FileNamePattern>
             <MinIndex>1</MinIndex>
             <MaxIndex>5</MaxIndex>
         </rollingPolicy>

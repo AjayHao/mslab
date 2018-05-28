@@ -20,8 +20,9 @@
         <spring-cloud.version>Finchley.RC1</spring-cloud.version>
         <spring-cloud-module.version>2.0.0.RC1</spring-cloud-module.version>
         <!-- 二方库-->
-        <mslab-support.version>0.0.1-SNAPSHOT</mslab-support.version>
-
+        <core-common.version>0.0.1-SNAPSHOT</core-common.version>
+        <swagger-support.version>0.0.1-SNAPSHOT</swagger-support.version>
+        <!-- 三方库 -->
         <slf4j.version>1.7.25</slf4j.version>
         <logback.version>1.2.3</logback.version>
         <log4j.version>2.11.0</log4j.version>
@@ -142,6 +143,12 @@
                 <version>${spring-boot.version}</version>
             </dependency>
 
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-actuator</artifactId>
+                <version>${spring-boot.version}</version>
+            </dependency>
+
             <!-- ### spring cloud 依赖 ### -->
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
@@ -185,13 +192,13 @@
             <dependency>
                 <groupId>com.ajayhao.mslab.support</groupId>
                 <artifactId>core-common</artifactId>
-                <version>0.0.1-SNAPSHOT</version>
+                <version>${core-common.version}</version>
             </dependency>
 
             <dependency>
                 <groupId>com.ajayhao.mslab.support</groupId>
                 <artifactId>swagger-support</artifactId>
-                <version>0.0.1-SNAPSHOT</version>
+                <version>${swagger-support.version}</version>
             </dependency>
 
             <!-- ###  三方库 ### -->

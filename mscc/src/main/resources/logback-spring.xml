@@ -3,10 +3,10 @@
     <include resource="org/springframework/boot/logging/logback/base.xml"/>
 
     <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
-    <file>${user.home}/logs/fileCrawler/main.log</file>
+    <file>${user.home}/logs/mslab/mscc/main.log</file>
 
         <rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
-            <FileNamePattern>logs/fileCrawler/main.%i.log.zip</FileNamePattern>
+            <FileNamePattern>logs/mslab/mscc/main.%i.log.zip</FileNamePattern>
             <MinIndex>1</MinIndex>
             <MaxIndex>5</MaxIndex>
         </rollingPolicy>
@@ -21,12 +21,12 @@
     </appender>
 
     <springProfile name="dev,staging">
-        <logger name="com.ajayhao.mslab.filecrawler" level="DEBUG" additivity="false">
+        <logger name="com.ajayhao.mslab.mscc" level="DEBUG" additivity="false">
             <appender-ref ref="CONSOLE"/>
         </logger>
     </springProfile>
     <springProfile name="production">
-        <logger name="com.ajayhao.mslab.filecrawler" level="INFO" additivity="false">
+        <logger name="com.ajayhao.mslab.mscc" level="INFO" additivity="false">
             <appender-ref ref="FILE"/>
         </logger>
     </springProfile>

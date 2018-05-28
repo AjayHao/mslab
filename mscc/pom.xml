@@ -10,12 +10,12 @@
     </parent>
 
     <groupId>com.ajayhao.mslab</groupId>
-    <artifactId>msc</artifactId>
+    <artifactId>mscc</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>jar</packaging>
 
-    <name>msc</name>
-    <description>Micro Service Center</description>
+    <name>mscc</name>
+    <description>Micro Service Config Center</description>
 
     <dependencies>
 
@@ -34,16 +34,17 @@
             <artifactId>spring-cloud-config-client</artifactId>
         </dependency>
 
-        <!--<dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-netflix-eureka-server</artifactId>
-        </dependency>
-
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
         </dependency>
--->
+
+        <!-- 支持配置手动刷新 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
+
     </dependencies>
 
     <build>

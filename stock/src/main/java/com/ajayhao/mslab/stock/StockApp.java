@@ -4,6 +4,7 @@ import com.ajayhao.mslab.swagger.support.annotation.EnableSwaggerConfig;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.context.annotation.ComponentScan;
 
 /**
@@ -11,7 +12,8 @@ import org.springframework.context.annotation.ComponentScan;
  */
 @SpringBootApplication
 @EnableAutoConfiguration
-@ComponentScan(basePackages = { "com.ajayhao.mslab.stock" })
+@EnableEurekaClient
+//@ComponentScan(basePackages = { "com.ajayhao.mslab.stock" })
 @EnableSwaggerConfig
 public class StockApp {
 
