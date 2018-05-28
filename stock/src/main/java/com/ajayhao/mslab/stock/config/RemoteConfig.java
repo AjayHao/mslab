@@ -16,7 +16,7 @@ import java.nio.charset.Charset;
  * Created by AjayHao on 2018/2/17.
  */
 @Component
-@ConfigurationProperties(prefix = "juheData")
+@ConfigurationProperties(prefix = "juhe.service")
 @Data
 public class RemoteConfig {
     private String juheKey;
