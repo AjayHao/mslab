@@ -12,11 +12,11 @@
 
     <modules>
         <module>mslab-support</module>
+        <module>msrc</module>
         <module>mscc</module>
         <module>stock</module>
         <module>antxchecker</module>
         <module>filecrawler</module>
-        <module>msr</module>
     </modules>
 
 </project>
