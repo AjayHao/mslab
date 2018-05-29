@@ -3,9 +3,17 @@
 # 服务注册
 eureka:
   client:
+    #间隔多久去拉取服务注册信息，单位秒，默认为30秒 上游应用及网关需要配置
+    #registry-fetch-interval-seconds: 10
+    healthcheck:
+      enabled: true
     serviceUrl:
       defaultZone: http://localhost:8761/eureka/  #服务注册地址
-
+  instance:
+    #表示eureka client发送心跳给server端的频率。单位秒，默认30s
+    lease-renewal-interval-in-seconds: 5
+    #表示eureka server至上一次收到client的心跳之后，等待下一次心跳的超时时间，在这个时间内若没收到下一次心跳，则将移除该instance。 默认为90s
+    lease-expiration-duration-in-seconds: 10
 # 数据库
 jdbc:
   oracle:

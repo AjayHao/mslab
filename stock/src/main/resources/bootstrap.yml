@@ -9,7 +9,8 @@ spring:
       discovery:
         enabled: true
         serviceId: mslab-mscc
-  eureka:
-    client:
-      serviceUrl:
-        defaultZone: http://localhost:8761/eureka/  #配置刷新服务
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/

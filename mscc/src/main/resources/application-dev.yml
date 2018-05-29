@@ -12,6 +12,11 @@ spring:
 
 #配置中心服务注册
 eureka:
- client:
-   serviceUrl:
-     defaultZone: http://localhost:8761/eureka/
+  client:
+    healthcheck:
+      enabled: true
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+  instance:
+    lease-renewal-interval-in-seconds: 5
+    lease-expiration-duration-in-seconds: 10
