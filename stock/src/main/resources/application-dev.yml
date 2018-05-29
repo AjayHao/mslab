@@ -1,0 +1,31 @@
+###  当配置中心失效时，该配置文件生效
+
+# 服务注册
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/  #服务注册地址
+
+# 数据库
+jdbc:
+  oracle:
+    driver: oracle.jdbc.driver.OracleDriver
+    url: jdbc:oracle:thin:@localhost:1521:orcl
+    username: ajlab
+    password: ajlab
+
+
+#swagger配置
+swagger:
+  switch: true
+  config:
+    basePackage: com.ajayhao.mslab.stock
+    title: Spring Boot中使用Swagger2构建RESTful APIs,动态刷新
+    description: Micro Service Lab,/mslab/stock
+    version: 1.0
+
+# 聚合数据下游url
+juhe:
+  service:
+    juheKey: dc585fdc8fc24cebbad73134920f9e73
+    juheServiceUrl: http://web.juhe.cn:8080/finance/stock/hs?gid={gid}&key={key}

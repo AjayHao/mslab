@@ -1,11 +1,10 @@
 #Application
 spring:
   application:
-    name: mslab-stock
-#profile
+    name: mslab-mscc
   profiles:
     active: dev
 
 #Server
 server:
-  port: 8080
+  port: 8888
