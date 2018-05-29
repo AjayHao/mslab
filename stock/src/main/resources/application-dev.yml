@@ -14,7 +14,6 @@ jdbc:
     username: ajlab
     password: ajlab
 
-
 #swagger配置
 swagger:
   switch: true
@@ -29,3 +28,19 @@ juhe:
   service:
     juheKey: dc585fdc8fc24cebbad73134920f9e73
     juheServiceUrl: http://web.juhe.cn:8080/finance/stock/hs?gid={gid}&key={key}
+
+#Actuator
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  server:
+    port: 10080
+    servlet:
+      context-path: /
+    ssl:
+      enabled: false
+  endpoint:
+    health:
+      show-details: always
