@@ -1,0 +1,8 @@
+spring:
+  application:
+    name: mslab-msmc
+  profiles:
+    active: dev
+
+server:
+  port: 8900

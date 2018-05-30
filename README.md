@@ -9,6 +9,10 @@ Micro Service Registary Center - 微服务注册中心
 Micro Service Config Center - 微服务配置中心
 端口：8888
 
+### msmc
+Micro Service Mo Center - 微服务监控中心
+端口：8900
+
 ### stock
 提供股票行情查询服务，服务名：mslab-stock
 端口：8080
