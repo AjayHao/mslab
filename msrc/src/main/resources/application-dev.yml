@@ -5,7 +5,7 @@ eureka:
     enable-self-preservation: false           # 关闭自我保护模式（缺省为打开）
     eviction-interval-timer-in-ms: 30000       # 续期时间，即清理失效节点的间隔时间,单位毫秒（默认为60000ms）
   instance:
-    hostname: localhost
+    hostname: msrc
   client:
     register-with-eureka: false
     fetch-registry: false
