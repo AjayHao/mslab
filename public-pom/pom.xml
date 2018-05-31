@@ -19,7 +19,7 @@
         <!-- spring cloud -->
         <spring-cloud.version>Finchley.RC1</spring-cloud.version>
         <spring-cloud-module.version>2.0.0.RC1</spring-cloud-module.version>
-        <spring-boot-admin.version>2.0.0</spring-boot-admin.version>
+        <spring-boot-admin.version>2.0.1-SNAPSHOT</spring-boot-admin.version>
         <!-- 二方库-->
         <core-common.version>0.0.1-SNAPSHOT</core-common.version>
         <swagger-support.version>0.0.1-SNAPSHOT</swagger-support.version>
@@ -390,6 +390,16 @@
                 <enabled>false</enabled>
             </snapshots>
         </repository>
+
+        <!-- snapshot  repo-->
+        <repository>
+            <id>sonatype-nexus-snapshots</id>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+            <url>https://oss.sonatype.org/content/repositories/snapshots/</url>
+        </repository>
+
     </repositories>
 
     <!-- Package as an executable jar -->
