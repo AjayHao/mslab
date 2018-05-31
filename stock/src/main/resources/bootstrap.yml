@@ -5,7 +5,7 @@ spring:
     config:
       uri: http://192.168.254.132:8888/  #配置中心ip
       label: ${DEPLOY_ENV:master} #配置服务器远程文件分支
-      profile: dev
+      profile: dev,common
       discovery:
         enabled: true
         serviceId: mslab-mscc
