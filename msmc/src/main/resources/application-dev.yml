@@ -4,9 +4,9 @@ eureka:
     lease-expiration-duration-in-seconds: 20
     health-check-url-path: /actuator/health
   client:
-    registryFetchIntervalSeconds: 30
+    registry-fetch-interval-seconds: 15
     serviceUrl:
-      defaultZone: ${EUREKA_SERVICE_URL:http://localhost:8761}/eureka/
+      defaultZone: http://localhost:8761/eureka/
 
 management:
   endpoints:

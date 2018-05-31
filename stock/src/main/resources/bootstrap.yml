@@ -3,14 +3,14 @@ spring:
     name: mslab-stock
   cloud:
     config:
-      #uri: http://localhost:8888/   #使用高可用配置中心后，以eureka..defaultZone及discovery的配置为准，不用指定服务器
+      uri: http://192.168.254.132:8888/  #配置中心ip
       label: ${DEPLOY_ENV:master} #配置服务器远程文件分支
       profile: dev
       discovery:
         enabled: true
         serviceId: mslab-mscc
 
-eureka:
-  client:
-    serviceUrl:
-      defaultZone: http://localhost:8761/eureka/
+#eureka:
+#  client:
+#    serviceUrl:
+#      defaultZone: http://192.168.254.132:8761/eureka/  #可复用Eureka服务，提供高可用配置中心，替代固定ip
