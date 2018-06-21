@@ -1,0 +1,10 @@
+#Application
+spring:
+  application:
+    name: mslab-crawler
+  profiles:
+    active: dev
+
+#Server
+server:
+  port: 8083

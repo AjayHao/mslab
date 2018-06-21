@@ -18,6 +18,7 @@
         <module>antxchecker</module>
         <module>filecrawler</module>
         <module>msmc</module>
+        <module>crawler</module>
     </modules>
 
 </project>

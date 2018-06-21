@@ -1,0 +1,27 @@
+#配置中心服务注册
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: ${EUREKA_SERVICE_URL:http://localhost:8761/eureka/}
+  instance:
+    lease-renewal-interval-in-seconds: 5
+    lease-expiration-duration-in-seconds: 20
+
+#swagger配置
+swagger:
+  switch: true
+  config:
+    basePackage: com.ajayhao.mslab.crawler
+    title: Spring Boot中使用Swagger2构建RESTful APIs,动态刷新
+    description: 元数聚test,/mslab/crawler
+    version: 1.0
+
+#Actuator
+#management:
+#  endpoints:
+#    web:
+#      exposure:
+#        include: '*'
+#  endpoint:
+#    health:
+#      show-details: always
