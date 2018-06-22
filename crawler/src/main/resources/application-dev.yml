@@ -7,6 +7,12 @@ eureka:
     lease-renewal-interval-in-seconds: 5
     lease-expiration-duration-in-seconds: 20
 
+#元素征信配置
+elecredit:
+  cfg:
+    userId: Z2HO3fdC
+    userKey: jeEZwWbR
+
 #swagger配置
 swagger:
   switch: true
