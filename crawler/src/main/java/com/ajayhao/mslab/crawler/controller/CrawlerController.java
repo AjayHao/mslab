@@ -54,13 +54,12 @@ public class CrawlerController {
         return crawlerService.crawlCompanyNameByCreditCode(keyword);
     }
 
-    @ApiOperation("新闻查询")
-    @RequestMapping(value = "/news", method = GET)
-    public ElecreditResp getCompanyNews(@RequestParam("companyId") String companyId,
-                                                 @RequestParam(name = "category",required = false) String category,
-                                                 @RequestParam(name = "begin",required = false) String begin,
-                                                 @RequestParam(name = "end",required = false) String end) {
-        return crawlerService.crawlCompanyNews(companyId, category, begin, end);
+    @ApiOperation("舆情查询")
+    @RequestMapping(value = "/publicvoice", method = GET)
+    public ElecreditResp getPublicVoices(@RequestParam("companyId") String companyId,
+                                         @RequestParam(name = "begin",required = false) String begin,
+                                         @RequestParam(name = "end",required = false) String end) {
+        return crawlerService.crawlPublicVoices(companyId, begin, end);
     }
 
 }

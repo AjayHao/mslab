@@ -82,10 +82,10 @@ public class CrawlerServiceImpl implements CrawlerService{
      * @return java.lang.String
      **/
     @Override
-    public ElecreditResp crawlCompanyNews(String companyId, String category, String begin, String end) {
+    public ElecreditResp crawlPublicVoices(String companyId, String begin, String end) {
         ElecreditResp elecreditResp = new ElecreditResp();
         elecreditResp.buildSuccess();
-        String info = elecreditRemoteService.crawlCompanyNews(companyId, category, begin, end);
+        String info = elecreditRemoteService.crawlPublicVoices(companyId, begin, end);
         elecreditResp.setResult(info);
         return elecreditResp;
     }

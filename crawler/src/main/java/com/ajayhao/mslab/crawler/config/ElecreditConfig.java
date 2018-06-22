@@ -37,9 +37,9 @@ public class ElecreditConfig {
     **/
     private String comnameUrl;
     /*
-    * url - 查企业新闻url
+    * url - 查企业舆情url
     **/
-    private String newsUrl;
+    private String newGuoTaiUrl;
     /*
     * url - 获取entid
     **/

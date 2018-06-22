@@ -136,13 +136,10 @@ public class ElecreditHelper {
      * @Param key
      * @return java.util.Map<java.lang.String,java.lang.String>
      **/
-    public Map<String,String> buildCompanyNewsParam(String companyId, String category, String begin, String end) {
+    public Map<String,String> buildPublicVoicesParam(String companyId, String begin, String end) {
         Map<String,String> paramMap = new HashMap<>();
         paramMap.put("userid",elecreditConfig.getUserId());
         paramMap.put("entid",companyId);
-        if(StringUtils.isNotBlank(category)) {
-            paramMap.put("category", category);
-        }
         if(StringUtils.isNotBlank(begin)) {
             paramMap.put("begin", begin);
         }

@@ -43,5 +43,5 @@ public interface CrawlerService {
      * @Param companyId,公司entId
      * @return java.lang.String
      **/
-    ElecreditResp crawlCompanyNews(String companyId, String category, String begin, String end);
+    ElecreditResp crawlPublicVoices(String companyId, String begin, String end);
 }

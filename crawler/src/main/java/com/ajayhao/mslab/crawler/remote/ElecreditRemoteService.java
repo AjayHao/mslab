@@ -43,5 +43,5 @@ public interface ElecreditRemoteService {
      * @Param companyId entId
      * @return java.lang.String
      **/
-    String crawlCompanyNews(String companyId, String category, String begin, String end);
+    String crawlPublicVoices(String companyId, String begin, String end);
 }

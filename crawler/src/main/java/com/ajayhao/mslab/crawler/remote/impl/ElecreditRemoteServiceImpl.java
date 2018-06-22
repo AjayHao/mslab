@@ -110,21 +110,21 @@ public class ElecreditRemoteServiceImpl implements ElecreditRemoteService{
     }
 
     /**
-     * @Description 查询企业新闻
+     * @Description 查询企业舆情
      * @Param companyId entId
      * @return java.lang.String
      **/
     @Override
-    public String crawlCompanyNews(String companyId, String category, String begin, String end) {
+    public String crawlPublicVoices(String companyId, String begin, String end) {
         //构造参数
-        Map<String,String> paramMap = elecreditHelper.buildCompanyNewsParam(companyId, category, begin, end);
+        Map<String,String> paramMap = elecreditHelper.buildPublicVoicesParam(companyId, begin, end);
 
         //构造请求entity
         HttpEntity<MultiValueMap> requestEntity = elecreditHelper.buildRequestEntity(paramMap);
 
         //提交post请求
         RestTemplate restTemplate = new RestTemplate();
-        ResponseEntity<String> responseEntity = restTemplate.postForEntity(elecreditConfig.getNewsUrl(), requestEntity, String.class);
+        ResponseEntity<String> responseEntity = restTemplate.postForEntity(elecreditConfig.getNewGuoTaiUrl(), requestEntity, String.class);
         String respEntityBody = responseEntity.getBody();
         return UnicodeUtil.unicodeToString(respEntityBody);
     }
