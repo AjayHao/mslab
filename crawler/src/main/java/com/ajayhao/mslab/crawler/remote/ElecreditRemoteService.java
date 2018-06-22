@@ -10,6 +10,10 @@ import java.util.Map;
  * @Version 1.0
  **/
 public interface ElecreditRemoteService {
-
-    String getEnterpriceInfo(final String userKey,final Map<String,String> paramMap);
+    /**
+    * @Description 爬取企业征信信息
+    * @Param [entId, category]
+    * @return java.lang.String
+    **/
+    String crawlEleCreditInfo(String entId, String category);
 }

@@ -12,6 +12,7 @@ elecredit:
   cfg:
     userId: Z2HO3fdC
     userKey: jeEZwWbR
+    elsaicUrl: http://open.elecredit.com/elsaic/?isjson=1
 
 #swagger配置
 swagger:

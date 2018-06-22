@@ -24,17 +24,16 @@ public class CrawlerServiceImpl implements CrawlerService{
     @Autowired
     private ElecreditRemoteService elecreditRemoteService;
 
+    /**
+     * @Description 爬取企业征信信息
+     * @Param [entId, category]
+     * @return java.lang.String
+     **/
     @Override
-    public ElecreditResp getEleCreditInfo(String userId, String userKey, String entId, String category){
+    public ElecreditResp crawlEleCreditInfo(String entId, String category){
         ElecreditResp elecreditResp = new ElecreditResp();
         elecreditResp.buildSuccess();
-        Map<String,String> paramMap = new HashMap<>();
-        paramMap.put("userid",userId);
-        paramMap.put("entid",entId);
-        if(StringUtils.isNotBlank(category)) {
-            paramMap.put("version", category);
-        }
-        String info = elecreditRemoteService.getEnterpriceInfo(userKey, paramMap);
+        String info = elecreditRemoteService.crawlEleCreditInfo(entId, category);
         elecreditResp.setResult(info);
         return elecreditResp;
     }

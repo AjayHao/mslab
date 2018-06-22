@@ -11,5 +11,5 @@ import com.ajayhao.mslab.crawler.dto.ElecreditResp;
  **/
 public interface CrawlerService {
 
-    ElecreditResp getEleCreditInfo(String userId, String userKey, String entId, String category);
+    ElecreditResp crawlEleCreditInfo(String entId, String category);
 }

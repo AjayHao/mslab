@@ -1,6 +1,5 @@
 package com.ajayhao.mslab.crawler.controller;
 
-import com.ajayhao.mslab.core.common.BaseResp;
 import com.ajayhao.mslab.crawler.dto.ElecreditResp;
 import com.ajayhao.mslab.crawler.service.CrawlerService;
 import io.swagger.annotations.Api;
@@ -21,7 +20,7 @@ import static org.springframework.web.bind.annotation.RequestMethod.GET;
  * @Version 1.0
  **/
 @Slf4j
-@Api("元数聚开放平台")
+@Api("元数征信平台接口")
 @RestController
 @RequestMapping(value = "/elastic")
 public class CrawlerController {
@@ -31,11 +30,8 @@ public class CrawlerController {
 
     @ApiOperation("elsaic")
     @RequestMapping(value = "/", method = GET)
-    public ElecreditResp getEleCreditInfo(@RequestParam("userId") String userId,
-                                          @RequestParam("userKey") String userKey,
-                                          @RequestParam("companyId") String companyId,
-                                          @RequestParam(value = "category",required = false) String category
-                                     ) {
-        return crawlerService.getEleCreditInfo(userId, userKey,companyId,category);
+    public ElecreditResp getEleCreditInfo(@RequestParam("companyId") String companyId,
+                                          @RequestParam(value = "category",required = false) String category) {
+        return crawlerService.crawlEleCreditInfo(companyId,category);
     }
 }
