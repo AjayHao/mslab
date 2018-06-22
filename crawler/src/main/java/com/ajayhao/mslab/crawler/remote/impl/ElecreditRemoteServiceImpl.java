@@ -1,23 +1,17 @@
 package com.ajayhao.mslab.crawler.remote.impl;
 
 import com.ajayhao.mslab.core.util.HMACUtil;
-import com.ajayhao.mslab.core.util.JsonUtil;
 import com.ajayhao.mslab.core.util.UnicodeUtil;
 import com.ajayhao.mslab.crawler.remote.ElecreditRemoteService;
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.http.converter.StringHttpMessageConverter;
-import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.stereotype.Service;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
 
-import java.nio.charset.Charset;
-import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -49,11 +43,6 @@ public class ElecreditRemoteServiceImpl implements ElecreditRemoteService{
 
         //post
         RestTemplate restTemplate = new RestTemplate();
-        //restTemplate.getMessageConverters().clear();
-        //write application/x-www-form-urlencoded request
-        //restTemplate.getMessageConverters().add(new StringHttpMessageConverter(Charset.forName("UTF-8")));
-        //read and write application/json
-        //restTemplate.getMessageConverters().add(new MappingJackson2HttpMessageConverter(JsonUtil.JsonObjectMapperFactory.getInstance()));
         ResponseEntity<String> responseEntity = restTemplate.postForEntity(url, requestEntity, String.class);
         String respEntityBody = responseEntity.getBody();
         return UnicodeUtil.unicodeToString(respEntityBody);
