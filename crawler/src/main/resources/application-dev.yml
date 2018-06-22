@@ -19,7 +19,7 @@ swagger:
   switch: true
   config:
     basePackage: com.ajayhao.mslab.crawler
-    title: Spring Boot中使用Swagger2构建RESTful APIs,动态刷新
+    title: 元素征信服务相关接口API
     description: 元数聚test,/mslab/crawler
     version: 1.0
 
