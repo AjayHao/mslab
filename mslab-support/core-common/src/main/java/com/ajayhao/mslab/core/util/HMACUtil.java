@@ -29,7 +29,6 @@ public class HMACUtil {
         return bytes2Hex(mac.doFinal(text.getBytes(ENCODING)));
     }
 
-    //TODO 待优化
     public static String bytes2Hex(byte[] bytes) {
         String hex = "";
         for (int n = 0; n < bytes.length; n++) {

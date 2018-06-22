@@ -25,9 +25,24 @@ public class ElecreditConfig {
     **/
     private String userKey;
     /*
-    * 访问url
+    * url - 查询企业工商信息
     **/
     private String elsaicUrl;
-
+    /*
+    * url - 查企业名称-模糊查询url
+    **/
+    private String mohuUrl;
+    /*
+    * url - 查企业名称url
+    **/
+    private String comnameUrl;
+    /*
+    * url - 查企业新闻url
+    **/
+    private String newsUrl;
+    /*
+    * url - 获取entid
+    **/
+    private String getEntIdUrl;
 
 }

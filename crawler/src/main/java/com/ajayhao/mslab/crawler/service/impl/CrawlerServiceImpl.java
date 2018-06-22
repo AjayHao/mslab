@@ -3,12 +3,8 @@ package com.ajayhao.mslab.crawler.service.impl;
 import com.ajayhao.mslab.crawler.dto.ElecreditResp;
 import com.ajayhao.mslab.crawler.remote.ElecreditRemoteService;
 import com.ajayhao.mslab.crawler.service.CrawlerService;
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * @ClassName CrawlerServiceImpl
@@ -37,4 +33,61 @@ public class CrawlerServiceImpl implements CrawlerService{
         elecreditResp.setResult(info);
         return elecreditResp;
     }
+
+    /**
+     * @Description 获取企业信息entId
+     * @Param [key, type]
+     * @return java.lang.String
+     **/
+    @Override
+    public ElecreditResp crawlEntId(String key, String type){
+        ElecreditResp elecreditResp = new ElecreditResp();
+        elecreditResp.buildSuccess();
+        String info = elecreditRemoteService.crawlEntId(key, type);
+        elecreditResp.setResult(info);
+        return elecreditResp;
+    }
+
+    /**
+     * @Description 根据简称取企业全称
+     * @Param key 公司名称关键字
+     * @return java.lang.String
+     **/
+    @Override
+    public ElecreditResp crawlCompanyFullName(String key) {
+        ElecreditResp elecreditResp = new ElecreditResp();
+        elecreditResp.buildSuccess();
+        String info = elecreditRemoteService.crawlCompanyFullName(key);
+        elecreditResp.setResult(info);
+        return elecreditResp;
+    }
+
+    /**
+     * @Description 根据工商企业号取企业全称
+     * @Param key 工商企业号
+     * @return java.lang.String
+     **/
+    @Override
+    public ElecreditResp crawlCompanyNameByCreditCode(String key) {
+        ElecreditResp elecreditResp = new ElecreditResp();
+        elecreditResp.buildSuccess();
+        String info = elecreditRemoteService.crawlCompanyNameByCreditCode(key);
+        elecreditResp.setResult(info);
+        return elecreditResp;
+    }
+
+    /**
+     * @Description 查询公司新闻
+     * @Param companyId 公司entId
+     * @return java.lang.String
+     **/
+    @Override
+    public ElecreditResp crawlCompanyNews(String companyId, String category, String begin, String end) {
+        ElecreditResp elecreditResp = new ElecreditResp();
+        elecreditResp.buildSuccess();
+        String info = elecreditRemoteService.crawlCompanyNews(companyId, category, begin, end);
+        elecreditResp.setResult(info);
+        return elecreditResp;
+    }
+
 }
