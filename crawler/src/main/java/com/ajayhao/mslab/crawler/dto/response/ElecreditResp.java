@@ -1,4 +1,4 @@
-package com.ajayhao.mslab.crawler.dto;
+package com.ajayhao.mslab.crawler.dto.response;
 
 import com.ajayhao.mslab.core.common.BaseResp;
 import lombok.Getter;

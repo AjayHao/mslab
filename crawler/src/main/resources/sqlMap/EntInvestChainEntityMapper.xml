@@ -1,0 +1,460 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ajayhao.mslab.crawler.orm.mapper.EntInvestChainEntityMapper">
+  <resultMap id="BaseResultMap" type="com.ajayhao.mslab.crawler.orm.entity.EntInvestChainEntity">
+    <id column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="ENT_ID" jdbcType="VARCHAR" property="entId" />
+    <result column="ENT_NAME" jdbcType="VARCHAR" property="entName" />
+    <result column="PULL_DATE" jdbcType="VARCHAR" property="pullDate" />
+    <result column="SUBJECT_TYPE" jdbcType="VARCHAR" property="subjectType" />
+    <result column="ID_CARD" jdbcType="VARCHAR" property="idCard" />
+    <result column="CER_TYPE" jdbcType="VARCHAR" property="cerType" />
+    <result column="FINAL_ENT_NAME" jdbcType="VARCHAR" property="finalEntName" />
+    <result column="ADDRESS" jdbcType="VARCHAR" property="address" />
+    <result column="FINAL_RATIO" jdbcType="DECIMAL" property="finalRatio" />
+    <result column="FINAL_SUBS_NUM" jdbcType="DECIMAL" property="finalSubsNum" />
+    <result column="FINAL_ACC_NUM" jdbcType="DECIMAL" property="finalAccNum" />
+    <result column="RATIO_ROAD" jdbcType="VARCHAR" property="ratioRoad" />
+    <result column="POSITION" jdbcType="VARCHAR" property="position" />
+    <result column="CAPITAL_CHAIN" jdbcType="VARCHAR" property="capitalChain" />
+    <result column="UNIQUE_TOKEN" jdbcType="VARCHAR" property="uniqueToken" />
+    <result column="CREATED_AT" jdbcType="TIMESTAMP" property="createdAt" />
+    <result column="CREATOR" jdbcType="VARCHAR" property="creator" />
+    <result column="UPDATED_AT" jdbcType="TIMESTAMP" property="updatedAt" />
+    <result column="UPDATER" jdbcType="VARCHAR" property="updater" />
+    <result column="IS_DELETE" jdbcType="DECIMAL" property="isDelete" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    ID, ENT_ID, ENT_NAME, PULL_DATE, SUBJECT_TYPE, ID_CARD, CER_TYPE, FINAL_ENT_NAME, 
+    ADDRESS, FINAL_RATIO, FINAL_SUBS_NUM, FINAL_ACC_NUM, RATIO_ROAD, POSITION, CAPITAL_CHAIN, 
+    UNIQUE_TOKEN, CREATED_AT, CREATOR, UPDATED_AT, UPDATER, IS_DELETE
+  </sql>
+  <select id="selectByExample" parameterType="com.ajayhao.mslab.crawler.orm.entity.EntInvestChainEntityExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    'false' as QUERYID,
+    <include refid="Base_Column_List" />
+    from COMBS_ZXCJ_QYKGXX
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from COMBS_ZXCJ_QYKGXX
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from COMBS_ZXCJ_QYKGXX
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.ajayhao.mslab.crawler.orm.entity.EntInvestChainEntityExample">
+    delete from COMBS_ZXCJ_QYKGXX
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.ajayhao.mslab.crawler.orm.entity.EntInvestChainEntity">
+    insert into COMBS_ZXCJ_QYKGXX (ID, ENT_ID, ENT_NAME, 
+      PULL_DATE, SUBJECT_TYPE, ID_CARD, 
+      CER_TYPE, FINAL_ENT_NAME, ADDRESS, 
+      FINAL_RATIO, FINAL_SUBS_NUM, FINAL_ACC_NUM, 
+      RATIO_ROAD, POSITION, CAPITAL_CHAIN, 
+      UNIQUE_TOKEN, CREATED_AT, CREATOR, 
+      UPDATED_AT, UPDATER, IS_DELETE
+      )
+    values (#{id,jdbcType=VARCHAR}, #{entId,jdbcType=VARCHAR}, #{entName,jdbcType=VARCHAR}, 
+      #{pullDate,jdbcType=VARCHAR}, #{subjectType,jdbcType=VARCHAR}, #{idCard,jdbcType=VARCHAR}, 
+      #{cerType,jdbcType=VARCHAR}, #{finalEntName,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, 
+      #{finalRatio,jdbcType=DECIMAL}, #{finalSubsNum,jdbcType=DECIMAL}, #{finalAccNum,jdbcType=DECIMAL}, 
+      #{ratioRoad,jdbcType=VARCHAR}, #{position,jdbcType=VARCHAR}, #{capitalChain,jdbcType=VARCHAR}, 
+      #{uniqueToken,jdbcType=VARCHAR}, #{createdAt,jdbcType=TIMESTAMP}, #{creator,jdbcType=VARCHAR}, 
+      #{updatedAt,jdbcType=TIMESTAMP}, #{updater,jdbcType=VARCHAR}, #{isDelete,jdbcType=DECIMAL}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ajayhao.mslab.crawler.orm.entity.EntInvestChainEntity">
+    insert into COMBS_ZXCJ_QYKGXX
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="entId != null">
+        ENT_ID,
+      </if>
+      <if test="entName != null">
+        ENT_NAME,
+      </if>
+      <if test="pullDate != null">
+        PULL_DATE,
+      </if>
+      <if test="subjectType != null">
+        SUBJECT_TYPE,
+      </if>
+      <if test="idCard != null">
+        ID_CARD,
+      </if>
+      <if test="cerType != null">
+        CER_TYPE,
+      </if>
+      <if test="finalEntName != null">
+        FINAL_ENT_NAME,
+      </if>
+      <if test="address != null">
+        ADDRESS,
+      </if>
+      <if test="finalRatio != null">
+        FINAL_RATIO,
+      </if>
+      <if test="finalSubsNum != null">
+        FINAL_SUBS_NUM,
+      </if>
+      <if test="finalAccNum != null">
+        FINAL_ACC_NUM,
+      </if>
+      <if test="ratioRoad != null">
+        RATIO_ROAD,
+      </if>
+      <if test="position != null">
+        POSITION,
+      </if>
+      <if test="capitalChain != null">
+        CAPITAL_CHAIN,
+      </if>
+      <if test="uniqueToken != null">
+        UNIQUE_TOKEN,
+      </if>
+      <if test="createdAt != null">
+        CREATED_AT,
+      </if>
+      <if test="creator != null">
+        CREATOR,
+      </if>
+      <if test="updatedAt != null">
+        UPDATED_AT,
+      </if>
+      <if test="updater != null">
+        UPDATER,
+      </if>
+      <if test="isDelete != null">
+        IS_DELETE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="entId != null">
+        #{entId,jdbcType=VARCHAR},
+      </if>
+      <if test="entName != null">
+        #{entName,jdbcType=VARCHAR},
+      </if>
+      <if test="pullDate != null">
+        #{pullDate,jdbcType=VARCHAR},
+      </if>
+      <if test="subjectType != null">
+        #{subjectType,jdbcType=VARCHAR},
+      </if>
+      <if test="idCard != null">
+        #{idCard,jdbcType=VARCHAR},
+      </if>
+      <if test="cerType != null">
+        #{cerType,jdbcType=VARCHAR},
+      </if>
+      <if test="finalEntName != null">
+        #{finalEntName,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="finalRatio != null">
+        #{finalRatio,jdbcType=DECIMAL},
+      </if>
+      <if test="finalSubsNum != null">
+        #{finalSubsNum,jdbcType=DECIMAL},
+      </if>
+      <if test="finalAccNum != null">
+        #{finalAccNum,jdbcType=DECIMAL},
+      </if>
+      <if test="ratioRoad != null">
+        #{ratioRoad,jdbcType=VARCHAR},
+      </if>
+      <if test="position != null">
+        #{position,jdbcType=VARCHAR},
+      </if>
+      <if test="capitalChain != null">
+        #{capitalChain,jdbcType=VARCHAR},
+      </if>
+      <if test="uniqueToken != null">
+        #{uniqueToken,jdbcType=VARCHAR},
+      </if>
+      <if test="createdAt != null">
+        #{createdAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="creator != null">
+        #{creator,jdbcType=VARCHAR},
+      </if>
+      <if test="updatedAt != null">
+        #{updatedAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updater != null">
+        #{updater,jdbcType=VARCHAR},
+      </if>
+      <if test="isDelete != null">
+        #{isDelete,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByExampleSelective" parameterType="map">
+    update COMBS_ZXCJ_QYKGXX
+    <set>
+      <if test="record.id != null">
+        ID = #{record.id,jdbcType=VARCHAR},
+      </if>
+      <if test="record.entId != null">
+        ENT_ID = #{record.entId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.entName != null">
+        ENT_NAME = #{record.entName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pullDate != null">
+        PULL_DATE = #{record.pullDate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.subjectType != null">
+        SUBJECT_TYPE = #{record.subjectType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.idCard != null">
+        ID_CARD = #{record.idCard,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cerType != null">
+        CER_TYPE = #{record.cerType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.finalEntName != null">
+        FINAL_ENT_NAME = #{record.finalEntName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.address != null">
+        ADDRESS = #{record.address,jdbcType=VARCHAR},
+      </if>
+      <if test="record.finalRatio != null">
+        FINAL_RATIO = #{record.finalRatio,jdbcType=DECIMAL},
+      </if>
+      <if test="record.finalSubsNum != null">
+        FINAL_SUBS_NUM = #{record.finalSubsNum,jdbcType=DECIMAL},
+      </if>
+      <if test="record.finalAccNum != null">
+        FINAL_ACC_NUM = #{record.finalAccNum,jdbcType=DECIMAL},
+      </if>
+      <if test="record.ratioRoad != null">
+        RATIO_ROAD = #{record.ratioRoad,jdbcType=VARCHAR},
+      </if>
+      <if test="record.position != null">
+        POSITION = #{record.position,jdbcType=VARCHAR},
+      </if>
+      <if test="record.capitalChain != null">
+        CAPITAL_CHAIN = #{record.capitalChain,jdbcType=VARCHAR},
+      </if>
+      <if test="record.uniqueToken != null">
+        UNIQUE_TOKEN = #{record.uniqueToken,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createdAt != null">
+        CREATED_AT = #{record.createdAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.creator != null">
+        CREATOR = #{record.creator,jdbcType=VARCHAR},
+      </if>
+      <if test="record.updatedAt != null">
+        UPDATED_AT = #{record.updatedAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updater != null">
+        UPDATER = #{record.updater,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isDelete != null">
+        IS_DELETE = #{record.isDelete,jdbcType=DECIMAL},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update COMBS_ZXCJ_QYKGXX
+    set ID = #{record.id,jdbcType=VARCHAR},
+      ENT_ID = #{record.entId,jdbcType=VARCHAR},
+      ENT_NAME = #{record.entName,jdbcType=VARCHAR},
+      PULL_DATE = #{record.pullDate,jdbcType=VARCHAR},
+      SUBJECT_TYPE = #{record.subjectType,jdbcType=VARCHAR},
+      ID_CARD = #{record.idCard,jdbcType=VARCHAR},
+      CER_TYPE = #{record.cerType,jdbcType=VARCHAR},
+      FINAL_ENT_NAME = #{record.finalEntName,jdbcType=VARCHAR},
+      ADDRESS = #{record.address,jdbcType=VARCHAR},
+      FINAL_RATIO = #{record.finalRatio,jdbcType=DECIMAL},
+      FINAL_SUBS_NUM = #{record.finalSubsNum,jdbcType=DECIMAL},
+      FINAL_ACC_NUM = #{record.finalAccNum,jdbcType=DECIMAL},
+      RATIO_ROAD = #{record.ratioRoad,jdbcType=VARCHAR},
+      POSITION = #{record.position,jdbcType=VARCHAR},
+      CAPITAL_CHAIN = #{record.capitalChain,jdbcType=VARCHAR},
+      UNIQUE_TOKEN = #{record.uniqueToken,jdbcType=VARCHAR},
+      CREATED_AT = #{record.createdAt,jdbcType=TIMESTAMP},
+      CREATOR = #{record.creator,jdbcType=VARCHAR},
+      UPDATED_AT = #{record.updatedAt,jdbcType=TIMESTAMP},
+      UPDATER = #{record.updater,jdbcType=VARCHAR},
+      IS_DELETE = #{record.isDelete,jdbcType=DECIMAL}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ajayhao.mslab.crawler.orm.entity.EntInvestChainEntity">
+    update COMBS_ZXCJ_QYKGXX
+    <set>
+      <if test="entId != null">
+        ENT_ID = #{entId,jdbcType=VARCHAR},
+      </if>
+      <if test="entName != null">
+        ENT_NAME = #{entName,jdbcType=VARCHAR},
+      </if>
+      <if test="pullDate != null">
+        PULL_DATE = #{pullDate,jdbcType=VARCHAR},
+      </if>
+      <if test="subjectType != null">
+        SUBJECT_TYPE = #{subjectType,jdbcType=VARCHAR},
+      </if>
+      <if test="idCard != null">
+        ID_CARD = #{idCard,jdbcType=VARCHAR},
+      </if>
+      <if test="cerType != null">
+        CER_TYPE = #{cerType,jdbcType=VARCHAR},
+      </if>
+      <if test="finalEntName != null">
+        FINAL_ENT_NAME = #{finalEntName,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        ADDRESS = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="finalRatio != null">
+        FINAL_RATIO = #{finalRatio,jdbcType=DECIMAL},
+      </if>
+      <if test="finalSubsNum != null">
+        FINAL_SUBS_NUM = #{finalSubsNum,jdbcType=DECIMAL},
+      </if>
+      <if test="finalAccNum != null">
+        FINAL_ACC_NUM = #{finalAccNum,jdbcType=DECIMAL},
+      </if>
+      <if test="ratioRoad != null">
+        RATIO_ROAD = #{ratioRoad,jdbcType=VARCHAR},
+      </if>
+      <if test="position != null">
+        POSITION = #{position,jdbcType=VARCHAR},
+      </if>
+      <if test="capitalChain != null">
+        CAPITAL_CHAIN = #{capitalChain,jdbcType=VARCHAR},
+      </if>
+      <if test="uniqueToken != null">
+        UNIQUE_TOKEN = #{uniqueToken,jdbcType=VARCHAR},
+      </if>
+      <if test="createdAt != null">
+        CREATED_AT = #{createdAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="creator != null">
+        CREATOR = #{creator,jdbcType=VARCHAR},
+      </if>
+      <if test="updatedAt != null">
+        UPDATED_AT = #{updatedAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updater != null">
+        UPDATER = #{updater,jdbcType=VARCHAR},
+      </if>
+      <if test="isDelete != null">
+        IS_DELETE = #{isDelete,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ajayhao.mslab.crawler.orm.entity.EntInvestChainEntity">
+    update COMBS_ZXCJ_QYKGXX
+    set ENT_ID = #{entId,jdbcType=VARCHAR},
+      ENT_NAME = #{entName,jdbcType=VARCHAR},
+      PULL_DATE = #{pullDate,jdbcType=VARCHAR},
+      SUBJECT_TYPE = #{subjectType,jdbcType=VARCHAR},
+      ID_CARD = #{idCard,jdbcType=VARCHAR},
+      CER_TYPE = #{cerType,jdbcType=VARCHAR},
+      FINAL_ENT_NAME = #{finalEntName,jdbcType=VARCHAR},
+      ADDRESS = #{address,jdbcType=VARCHAR},
+      FINAL_RATIO = #{finalRatio,jdbcType=DECIMAL},
+      FINAL_SUBS_NUM = #{finalSubsNum,jdbcType=DECIMAL},
+      FINAL_ACC_NUM = #{finalAccNum,jdbcType=DECIMAL},
+      RATIO_ROAD = #{ratioRoad,jdbcType=VARCHAR},
+      POSITION = #{position,jdbcType=VARCHAR},
+      CAPITAL_CHAIN = #{capitalChain,jdbcType=VARCHAR},
+      UNIQUE_TOKEN = #{uniqueToken,jdbcType=VARCHAR},
+      CREATED_AT = #{createdAt,jdbcType=TIMESTAMP},
+      CREATOR = #{creator,jdbcType=VARCHAR},
+      UPDATED_AT = #{updatedAt,jdbcType=TIMESTAMP},
+      UPDATER = #{updater,jdbcType=VARCHAR},
+      IS_DELETE = #{isDelete,jdbcType=DECIMAL}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

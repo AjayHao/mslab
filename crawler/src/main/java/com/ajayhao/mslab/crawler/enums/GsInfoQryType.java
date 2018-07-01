@@ -1,24 +1,24 @@
-package com.ajayhao.mslab.core.common.enums;
+package com.ajayhao.mslab.crawler.enums;
 
-import com.ajayhao.mslab.core.common.BaseResultType;
 import com.ajayhao.mslab.core.common.IBaseEnum;
 import com.ajayhao.mslab.core.util.EnumUtil;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 /**
- * @EnumName YesNoEnum
- * @Description YesNoEnum
+ * @ClassName ElsaicQryVersion
+ * @Description 工商信息 查询类型字典
  * @Author Ajay Hao
- * @Date 2018.05.23
+ * @Date 2018/6/29 14:27
  * @Version 1.0
- */
+ **/
 @Getter
 @AllArgsConstructor
-public enum YesNoEnum implements IBaseEnum {
+public enum GsInfoQryType implements IBaseEnum {
 
-    Y("Y", "YES"),
-    N("N", "NO");
+    BY_ID("1", "通过entid"),
+    BY_NAME("2", "通过全称"),
+    ;
 
     private final String code;
     private final String message;
@@ -29,7 +29,7 @@ public enum YesNoEnum implements IBaseEnum {
      * @param code the code
      * @return the yes no enum
      */
-    public static YesNoEnum get(String code) {
-        return EnumUtil.<YesNoEnum> valueOf(YesNoEnum.class, code);
+    public static GsInfoQryType get(String code) {
+        return EnumUtil.<GsInfoQryType> valueOf(GsInfoQryType.class, code);
     }
 }

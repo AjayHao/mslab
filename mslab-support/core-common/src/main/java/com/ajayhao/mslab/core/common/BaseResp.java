@@ -56,7 +56,7 @@ public class BaseResp implements Serializable {
     }
 
     /**
-     * <P> 初始化失败 <P>
+     * <P> 初始化幂等 <P>
      */
     @SuppressWarnings("unchecked")
     public <T extends BaseResp> T buildIdempotent() {

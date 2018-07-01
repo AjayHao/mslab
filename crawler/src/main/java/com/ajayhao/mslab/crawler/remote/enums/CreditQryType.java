@@ -1,24 +1,23 @@
-package com.ajayhao.mslab.core.common.enums;
+package com.ajayhao.mslab.crawler.remote.enums;
 
-import com.ajayhao.mslab.core.common.BaseResultType;
 import com.ajayhao.mslab.core.common.IBaseEnum;
 import com.ajayhao.mslab.core.util.EnumUtil;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 /**
- * @EnumName YesNoEnum
- * @Description YesNoEnum
+ * @ClassName CreditQryType
+ * @Description EntId 查询类型字典
  * @Author Ajay Hao
- * @Date 2018.05.23
+ * @Date 2018/6/29 14:27
  * @Version 1.0
- */
+ **/
 @Getter
 @AllArgsConstructor
-public enum YesNoEnum implements IBaseEnum {
+public enum CreditQryType implements IBaseEnum {
 
-    Y("Y", "YES"),
-    N("N", "NO");
+    CREDIT_CODE("1", "信用代码/注册号"),
+    ENT_NAME("3", "全称");
 
     private final String code;
     private final String message;
@@ -29,7 +28,7 @@ public enum YesNoEnum implements IBaseEnum {
      * @param code the code
      * @return the yes no enum
      */
-    public static YesNoEnum get(String code) {
-        return EnumUtil.<YesNoEnum> valueOf(YesNoEnum.class, code);
+    public static CreditQryType get(String code) {
+        return EnumUtil.<CreditQryType> valueOf(CreditQryType.class, code);
     }
 }

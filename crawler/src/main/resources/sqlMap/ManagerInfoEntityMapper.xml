@@ -1,0 +1,614 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ajayhao.mslab.crawler.orm.mapper.ManagerInfoEntityMapper">
+  <resultMap id="BaseResultMap" type="com.ajayhao.mslab.crawler.orm.entity.ManagerInfoEntity">
+    <id column="GLRDM" jdbcType="VARCHAR" property="glrdm" />
+    <result column="KHDM" jdbcType="VARCHAR" property="khdm" />
+    <result column="KHFWLX" jdbcType="VARCHAR" property="khfwlx" />
+    <result column="GLRMC" jdbcType="VARCHAR" property="glrmc" />
+    <result column="GLRLX" jdbcType="VARCHAR" property="glrlx" />
+    <result column="GLRLB" jdbcType="VARCHAR" property="glrlb" />
+    <result column="GLRCX" jdbcType="VARCHAR" property="glrcx" />
+    <result column="CLRQ" jdbcType="VARCHAR" property="clrq" />
+    <result column="ZZJGDM" jdbcType="VARCHAR" property="zzjgdm" />
+    <result column="GLRFR" jdbcType="VARCHAR" property="glrfr" />
+    <result column="GLRLXDZ" jdbcType="VARCHAR" property="glrlxdz" />
+    <result column="GLRLXDH" jdbcType="VARCHAR" property="glrlxdh" />
+    <result column="XYCPSL" jdbcType="VARCHAR" property="xycpsl" />
+    <result column="HZCPSL" jdbcType="VARCHAR" property="hzcpsl" />
+    <result column="BZ" jdbcType="VARCHAR" property="bz" />
+    <result column="GXRY" jdbcType="VARCHAR" property="gxry" />
+    <result column="GXRQ" jdbcType="VARCHAR" property="gxrq" />
+    <result column="GXSJ" jdbcType="VARCHAR" property="gxsj" />
+    <result column="KHJL" jdbcType="VARCHAR" property="khjl" />
+    <result column="KHJL1" jdbcType="VARCHAR" property="khjl1" />
+    <result column="XHJS" jdbcType="VARCHAR" property="xhjs" />
+    <result column="GLRZCDZ" jdbcType="VARCHAR" property="glrzcdz" />
+    <result column="FWPTZT" jdbcType="CHAR" property="fwptzt" />
+    <result column="SFBMD" jdbcType="VARCHAR" property="sfbmd" />
+    <result column="YXJL" jdbcType="VARCHAR" property="yxjl" />
+    <result column="SFHMD" jdbcType="VARCHAR" property="sfhmd" />
+    <result column="SFXG" jdbcType="VARCHAR" property="sfxg" />
+    <result column="YCLX" jdbcType="VARCHAR" property="yclx" />
+    <result column="YCBZ" jdbcType="VARCHAR" property="ycbz" />
+    <result column="YWLX" jdbcType="VARCHAR" property="ywlx" />
+    <result column="ZZLX" jdbcType="VARCHAR" property="zzlx" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    GLRDM, KHDM, KHFWLX, GLRMC, GLRLX, GLRLB, GLRCX, CLRQ, ZZJGDM, GLRFR, GLRLXDZ, GLRLXDH, 
+    XYCPSL, HZCPSL, BZ, GXRY, GXRQ, GXSJ, KHJL, KHJL1, XHJS, GLRZCDZ, FWPTZT, SFBMD, 
+    YXJL, SFHMD, SFXG, YCLX, YCBZ, YWLX, ZZLX
+  </sql>
+  <select id="selectByExample" parameterType="com.ajayhao.mslab.crawler.orm.entity.ManagerInfoEntityExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    'false' as QUERYID,
+    <include refid="Base_Column_List" />
+    from XZPT_GLRXX
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from XZPT_GLRXX
+    where GLRDM = #{glrdm,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from XZPT_GLRXX
+    where GLRDM = #{glrdm,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.ajayhao.mslab.crawler.orm.entity.ManagerInfoEntityExample">
+    delete from XZPT_GLRXX
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.ajayhao.mslab.crawler.orm.entity.ManagerInfoEntity">
+    insert into XZPT_GLRXX (GLRDM, KHDM, KHFWLX, 
+      GLRMC, GLRLX, GLRLB, 
+      GLRCX, CLRQ, ZZJGDM, 
+      GLRFR, GLRLXDZ, GLRLXDH, 
+      XYCPSL, HZCPSL, BZ, 
+      GXRY, GXRQ, GXSJ, KHJL, 
+      KHJL1, XHJS, GLRZCDZ, 
+      FWPTZT, SFBMD, YXJL, SFHMD, 
+      SFXG, YCLX, YCBZ, YWLX, 
+      ZZLX)
+    values (#{glrdm,jdbcType=VARCHAR}, #{khdm,jdbcType=VARCHAR}, #{khfwlx,jdbcType=VARCHAR}, 
+      #{glrmc,jdbcType=VARCHAR}, #{glrlx,jdbcType=VARCHAR}, #{glrlb,jdbcType=VARCHAR}, 
+      #{glrcx,jdbcType=VARCHAR}, #{clrq,jdbcType=VARCHAR}, #{zzjgdm,jdbcType=VARCHAR}, 
+      #{glrfr,jdbcType=VARCHAR}, #{glrlxdz,jdbcType=VARCHAR}, #{glrlxdh,jdbcType=VARCHAR}, 
+      #{xycpsl,jdbcType=VARCHAR}, #{hzcpsl,jdbcType=VARCHAR}, #{bz,jdbcType=VARCHAR}, 
+      #{gxry,jdbcType=VARCHAR}, #{gxrq,jdbcType=VARCHAR}, #{gxsj,jdbcType=VARCHAR}, #{khjl,jdbcType=VARCHAR}, 
+      #{khjl1,jdbcType=VARCHAR}, #{xhjs,jdbcType=VARCHAR}, #{glrzcdz,jdbcType=VARCHAR}, 
+      #{fwptzt,jdbcType=CHAR}, #{sfbmd,jdbcType=VARCHAR}, #{yxjl,jdbcType=VARCHAR}, #{sfhmd,jdbcType=VARCHAR}, 
+      #{sfxg,jdbcType=VARCHAR}, #{yclx,jdbcType=VARCHAR}, #{ycbz,jdbcType=VARCHAR}, #{ywlx,jdbcType=VARCHAR}, 
+      #{zzlx,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ajayhao.mslab.crawler.orm.entity.ManagerInfoEntity">
+    insert into XZPT_GLRXX
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="glrdm != null">
+        GLRDM,
+      </if>
+      <if test="khdm != null">
+        KHDM,
+      </if>
+      <if test="khfwlx != null">
+        KHFWLX,
+      </if>
+      <if test="glrmc != null">
+        GLRMC,
+      </if>
+      <if test="glrlx != null">
+        GLRLX,
+      </if>
+      <if test="glrlb != null">
+        GLRLB,
+      </if>
+      <if test="glrcx != null">
+        GLRCX,
+      </if>
+      <if test="clrq != null">
+        CLRQ,
+      </if>
+      <if test="zzjgdm != null">
+        ZZJGDM,
+      </if>
+      <if test="glrfr != null">
+        GLRFR,
+      </if>
+      <if test="glrlxdz != null">
+        GLRLXDZ,
+      </if>
+      <if test="glrlxdh != null">
+        GLRLXDH,
+      </if>
+      <if test="xycpsl != null">
+        XYCPSL,
+      </if>
+      <if test="hzcpsl != null">
+        HZCPSL,
+      </if>
+      <if test="bz != null">
+        BZ,
+      </if>
+      <if test="gxry != null">
+        GXRY,
+      </if>
+      <if test="gxrq != null">
+        GXRQ,
+      </if>
+      <if test="gxsj != null">
+        GXSJ,
+      </if>
+      <if test="khjl != null">
+        KHJL,
+      </if>
+      <if test="khjl1 != null">
+        KHJL1,
+      </if>
+      <if test="xhjs != null">
+        XHJS,
+      </if>
+      <if test="glrzcdz != null">
+        GLRZCDZ,
+      </if>
+      <if test="fwptzt != null">
+        FWPTZT,
+      </if>
+      <if test="sfbmd != null">
+        SFBMD,
+      </if>
+      <if test="yxjl != null">
+        YXJL,
+      </if>
+      <if test="sfhmd != null">
+        SFHMD,
+      </if>
+      <if test="sfxg != null">
+        SFXG,
+      </if>
+      <if test="yclx != null">
+        YCLX,
+      </if>
+      <if test="ycbz != null">
+        YCBZ,
+      </if>
+      <if test="ywlx != null">
+        YWLX,
+      </if>
+      <if test="zzlx != null">
+        ZZLX,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="glrdm != null">
+        #{glrdm,jdbcType=VARCHAR},
+      </if>
+      <if test="khdm != null">
+        #{khdm,jdbcType=VARCHAR},
+      </if>
+      <if test="khfwlx != null">
+        #{khfwlx,jdbcType=VARCHAR},
+      </if>
+      <if test="glrmc != null">
+        #{glrmc,jdbcType=VARCHAR},
+      </if>
+      <if test="glrlx != null">
+        #{glrlx,jdbcType=VARCHAR},
+      </if>
+      <if test="glrlb != null">
+        #{glrlb,jdbcType=VARCHAR},
+      </if>
+      <if test="glrcx != null">
+        #{glrcx,jdbcType=VARCHAR},
+      </if>
+      <if test="clrq != null">
+        #{clrq,jdbcType=VARCHAR},
+      </if>
+      <if test="zzjgdm != null">
+        #{zzjgdm,jdbcType=VARCHAR},
+      </if>
+      <if test="glrfr != null">
+        #{glrfr,jdbcType=VARCHAR},
+      </if>
+      <if test="glrlxdz != null">
+        #{glrlxdz,jdbcType=VARCHAR},
+      </if>
+      <if test="glrlxdh != null">
+        #{glrlxdh,jdbcType=VARCHAR},
+      </if>
+      <if test="xycpsl != null">
+        #{xycpsl,jdbcType=VARCHAR},
+      </if>
+      <if test="hzcpsl != null">
+        #{hzcpsl,jdbcType=VARCHAR},
+      </if>
+      <if test="bz != null">
+        #{bz,jdbcType=VARCHAR},
+      </if>
+      <if test="gxry != null">
+        #{gxry,jdbcType=VARCHAR},
+      </if>
+      <if test="gxrq != null">
+        #{gxrq,jdbcType=VARCHAR},
+      </if>
+      <if test="gxsj != null">
+        #{gxsj,jdbcType=VARCHAR},
+      </if>
+      <if test="khjl != null">
+        #{khjl,jdbcType=VARCHAR},
+      </if>
+      <if test="khjl1 != null">
+        #{khjl1,jdbcType=VARCHAR},
+      </if>
+      <if test="xhjs != null">
+        #{xhjs,jdbcType=VARCHAR},
+      </if>
+      <if test="glrzcdz != null">
+        #{glrzcdz,jdbcType=VARCHAR},
+      </if>
+      <if test="fwptzt != null">
+        #{fwptzt,jdbcType=CHAR},
+      </if>
+      <if test="sfbmd != null">
+        #{sfbmd,jdbcType=VARCHAR},
+      </if>
+      <if test="yxjl != null">
+        #{yxjl,jdbcType=VARCHAR},
+      </if>
+      <if test="sfhmd != null">
+        #{sfhmd,jdbcType=VARCHAR},
+      </if>
+      <if test="sfxg != null">
+        #{sfxg,jdbcType=VARCHAR},
+      </if>
+      <if test="yclx != null">
+        #{yclx,jdbcType=VARCHAR},
+      </if>
+      <if test="ycbz != null">
+        #{ycbz,jdbcType=VARCHAR},
+      </if>
+      <if test="ywlx != null">
+        #{ywlx,jdbcType=VARCHAR},
+      </if>
+      <if test="zzlx != null">
+        #{zzlx,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByExampleSelective" parameterType="map">
+    update XZPT_GLRXX
+    <set>
+      <if test="record.glrdm != null">
+        GLRDM = #{record.glrdm,jdbcType=VARCHAR},
+      </if>
+      <if test="record.khdm != null">
+        KHDM = #{record.khdm,jdbcType=VARCHAR},
+      </if>
+      <if test="record.khfwlx != null">
+        KHFWLX = #{record.khfwlx,jdbcType=VARCHAR},
+      </if>
+      <if test="record.glrmc != null">
+        GLRMC = #{record.glrmc,jdbcType=VARCHAR},
+      </if>
+      <if test="record.glrlx != null">
+        GLRLX = #{record.glrlx,jdbcType=VARCHAR},
+      </if>
+      <if test="record.glrlb != null">
+        GLRLB = #{record.glrlb,jdbcType=VARCHAR},
+      </if>
+      <if test="record.glrcx != null">
+        GLRCX = #{record.glrcx,jdbcType=VARCHAR},
+      </if>
+      <if test="record.clrq != null">
+        CLRQ = #{record.clrq,jdbcType=VARCHAR},
+      </if>
+      <if test="record.zzjgdm != null">
+        ZZJGDM = #{record.zzjgdm,jdbcType=VARCHAR},
+      </if>
+      <if test="record.glrfr != null">
+        GLRFR = #{record.glrfr,jdbcType=VARCHAR},
+      </if>
+      <if test="record.glrlxdz != null">
+        GLRLXDZ = #{record.glrlxdz,jdbcType=VARCHAR},
+      </if>
+      <if test="record.glrlxdh != null">
+        GLRLXDH = #{record.glrlxdh,jdbcType=VARCHAR},
+      </if>
+      <if test="record.xycpsl != null">
+        XYCPSL = #{record.xycpsl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.hzcpsl != null">
+        HZCPSL = #{record.hzcpsl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bz != null">
+        BZ = #{record.bz,jdbcType=VARCHAR},
+      </if>
+      <if test="record.gxry != null">
+        GXRY = #{record.gxry,jdbcType=VARCHAR},
+      </if>
+      <if test="record.gxrq != null">
+        GXRQ = #{record.gxrq,jdbcType=VARCHAR},
+      </if>
+      <if test="record.gxsj != null">
+        GXSJ = #{record.gxsj,jdbcType=VARCHAR},
+      </if>
+      <if test="record.khjl != null">
+        KHJL = #{record.khjl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.khjl1 != null">
+        KHJL1 = #{record.khjl1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.xhjs != null">
+        XHJS = #{record.xhjs,jdbcType=VARCHAR},
+      </if>
+      <if test="record.glrzcdz != null">
+        GLRZCDZ = #{record.glrzcdz,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fwptzt != null">
+        FWPTZT = #{record.fwptzt,jdbcType=CHAR},
+      </if>
+      <if test="record.sfbmd != null">
+        SFBMD = #{record.sfbmd,jdbcType=VARCHAR},
+      </if>
+      <if test="record.yxjl != null">
+        YXJL = #{record.yxjl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sfhmd != null">
+        SFHMD = #{record.sfhmd,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sfxg != null">
+        SFXG = #{record.sfxg,jdbcType=VARCHAR},
+      </if>
+      <if test="record.yclx != null">
+        YCLX = #{record.yclx,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ycbz != null">
+        YCBZ = #{record.ycbz,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ywlx != null">
+        YWLX = #{record.ywlx,jdbcType=VARCHAR},
+      </if>
+      <if test="record.zzlx != null">
+        ZZLX = #{record.zzlx,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update XZPT_GLRXX
+    set GLRDM = #{record.glrdm,jdbcType=VARCHAR},
+      KHDM = #{record.khdm,jdbcType=VARCHAR},
+      KHFWLX = #{record.khfwlx,jdbcType=VARCHAR},
+      GLRMC = #{record.glrmc,jdbcType=VARCHAR},
+      GLRLX = #{record.glrlx,jdbcType=VARCHAR},
+      GLRLB = #{record.glrlb,jdbcType=VARCHAR},
+      GLRCX = #{record.glrcx,jdbcType=VARCHAR},
+      CLRQ = #{record.clrq,jdbcType=VARCHAR},
+      ZZJGDM = #{record.zzjgdm,jdbcType=VARCHAR},
+      GLRFR = #{record.glrfr,jdbcType=VARCHAR},
+      GLRLXDZ = #{record.glrlxdz,jdbcType=VARCHAR},
+      GLRLXDH = #{record.glrlxdh,jdbcType=VARCHAR},
+      XYCPSL = #{record.xycpsl,jdbcType=VARCHAR},
+      HZCPSL = #{record.hzcpsl,jdbcType=VARCHAR},
+      BZ = #{record.bz,jdbcType=VARCHAR},
+      GXRY = #{record.gxry,jdbcType=VARCHAR},
+      GXRQ = #{record.gxrq,jdbcType=VARCHAR},
+      GXSJ = #{record.gxsj,jdbcType=VARCHAR},
+      KHJL = #{record.khjl,jdbcType=VARCHAR},
+      KHJL1 = #{record.khjl1,jdbcType=VARCHAR},
+      XHJS = #{record.xhjs,jdbcType=VARCHAR},
+      GLRZCDZ = #{record.glrzcdz,jdbcType=VARCHAR},
+      FWPTZT = #{record.fwptzt,jdbcType=CHAR},
+      SFBMD = #{record.sfbmd,jdbcType=VARCHAR},
+      YXJL = #{record.yxjl,jdbcType=VARCHAR},
+      SFHMD = #{record.sfhmd,jdbcType=VARCHAR},
+      SFXG = #{record.sfxg,jdbcType=VARCHAR},
+      YCLX = #{record.yclx,jdbcType=VARCHAR},
+      YCBZ = #{record.ycbz,jdbcType=VARCHAR},
+      YWLX = #{record.ywlx,jdbcType=VARCHAR},
+      ZZLX = #{record.zzlx,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ajayhao.mslab.crawler.orm.entity.ManagerInfoEntity">
+    update XZPT_GLRXX
+    <set>
+      <if test="khdm != null">
+        KHDM = #{khdm,jdbcType=VARCHAR},
+      </if>
+      <if test="khfwlx != null">
+        KHFWLX = #{khfwlx,jdbcType=VARCHAR},
+      </if>
+      <if test="glrmc != null">
+        GLRMC = #{glrmc,jdbcType=VARCHAR},
+      </if>
+      <if test="glrlx != null">
+        GLRLX = #{glrlx,jdbcType=VARCHAR},
+      </if>
+      <if test="glrlb != null">
+        GLRLB = #{glrlb,jdbcType=VARCHAR},
+      </if>
+      <if test="glrcx != null">
+        GLRCX = #{glrcx,jdbcType=VARCHAR},
+      </if>
+      <if test="clrq != null">
+        CLRQ = #{clrq,jdbcType=VARCHAR},
+      </if>
+      <if test="zzjgdm != null">
+        ZZJGDM = #{zzjgdm,jdbcType=VARCHAR},
+      </if>
+      <if test="glrfr != null">
+        GLRFR = #{glrfr,jdbcType=VARCHAR},
+      </if>
+      <if test="glrlxdz != null">
+        GLRLXDZ = #{glrlxdz,jdbcType=VARCHAR},
+      </if>
+      <if test="glrlxdh != null">
+        GLRLXDH = #{glrlxdh,jdbcType=VARCHAR},
+      </if>
+      <if test="xycpsl != null">
+        XYCPSL = #{xycpsl,jdbcType=VARCHAR},
+      </if>
+      <if test="hzcpsl != null">
+        HZCPSL = #{hzcpsl,jdbcType=VARCHAR},
+      </if>
+      <if test="bz != null">
+        BZ = #{bz,jdbcType=VARCHAR},
+      </if>
+      <if test="gxry != null">
+        GXRY = #{gxry,jdbcType=VARCHAR},
+      </if>
+      <if test="gxrq != null">
+        GXRQ = #{gxrq,jdbcType=VARCHAR},
+      </if>
+      <if test="gxsj != null">
+        GXSJ = #{gxsj,jdbcType=VARCHAR},
+      </if>
+      <if test="khjl != null">
+        KHJL = #{khjl,jdbcType=VARCHAR},
+      </if>
+      <if test="khjl1 != null">
+        KHJL1 = #{khjl1,jdbcType=VARCHAR},
+      </if>
+      <if test="xhjs != null">
+        XHJS = #{xhjs,jdbcType=VARCHAR},
+      </if>
+      <if test="glrzcdz != null">
+        GLRZCDZ = #{glrzcdz,jdbcType=VARCHAR},
+      </if>
+      <if test="fwptzt != null">
+        FWPTZT = #{fwptzt,jdbcType=CHAR},
+      </if>
+      <if test="sfbmd != null">
+        SFBMD = #{sfbmd,jdbcType=VARCHAR},
+      </if>
+      <if test="yxjl != null">
+        YXJL = #{yxjl,jdbcType=VARCHAR},
+      </if>
+      <if test="sfhmd != null">
+        SFHMD = #{sfhmd,jdbcType=VARCHAR},
+      </if>
+      <if test="sfxg != null">
+        SFXG = #{sfxg,jdbcType=VARCHAR},
+      </if>
+      <if test="yclx != null">
+        YCLX = #{yclx,jdbcType=VARCHAR},
+      </if>
+      <if test="ycbz != null">
+        YCBZ = #{ycbz,jdbcType=VARCHAR},
+      </if>
+      <if test="ywlx != null">
+        YWLX = #{ywlx,jdbcType=VARCHAR},
+      </if>
+      <if test="zzlx != null">
+        ZZLX = #{zzlx,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where GLRDM = #{glrdm,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ajayhao.mslab.crawler.orm.entity.ManagerInfoEntity">
+    update XZPT_GLRXX
+    set KHDM = #{khdm,jdbcType=VARCHAR},
+      KHFWLX = #{khfwlx,jdbcType=VARCHAR},
+      GLRMC = #{glrmc,jdbcType=VARCHAR},
+      GLRLX = #{glrlx,jdbcType=VARCHAR},
+      GLRLB = #{glrlb,jdbcType=VARCHAR},
+      GLRCX = #{glrcx,jdbcType=VARCHAR},
+      CLRQ = #{clrq,jdbcType=VARCHAR},
+      ZZJGDM = #{zzjgdm,jdbcType=VARCHAR},
+      GLRFR = #{glrfr,jdbcType=VARCHAR},
+      GLRLXDZ = #{glrlxdz,jdbcType=VARCHAR},
+      GLRLXDH = #{glrlxdh,jdbcType=VARCHAR},
+      XYCPSL = #{xycpsl,jdbcType=VARCHAR},
+      HZCPSL = #{hzcpsl,jdbcType=VARCHAR},
+      BZ = #{bz,jdbcType=VARCHAR},
+      GXRY = #{gxry,jdbcType=VARCHAR},
+      GXRQ = #{gxrq,jdbcType=VARCHAR},
+      GXSJ = #{gxsj,jdbcType=VARCHAR},
+      KHJL = #{khjl,jdbcType=VARCHAR},
+      KHJL1 = #{khjl1,jdbcType=VARCHAR},
+      XHJS = #{xhjs,jdbcType=VARCHAR},
+      GLRZCDZ = #{glrzcdz,jdbcType=VARCHAR},
+      FWPTZT = #{fwptzt,jdbcType=CHAR},
+      SFBMD = #{sfbmd,jdbcType=VARCHAR},
+      YXJL = #{yxjl,jdbcType=VARCHAR},
+      SFHMD = #{sfhmd,jdbcType=VARCHAR},
+      SFXG = #{sfxg,jdbcType=VARCHAR},
+      YCLX = #{yclx,jdbcType=VARCHAR},
+      YCBZ = #{ycbz,jdbcType=VARCHAR},
+      YWLX = #{ywlx,jdbcType=VARCHAR},
+      ZZLX = #{zzlx,jdbcType=VARCHAR}
+    where GLRDM = #{glrdm,jdbcType=VARCHAR}
+  </update>
+</mapper>

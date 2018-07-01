@@ -1,9 +1,16 @@
 package com.ajayhao.mslab.crawler.remote.impl;
 
+import com.ajayhao.mslab.core.common.exception.BusinessBizException;
 import com.ajayhao.mslab.core.util.UnicodeUtil;
 import com.ajayhao.mslab.crawler.config.ElecreditConfig;
+import com.ajayhao.mslab.crawler.dto.EntEquityInfo;
+import com.ajayhao.mslab.crawler.dto.EntGsInfo;
 import com.ajayhao.mslab.crawler.helper.ElecreditHelper;
 import com.ajayhao.mslab.crawler.remote.ElecreditRemoteService;
+import com.ajayhao.mslab.crawler.remote.dto.SaicInv;
+import com.ajayhao.mslab.crawler.remote.dto.response.RemoteGetEntIdResp;
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.ResponseEntity;
@@ -12,6 +19,9 @@ import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.Map;
+
+import static com.ajayhao.mslab.core.common.enums.RespCodeType.REMOTE_INVOKE_ERROR;
+import static com.ajayhao.mslab.crawler.constant.CrawlerConstants.REMOTE_SUCC;
 
 /**
  * @ClassName ElecreditRemoteServiceImpl
@@ -35,7 +45,7 @@ public class ElecreditRemoteServiceImpl implements ElecreditRemoteService{
      * @return java.lang.String
      **/
     @Override
-    public String crawlEleCreditInfo(String entId, String category) {
+    public EntGsInfo pullEleCreditInfo(String entId, String category) {
         //构造参数
         Map<String,String> paramMap = elecreditHelper.buildElsaicParam(entId, category);
 
@@ -46,7 +56,48 @@ public class ElecreditRemoteServiceImpl implements ElecreditRemoteService{
         RestTemplate restTemplate = new RestTemplate();
         ResponseEntity<String> responseEntity = restTemplate.postForEntity(elecreditConfig.getElsaicUrl(), requestEntity, String.class);
         String respEntityBody = responseEntity.getBody();
-        return UnicodeUtil.unicodeToString(respEntityBody);
+        String jsonStr = UnicodeUtil.unicodeToString(respEntityBody);
+        EntGsInfo entGsInfo = null;
+        JSONObject json = JSON.parseObject(jsonStr);
+
+        if(json == null || json.get("meta") == null || !REMOTE_SUCC.equals(((JSONObject)json.get("meta")).get("code"))){
+            throw new BusinessBizException(REMOTE_INVOKE_ERROR);
+        }else{
+            entGsInfo = elecreditHelper.resolveElsaicResp(json);
+            entGsInfo.setEntId(entId);
+        }
+        return entGsInfo;
+    }
+
+    /**
+     * @Description 获取股权信息
+     * @Param entId
+     * @return EntEquityInfo
+     **/
+    @Override
+    public EntEquityInfo pullEquityInfo(String entId) {
+        //构造参数
+        Map<String,String> paramMap = elecreditHelper.buildEntityInvestChainParam(entId, "1"); //信息不脱敏
+
+        //构造请求entity
+        HttpEntity<MultiValueMap> requestEntity = elecreditHelper.buildRequestEntity(paramMap);
+
+        //提交post请求
+        RestTemplate restTemplate = new RestTemplate();
+        ResponseEntity<SaicInv> responseEntity = restTemplate.postForEntity(elecreditConfig.getSaicInvUrl(), requestEntity, SaicInv.class);
+        /*String respEntityBody = responseEntity.getBody();
+        String jsonStr = UnicodeUtil.unicodeToString(respEntityBody);
+        JSON.parseObject(jsonStr);
+        */
+        SaicInv saicInv = responseEntity.getBody();
+        EntEquityInfo entEquityInfo = null;
+
+        if(saicInv == null || !REMOTE_SUCC.equals(saicInv.getCode())){
+            throw new BusinessBizException(REMOTE_INVOKE_ERROR);
+        }else{
+            entEquityInfo = elecreditHelper.resolveEquityInfoResp(saicInv, entId);
+        }
+        return entEquityInfo;
     }
 
     /**
@@ -55,7 +106,7 @@ public class ElecreditRemoteServiceImpl implements ElecreditRemoteService{
      * @return java.lang.String
      **/
     @Override
-    public String crawlEntId(String keyWord, String type) {
+    public String pullEntId(String keyWord, String type) {
         //构造参数
         Map<String,String> paramMap = elecreditHelper.buildGetEntIdParam(keyWord, type);
 
@@ -64,9 +115,12 @@ public class ElecreditRemoteServiceImpl implements ElecreditRemoteService{
 
         //提交post请求
         RestTemplate restTemplate = new RestTemplate();
-        ResponseEntity<String> responseEntity = restTemplate.postForEntity(elecreditConfig.getGetEntIdUrl(), requestEntity, String.class);
-        String respEntityBody = responseEntity.getBody();
-        return UnicodeUtil.unicodeToString(respEntityBody);
+        ResponseEntity<RemoteGetEntIdResp> responseEntity = restTemplate.postForEntity(elecreditConfig.getGetEntIdUrl(), requestEntity, RemoteGetEntIdResp.class);
+        RemoteGetEntIdResp remoteResp = responseEntity.getBody();
+        if(!REMOTE_SUCC.equals(remoteResp.getCode())){
+            throw new BusinessBizException(REMOTE_INVOKE_ERROR);
+        }
+        return remoteResp.getData();
     }
 
     /**
@@ -75,7 +129,7 @@ public class ElecreditRemoteServiceImpl implements ElecreditRemoteService{
      * @return java.lang.String
      **/
     @Override
-    public String crawlCompanyFullName(String keyWord) {
+    public String pullCompanyFullName(String keyWord) {
         //构造参数
         Map<String,String> paramMap = elecreditHelper.buildFullNameParam(keyWord);
 
@@ -95,7 +149,7 @@ public class ElecreditRemoteServiceImpl implements ElecreditRemoteService{
      * @return java.lang.String
      **/
     @Override
-    public String crawlCompanyNameByCreditCode(String key) {
+    public String pullCompanyNameByCreditCode(String key) {
         //构造参数
         Map<String,String> paramMap = elecreditHelper.buildCompnameByCreditCodeParam(key);
 
@@ -110,12 +164,32 @@ public class ElecreditRemoteServiceImpl implements ElecreditRemoteService{
     }
 
     /**
+     * @Description 查询股权投资链
+     * @Param companyId entId
+     * @return java.lang.String
+     **/
+    @Override
+    public String pullEntityInvestChain(String companyId, String version) {
+        //构造参数
+        Map<String,String> paramMap = elecreditHelper.buildEntityInvestChainParam(companyId, version);
+
+        //构造请求entity
+        HttpEntity<MultiValueMap> requestEntity = elecreditHelper.buildRequestEntity(paramMap);
+
+        //提交post请求
+        RestTemplate restTemplate = new RestTemplate();
+        ResponseEntity<String> responseEntity = restTemplate.postForEntity(elecreditConfig.getSaicInvUrl(), requestEntity, String.class);
+        String respEntityBody = responseEntity.getBody();
+        return UnicodeUtil.unicodeToString(respEntityBody);
+    }
+
+    /**
      * @Description 查询企业舆情
      * @Param companyId entId
      * @return java.lang.String
      **/
     @Override
-    public String crawlPublicVoices(String companyId, String begin, String end) {
+    public String pullPublicVoices(String companyId, String begin, String end) {
         //构造参数
         Map<String,String> paramMap = elecreditHelper.buildPublicVoicesParam(companyId, begin, end);
 

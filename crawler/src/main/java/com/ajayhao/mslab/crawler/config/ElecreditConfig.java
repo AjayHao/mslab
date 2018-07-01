@@ -44,5 +44,8 @@ public class ElecreditConfig {
     * url - 获取entid
     **/
     private String getEntIdUrl;
-
+    /*
+    * url - 股权结构信息
+    **/
+    private String saicInvUrl;
 }

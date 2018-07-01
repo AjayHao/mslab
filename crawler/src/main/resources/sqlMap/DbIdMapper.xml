@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ajayhao.mslab.crawler.orm.mapper.DbIdMapper">
+
+    <select id="newGsxxDbId" resultType="java.lang.Long">
+        select seq_combs_zxcj_gsxx.nextval from dual
+    </select>
+
+
+    <select id="newQykgxxDbId" resultType="java.lang.Long">
+            select seq_combs_zxcj_qykgxx.nextval from dual
+    </select>
+
+
+    <select id="newGqmxDbId" resultType="java.lang.Long">
+        select seq_combs_zxcj_gsxx.nextval from dual
+    </select>
+
+</mapper>

@@ -1,0 +1,460 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ajayhao.mslab.crawler.orm.mapper.EntEquityDetailEntityMapper">
+  <resultMap id="BaseResultMap" type="com.ajayhao.mslab.crawler.orm.entity.EntEquityDetailEntity">
+    <id column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="ENT_ID" jdbcType="VARCHAR" property="entId" />
+    <result column="ENT_NAME" jdbcType="VARCHAR" property="entName" />
+    <result column="PULL_DATE" jdbcType="VARCHAR" property="pullDate" />
+    <result column="SUBJECT_TYPE" jdbcType="VARCHAR" property="subjectType" />
+    <result column="TRACE_LEVEL" jdbcType="DECIMAL" property="traceLevel" />
+    <result column="NODE_NAME" jdbcType="VARCHAR" property="nodeName" />
+    <result column="TAGS" jdbcType="VARCHAR" property="tags" />
+    <result column="CON_NAME" jdbcType="VARCHAR" property="conName" />
+    <result column="CON_PROP" jdbcType="DECIMAL" property="conProp" />
+    <result column="REAL_CON_PROP" jdbcType="DECIMAL" property="realConProp" />
+    <result column="POSITION" jdbcType="VARCHAR" property="position" />
+    <result column="ID_CARD" jdbcType="VARCHAR" property="idCard" />
+    <result column="CER_TYPE" jdbcType="VARCHAR" property="cerType" />
+    <result column="ADDRESS" jdbcType="VARCHAR" property="address" />
+    <result column="UNIQUE_TOKEN" jdbcType="VARCHAR" property="uniqueToken" />
+    <result column="CREATED_AT" jdbcType="TIMESTAMP" property="createdAt" />
+    <result column="CREATOR" jdbcType="VARCHAR" property="creator" />
+    <result column="UPDATED_AT" jdbcType="TIMESTAMP" property="updatedAt" />
+    <result column="UPDATER" jdbcType="VARCHAR" property="updater" />
+    <result column="IS_DELETE" jdbcType="DECIMAL" property="isDelete" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    ID, ENT_ID, ENT_NAME, PULL_DATE, SUBJECT_TYPE, TRACE_LEVEL, NODE_NAME, TAGS, CON_NAME, 
+    CON_PROP, REAL_CON_PROP, POSITION, ID_CARD, CER_TYPE, ADDRESS, UNIQUE_TOKEN, CREATED_AT, 
+    CREATOR, UPDATED_AT, UPDATER, IS_DELETE
+  </sql>
+  <select id="selectByExample" parameterType="com.ajayhao.mslab.crawler.orm.entity.EntEquityDetailEntityExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    'false' as QUERYID,
+    <include refid="Base_Column_List" />
+    from COMBS_ZXCJ_GQMX
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from COMBS_ZXCJ_GQMX
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from COMBS_ZXCJ_GQMX
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.ajayhao.mslab.crawler.orm.entity.EntEquityDetailEntityExample">
+    delete from COMBS_ZXCJ_GQMX
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.ajayhao.mslab.crawler.orm.entity.EntEquityDetailEntity">
+    insert into COMBS_ZXCJ_GQMX (ID, ENT_ID, ENT_NAME, 
+      PULL_DATE, SUBJECT_TYPE, TRACE_LEVEL, 
+      NODE_NAME, TAGS, CON_NAME, 
+      CON_PROP, REAL_CON_PROP, POSITION, 
+      ID_CARD, CER_TYPE, ADDRESS, 
+      UNIQUE_TOKEN, CREATED_AT, CREATOR, 
+      UPDATED_AT, UPDATER, IS_DELETE
+      )
+    values (#{id,jdbcType=VARCHAR}, #{entId,jdbcType=VARCHAR}, #{entName,jdbcType=VARCHAR}, 
+      #{pullDate,jdbcType=VARCHAR}, #{subjectType,jdbcType=VARCHAR}, #{traceLevel,jdbcType=DECIMAL}, 
+      #{nodeName,jdbcType=VARCHAR}, #{tags,jdbcType=VARCHAR}, #{conName,jdbcType=VARCHAR}, 
+      #{conProp,jdbcType=DECIMAL}, #{realConProp,jdbcType=DECIMAL}, #{position,jdbcType=VARCHAR}, 
+      #{idCard,jdbcType=VARCHAR}, #{cerType,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, 
+      #{uniqueToken,jdbcType=VARCHAR}, #{createdAt,jdbcType=TIMESTAMP}, #{creator,jdbcType=VARCHAR}, 
+      #{updatedAt,jdbcType=TIMESTAMP}, #{updater,jdbcType=VARCHAR}, #{isDelete,jdbcType=DECIMAL}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ajayhao.mslab.crawler.orm.entity.EntEquityDetailEntity">
+    insert into COMBS_ZXCJ_GQMX
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="entId != null">
+        ENT_ID,
+      </if>
+      <if test="entName != null">
+        ENT_NAME,
+      </if>
+      <if test="pullDate != null">
+        PULL_DATE,
+      </if>
+      <if test="subjectType != null">
+        SUBJECT_TYPE,
+      </if>
+      <if test="traceLevel != null">
+        TRACE_LEVEL,
+      </if>
+      <if test="nodeName != null">
+        NODE_NAME,
+      </if>
+      <if test="tags != null">
+        TAGS,
+      </if>
+      <if test="conName != null">
+        CON_NAME,
+      </if>
+      <if test="conProp != null">
+        CON_PROP,
+      </if>
+      <if test="realConProp != null">
+        REAL_CON_PROP,
+      </if>
+      <if test="position != null">
+        POSITION,
+      </if>
+      <if test="idCard != null">
+        ID_CARD,
+      </if>
+      <if test="cerType != null">
+        CER_TYPE,
+      </if>
+      <if test="address != null">
+        ADDRESS,
+      </if>
+      <if test="uniqueToken != null">
+        UNIQUE_TOKEN,
+      </if>
+      <if test="createdAt != null">
+        CREATED_AT,
+      </if>
+      <if test="creator != null">
+        CREATOR,
+      </if>
+      <if test="updatedAt != null">
+        UPDATED_AT,
+      </if>
+      <if test="updater != null">
+        UPDATER,
+      </if>
+      <if test="isDelete != null">
+        IS_DELETE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="entId != null">
+        #{entId,jdbcType=VARCHAR},
+      </if>
+      <if test="entName != null">
+        #{entName,jdbcType=VARCHAR},
+      </if>
+      <if test="pullDate != null">
+        #{pullDate,jdbcType=VARCHAR},
+      </if>
+      <if test="subjectType != null">
+        #{subjectType,jdbcType=VARCHAR},
+      </if>
+      <if test="traceLevel != null">
+        #{traceLevel,jdbcType=DECIMAL},
+      </if>
+      <if test="nodeName != null">
+        #{nodeName,jdbcType=VARCHAR},
+      </if>
+      <if test="tags != null">
+        #{tags,jdbcType=VARCHAR},
+      </if>
+      <if test="conName != null">
+        #{conName,jdbcType=VARCHAR},
+      </if>
+      <if test="conProp != null">
+        #{conProp,jdbcType=DECIMAL},
+      </if>
+      <if test="realConProp != null">
+        #{realConProp,jdbcType=DECIMAL},
+      </if>
+      <if test="position != null">
+        #{position,jdbcType=VARCHAR},
+      </if>
+      <if test="idCard != null">
+        #{idCard,jdbcType=VARCHAR},
+      </if>
+      <if test="cerType != null">
+        #{cerType,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="uniqueToken != null">
+        #{uniqueToken,jdbcType=VARCHAR},
+      </if>
+      <if test="createdAt != null">
+        #{createdAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="creator != null">
+        #{creator,jdbcType=VARCHAR},
+      </if>
+      <if test="updatedAt != null">
+        #{updatedAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updater != null">
+        #{updater,jdbcType=VARCHAR},
+      </if>
+      <if test="isDelete != null">
+        #{isDelete,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByExampleSelective" parameterType="map">
+    update COMBS_ZXCJ_GQMX
+    <set>
+      <if test="record.id != null">
+        ID = #{record.id,jdbcType=VARCHAR},
+      </if>
+      <if test="record.entId != null">
+        ENT_ID = #{record.entId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.entName != null">
+        ENT_NAME = #{record.entName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pullDate != null">
+        PULL_DATE = #{record.pullDate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.subjectType != null">
+        SUBJECT_TYPE = #{record.subjectType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.traceLevel != null">
+        TRACE_LEVEL = #{record.traceLevel,jdbcType=DECIMAL},
+      </if>
+      <if test="record.nodeName != null">
+        NODE_NAME = #{record.nodeName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tags != null">
+        TAGS = #{record.tags,jdbcType=VARCHAR},
+      </if>
+      <if test="record.conName != null">
+        CON_NAME = #{record.conName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.conProp != null">
+        CON_PROP = #{record.conProp,jdbcType=DECIMAL},
+      </if>
+      <if test="record.realConProp != null">
+        REAL_CON_PROP = #{record.realConProp,jdbcType=DECIMAL},
+      </if>
+      <if test="record.position != null">
+        POSITION = #{record.position,jdbcType=VARCHAR},
+      </if>
+      <if test="record.idCard != null">
+        ID_CARD = #{record.idCard,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cerType != null">
+        CER_TYPE = #{record.cerType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.address != null">
+        ADDRESS = #{record.address,jdbcType=VARCHAR},
+      </if>
+      <if test="record.uniqueToken != null">
+        UNIQUE_TOKEN = #{record.uniqueToken,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createdAt != null">
+        CREATED_AT = #{record.createdAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.creator != null">
+        CREATOR = #{record.creator,jdbcType=VARCHAR},
+      </if>
+      <if test="record.updatedAt != null">
+        UPDATED_AT = #{record.updatedAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updater != null">
+        UPDATER = #{record.updater,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isDelete != null">
+        IS_DELETE = #{record.isDelete,jdbcType=DECIMAL},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update COMBS_ZXCJ_GQMX
+    set ID = #{record.id,jdbcType=VARCHAR},
+      ENT_ID = #{record.entId,jdbcType=VARCHAR},
+      ENT_NAME = #{record.entName,jdbcType=VARCHAR},
+      PULL_DATE = #{record.pullDate,jdbcType=VARCHAR},
+      SUBJECT_TYPE = #{record.subjectType,jdbcType=VARCHAR},
+      TRACE_LEVEL = #{record.traceLevel,jdbcType=DECIMAL},
+      NODE_NAME = #{record.nodeName,jdbcType=VARCHAR},
+      TAGS = #{record.tags,jdbcType=VARCHAR},
+      CON_NAME = #{record.conName,jdbcType=VARCHAR},
+      CON_PROP = #{record.conProp,jdbcType=DECIMAL},
+      REAL_CON_PROP = #{record.realConProp,jdbcType=DECIMAL},
+      POSITION = #{record.position,jdbcType=VARCHAR},
+      ID_CARD = #{record.idCard,jdbcType=VARCHAR},
+      CER_TYPE = #{record.cerType,jdbcType=VARCHAR},
+      ADDRESS = #{record.address,jdbcType=VARCHAR},
+      UNIQUE_TOKEN = #{record.uniqueToken,jdbcType=VARCHAR},
+      CREATED_AT = #{record.createdAt,jdbcType=TIMESTAMP},
+      CREATOR = #{record.creator,jdbcType=VARCHAR},
+      UPDATED_AT = #{record.updatedAt,jdbcType=TIMESTAMP},
+      UPDATER = #{record.updater,jdbcType=VARCHAR},
+      IS_DELETE = #{record.isDelete,jdbcType=DECIMAL}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ajayhao.mslab.crawler.orm.entity.EntEquityDetailEntity">
+    update COMBS_ZXCJ_GQMX
+    <set>
+      <if test="entId != null">
+        ENT_ID = #{entId,jdbcType=VARCHAR},
+      </if>
+      <if test="entName != null">
+        ENT_NAME = #{entName,jdbcType=VARCHAR},
+      </if>
+      <if test="pullDate != null">
+        PULL_DATE = #{pullDate,jdbcType=VARCHAR},
+      </if>
+      <if test="subjectType != null">
+        SUBJECT_TYPE = #{subjectType,jdbcType=VARCHAR},
+      </if>
+      <if test="traceLevel != null">
+        TRACE_LEVEL = #{traceLevel,jdbcType=DECIMAL},
+      </if>
+      <if test="nodeName != null">
+        NODE_NAME = #{nodeName,jdbcType=VARCHAR},
+      </if>
+      <if test="tags != null">
+        TAGS = #{tags,jdbcType=VARCHAR},
+      </if>
+      <if test="conName != null">
+        CON_NAME = #{conName,jdbcType=VARCHAR},
+      </if>
+      <if test="conProp != null">
+        CON_PROP = #{conProp,jdbcType=DECIMAL},
+      </if>
+      <if test="realConProp != null">
+        REAL_CON_PROP = #{realConProp,jdbcType=DECIMAL},
+      </if>
+      <if test="position != null">
+        POSITION = #{position,jdbcType=VARCHAR},
+      </if>
+      <if test="idCard != null">
+        ID_CARD = #{idCard,jdbcType=VARCHAR},
+      </if>
+      <if test="cerType != null">
+        CER_TYPE = #{cerType,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        ADDRESS = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="uniqueToken != null">
+        UNIQUE_TOKEN = #{uniqueToken,jdbcType=VARCHAR},
+      </if>
+      <if test="createdAt != null">
+        CREATED_AT = #{createdAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="creator != null">
+        CREATOR = #{creator,jdbcType=VARCHAR},
+      </if>
+      <if test="updatedAt != null">
+        UPDATED_AT = #{updatedAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updater != null">
+        UPDATER = #{updater,jdbcType=VARCHAR},
+      </if>
+      <if test="isDelete != null">
+        IS_DELETE = #{isDelete,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ajayhao.mslab.crawler.orm.entity.EntEquityDetailEntity">
+    update COMBS_ZXCJ_GQMX
+    set ENT_ID = #{entId,jdbcType=VARCHAR},
+      ENT_NAME = #{entName,jdbcType=VARCHAR},
+      PULL_DATE = #{pullDate,jdbcType=VARCHAR},
+      SUBJECT_TYPE = #{subjectType,jdbcType=VARCHAR},
+      TRACE_LEVEL = #{traceLevel,jdbcType=DECIMAL},
+      NODE_NAME = #{nodeName,jdbcType=VARCHAR},
+      TAGS = #{tags,jdbcType=VARCHAR},
+      CON_NAME = #{conName,jdbcType=VARCHAR},
+      CON_PROP = #{conProp,jdbcType=DECIMAL},
+      REAL_CON_PROP = #{realConProp,jdbcType=DECIMAL},
+      POSITION = #{position,jdbcType=VARCHAR},
+      ID_CARD = #{idCard,jdbcType=VARCHAR},
+      CER_TYPE = #{cerType,jdbcType=VARCHAR},
+      ADDRESS = #{address,jdbcType=VARCHAR},
+      UNIQUE_TOKEN = #{uniqueToken,jdbcType=VARCHAR},
+      CREATED_AT = #{createdAt,jdbcType=TIMESTAMP},
+      CREATOR = #{creator,jdbcType=VARCHAR},
+      UPDATED_AT = #{updatedAt,jdbcType=TIMESTAMP},
+      UPDATER = #{updater,jdbcType=VARCHAR},
+      IS_DELETE = #{isDelete,jdbcType=DECIMAL}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>
