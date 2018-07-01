@@ -278,6 +278,7 @@ public class ElecreditHelper {
         equityDetail.setEntId(rootEntId);
         equityDetail.setEntName(rootEntName);
         equityDetail.setCerType(currentNode.getCertype());
+        equityDetail.setIdCard(currentNode.getIdcard());
         if(StringUtils.isNotBlank(currentNode.getCertype())) {
             equityDetail.setSubjectType(currentNode.getCertype().charAt(0) + "");
         }else{
