@@ -118,14 +118,17 @@ public class CrawlerServiceImpl implements CrawlerService{
         EntEquityInfoResp equityInfoResp = new EntEquityInfoResp().buildSuccess();
         String entId = getEntIdByKey(key, type);
         //local查询
-        final EntInvestChainEntity oldInvestChainEntity = entEquityInfoRepository.queryInvestChainByEntId(entId);
+        final EntInvestChainEntity oldInvestChainEntity = null;
+        //TODO 同步完成后恢复
+        //final EntInvestChainEntity oldInvestChainEntity = entEquityInfoRepository.queryInvestChainByEntId(entId);
         EntEquityInfo equityInfo = null;
 
         //数据失效则重新加载
         if(isDataExpired(oldInvestChainEntity)){
             //作废老数据，重新拉取入库
-            entEquityInfoRepository.deleteEntInvestChain(entId, true);
-            entEquityInfoRepository.deleteEntEquityDetail(entId, true);
+            //TODO 同步完成后恢复
+            //entEquityInfoRepository.deleteEntInvestChain(entId, true);
+            //entEquityInfoRepository.deleteEntEquityDetail(entId, true);
             equityInfo = elecreditRemoteService.pullEquityInfo(entId);
             if(equityInfo != null){
                 refreshEquityInfo(equityInfo);
@@ -261,10 +264,16 @@ public class CrawlerServiceImpl implements CrawlerService{
         ElecreditResp elecreditResp = new ElecreditResp();
         elecreditResp.buildSuccess();
         ManagerInfoEntityExample example = new ManagerInfoEntityExample();
+        //TODO 条件待删除
+        example.createCriteria().andKhdmGreaterThanOrEqualTo("P1003146");
         example.setOrderByClause("khdm");
         List<ManagerInfoEntity> lists = managerInfoEntityMapper.selectByExample(example);
         for(ManagerInfoEntity manager : lists){
-            queryEquityInfo(manager.getGlrmc(),GsInfoQryType.BY_NAME);
+            try {
+                queryEquityInfo(manager.getGlrmc(), GsInfoQryType.BY_NAME);
+            }catch(Exception e){
+                //TODO
+            }
         }
         elecreditResp.setResult(lists.size()+"");
         return elecreditResp;
