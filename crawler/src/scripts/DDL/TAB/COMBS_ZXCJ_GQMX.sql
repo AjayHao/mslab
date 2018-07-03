@@ -8,6 +8,8 @@ create table COMBS_ZXCJ_GQMX
   pull_date        VARCHAR2(10),
   subject_type     VARCHAR2(10),
   trace_level      NUMBER(3) not null,
+  node_id          VARCHAR2(36);
+  parent_node_id   VARCHAR2(36);
   node_name        VARCHAR2(100),
   tags              VARCHAR2(10),
   con_name         VARCHAR2(100),
@@ -41,6 +43,10 @@ comment on column COMBS_ZXCJ_GQMX.subject_type
   is '持股主体类型';
 comment on column COMBS_ZXCJ_GQMX.trace_level
   is '所在路径层数(自下到上)';
+comment on column COMBS_ZXCJ_GQMX.node_id
+  is '节点ID';
+comment on column COMBS_ZXCJ_GQMX.parent_node_id
+  is '父节点ID';
 comment on column COMBS_ZXCJ_GQMX.node_name
   is '节点名称';
 comment on column COMBS_ZXCJ_GQMX.tags
@@ -75,6 +81,8 @@ comment on column COMBS_ZXCJ_GQMX.is_delete
 create index IDX_COMBS_ZXCJ_GQMX_1 on COMBS_ZXCJ_GQMX (ENT_NAME)
   tablespace AJAY_IDX;
 create index IDX_COMBS_ZXCJ_GQMX_2 on COMBS_ZXCJ_GQMX (NODE_NAME)
+  tablespace AJAY_IDX;
+create index IDX_COMBS_ZXCJ_GQMX_3 on COMBS_ZXCJ_GQMX (ent_id)
   tablespace AJAY_IDX;
 -- Create/Recreate primary, unique and foreign key constraints
 alter table COMBS_ZXCJ_GQMX

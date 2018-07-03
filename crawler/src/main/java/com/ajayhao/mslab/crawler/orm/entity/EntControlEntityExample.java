@@ -5,14 +5,14 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class EntInvestChainEntityExample {
+public class EntControlEntityExample {
     protected String orderByClause;
 
     protected boolean distinct;
 
     protected List<Criteria> oredCriteria;
 
-    public EntInvestChainEntityExample() {
+    public EntControlEntityExample() {
         oredCriteria = new ArrayList<Criteria>();
     }
 

@@ -4,24 +4,23 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.io.Serializable;
+import java.util.List;
 
 /**
- * @ClassName ElsaicMeta
- * @Description 工商信息元数据
+ * @ClassName SaicInvRemoteResp
+ * @Description SaicInvRemoteResp
  * @Author Ajay Hao
- * @Date 2018/6/29 17:41
+ * @Date 2018/7/2 1:22
  * @Version 1.0
  **/
 @Setter
 @Getter
-public class ElsaicMeta implements Serializable{
-
+public class SaicInvRemoteResp implements Serializable{
     private static final long serialVersionUID = 1L;
-
-    private String message;
 
     private String code;
 
-    private String service;
+    private List<Inv> inv;
 
+    private InvRoad road;
 }

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.ajayhao.mslab.crawler.orm.mapper.EntInvestChainEntityMapper">
-  <resultMap id="BaseResultMap" type="com.ajayhao.mslab.crawler.orm.entity.EntInvestChainEntity">
+<mapper namespace="com.ajayhao.mslab.crawler.orm.mapper.EntControlEntityMapper">
+  <resultMap id="BaseResultMap" type="com.ajayhao.mslab.crawler.orm.entity.EntControlEntity">
     <id column="ID" jdbcType="VARCHAR" property="id" />
     <result column="ENT_ID" jdbcType="VARCHAR" property="entId" />
     <result column="ENT_NAME" jdbcType="VARCHAR" property="entName" />
@@ -87,7 +87,7 @@
     ADDRESS, FINAL_RATIO, FINAL_SUBS_NUM, FINAL_ACC_NUM, RATIO_ROAD, POSITION, CAPITAL_CHAIN, 
     UNIQUE_TOKEN, CREATED_AT, CREATOR, UPDATED_AT, UPDATER, IS_DELETE
   </sql>
-  <select id="selectByExample" parameterType="com.ajayhao.mslab.crawler.orm.entity.EntInvestChainEntityExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.ajayhao.mslab.crawler.orm.entity.EntControlEntityExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
@@ -112,13 +112,13 @@
     delete from COMBS_ZXCJ_QYKGXX
     where ID = #{id,jdbcType=VARCHAR}
   </delete>
-  <delete id="deleteByExample" parameterType="com.ajayhao.mslab.crawler.orm.entity.EntInvestChainEntityExample">
+  <delete id="deleteByExample" parameterType="com.ajayhao.mslab.crawler.orm.entity.EntControlEntityExample">
     delete from COMBS_ZXCJ_QYKGXX
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.ajayhao.mslab.crawler.orm.entity.EntInvestChainEntity">
+  <insert id="insert" parameterType="com.ajayhao.mslab.crawler.orm.entity.EntControlEntity">
     insert into COMBS_ZXCJ_QYKGXX (ID, ENT_ID, ENT_NAME, 
       PULL_DATE, SUBJECT_TYPE, ID_CARD, 
       CER_TYPE, FINAL_ENT_NAME, ADDRESS, 
@@ -136,7 +136,7 @@
       #{updatedAt,jdbcType=TIMESTAMP}, #{updater,jdbcType=VARCHAR}, #{isDelete,jdbcType=DECIMAL}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.ajayhao.mslab.crawler.orm.entity.EntInvestChainEntity">
+  <insert id="insertSelective" parameterType="com.ajayhao.mslab.crawler.orm.entity.EntControlEntity">
     insert into COMBS_ZXCJ_QYKGXX
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -367,7 +367,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.ajayhao.mslab.crawler.orm.entity.EntInvestChainEntity">
+  <update id="updateByPrimaryKeySelective" parameterType="com.ajayhao.mslab.crawler.orm.entity.EntControlEntity">
     update COMBS_ZXCJ_QYKGXX
     <set>
       <if test="entId != null">
@@ -433,7 +433,7 @@
     </set>
     where ID = #{id,jdbcType=VARCHAR}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.ajayhao.mslab.crawler.orm.entity.EntInvestChainEntity">
+  <update id="updateByPrimaryKey" parameterType="com.ajayhao.mslab.crawler.orm.entity.EntControlEntity">
     update COMBS_ZXCJ_QYKGXX
     set ENT_ID = #{entId,jdbcType=VARCHAR},
       ENT_NAME = #{entName,jdbcType=VARCHAR},

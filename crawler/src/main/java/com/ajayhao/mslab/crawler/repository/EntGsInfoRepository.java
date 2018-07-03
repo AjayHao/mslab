@@ -1,7 +1,6 @@
 package com.ajayhao.mslab.crawler.repository;
 
 import com.ajayhao.mslab.crawler.orm.entity.EntGsInfoEntity;
-import com.ajayhao.mslab.crawler.orm.entity.EntInvestChainEntity;
 
 /**
  * @InterfaceName EntGsInfoRepository

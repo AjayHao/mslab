@@ -81,6 +81,6 @@ alter table COMBS_ZXCJ_QYKGXX
   using index
   tablespace AJAY_IDX;
 alter table COMBS_ZXCJ_QYKGXX
-  add constraint UK_COMBS_ZXCJ_QYKGXX_1 unique (ENT_ID, UNIQUE_TOKEN, IS_DELETE)
+  add constraint UK_COMBS_ZXCJ_QYKGXX_1 unique (ENT_ID, FINAL_ENT_NAME, UNIQUE_TOKEN, IS_DELETE)
   using index
   tablespace AJAY_IDX;

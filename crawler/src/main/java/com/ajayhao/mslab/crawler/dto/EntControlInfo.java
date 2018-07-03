@@ -9,7 +9,7 @@ import java.util.Date;
 
 @Setter
 @Getter
-public class EntInvestChainInfo implements Serializable {
+public class EntControlInfo implements Serializable {
 
     private static final long serialVersionUID = 1L;
 

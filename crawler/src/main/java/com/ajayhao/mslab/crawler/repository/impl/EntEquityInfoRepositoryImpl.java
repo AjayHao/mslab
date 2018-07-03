@@ -2,13 +2,13 @@ package com.ajayhao.mslab.crawler.repository.impl;
 
 import com.ajayhao.mslab.core.util.DateUtil;
 import com.ajayhao.mslab.crawler.enums.IsDeleteEnum;
+import com.ajayhao.mslab.crawler.orm.entity.EntControlEntity;
 import com.ajayhao.mslab.crawler.orm.entity.EntEquityDetailEntity;
 import com.ajayhao.mslab.crawler.orm.entity.EntEquityDetailEntityExample;
-import com.ajayhao.mslab.crawler.orm.entity.EntInvestChainEntity;
-import com.ajayhao.mslab.crawler.orm.entity.EntInvestChainEntityExample;
+import com.ajayhao.mslab.crawler.orm.entity.EntControlEntityExample;
 import com.ajayhao.mslab.crawler.orm.mapper.DbIdMapper;
 import com.ajayhao.mslab.crawler.orm.mapper.EntEquityDetailEntityMapper;
-import com.ajayhao.mslab.crawler.orm.mapper.EntInvestChainEntityMapper;
+import com.ajayhao.mslab.crawler.orm.mapper.EntControlEntityMapper;
 import com.ajayhao.mslab.crawler.repository.AbstractRepository;
 import com.ajayhao.mslab.crawler.repository.EntEquityInfoRepository;
 import org.apache.commons.collections.CollectionUtils;
@@ -34,7 +34,7 @@ import static com.ajayhao.mslab.crawler.constant.CrawlerConstants.UNIQUE_TOKEN_V
 public class EntEquityInfoRepositoryImpl extends AbstractRepository implements EntEquityInfoRepository {
 
     @Autowired
-    private EntInvestChainEntityMapper entInvestChainEntityMapper;
+    private EntControlEntityMapper entControlEntityMapper;
 
     @Autowired
     private EntEquityDetailEntityMapper entEquityDetailEntityMapper;
@@ -44,21 +44,21 @@ public class EntEquityInfoRepositoryImpl extends AbstractRepository implements E
     private DbIdMapper dbIdMapper;
 
     /**
-     * @Description 根据entId查询投资信息
+     * @Description 根据entId查询大股东信息
      * @Param entId
-     * @return EntGsInfoEntity
+     * @return List<EntControlEntity>
      **/
     @Override
-    public EntInvestChainEntity queryInvestChainByEntId(String entId) {
-        EntInvestChainEntityExample investChainEntityExample = new EntInvestChainEntityExample();
-        investChainEntityExample.createCriteria().andEntIdEqualTo(entId).andUniqueTokenEqualTo(UNIQUE_TOKEN_VALID)
+    public List<EntControlEntity> queryEntControlByEntId(String entId) {
+        EntControlEntityExample entControlEntityExample = new EntControlEntityExample();
+        entControlEntityExample.createCriteria().andEntIdEqualTo(entId).andUniqueTokenEqualTo(UNIQUE_TOKEN_VALID)
                                                     .andIsDeleteEqualTo(IsDeleteEnum.NO.getCode());
-        List<EntInvestChainEntity> rslt = entInvestChainEntityMapper.selectByExample(investChainEntityExample);
+        List<EntControlEntity> rslt = entControlEntityMapper.selectByExample(entControlEntityExample);
         if(CollectionUtils.isEmpty(rslt)){
             return null;
         }
 
-        return rslt.get(0);
+        return rslt;
     }
 
     /**
@@ -102,27 +102,27 @@ public class EntEquityInfoRepositoryImpl extends AbstractRepository implements E
     }
 
     @Override
-    public String insertNewInvestChainInfo(EntInvestChainEntity entInvestChainEntity) {
-        super.prepareInsert(entInvestChainEntity);
+    public String insertNewEntControl(EntControlEntity entControlEntity) {
+        super.prepareInsert(entControlEntity);
 
         //填入id
-        if(StringUtils.isEmpty(entInvestChainEntity.getId())){
-            entInvestChainEntity.setId(String.valueOf(dbIdMapper.newQykgxxDbId()));
+        if(StringUtils.isEmpty(entControlEntity.getId())){
+            entControlEntity.setId(String.valueOf(dbIdMapper.newQykgxxDbId()));
         }
 
         //补充拉取时间
-        if(StringUtils.isEmpty(entInvestChainEntity.getPullDate())){
-            entInvestChainEntity.setPullDate(DateUtil.formatDateByYYYY_MM_DD(new Date()));
+        if(StringUtils.isEmpty(entControlEntity.getPullDate())){
+            entControlEntity.setPullDate(DateUtil.formatDateByYYYY_MM_DD(new Date()));
         }
 
         //unique token
-        if(StringUtils.isEmpty(entInvestChainEntity.getUniqueToken())) {
-            entInvestChainEntity.setUniqueToken(UNIQUE_TOKEN_VALID);
+        if(StringUtils.isEmpty(entControlEntity.getUniqueToken())) {
+            entControlEntity.setUniqueToken(UNIQUE_TOKEN_VALID);
         }
 
-        entInvestChainEntityMapper.insert(entInvestChainEntity);
+        entControlEntityMapper.insert(entControlEntity);
 
-        return entInvestChainEntity.getId();
+        return entControlEntity.getId();
     }
 
     @Override
@@ -156,18 +156,18 @@ public class EntEquityInfoRepositoryImpl extends AbstractRepository implements E
      * @return
      **/
     @Override
-    public void deleteEntInvestChain(String entId, boolean softDelete) {
+    public void deleteEntControl(String entId, boolean softDelete) {
 
-        EntInvestChainEntityExample conditions = new EntInvestChainEntityExample();
+        EntControlEntityExample conditions = new EntControlEntityExample();
         conditions.createCriteria()
                 .andEntIdEqualTo(entId).andIsDeleteEqualTo(IsDeleteEnum.NO.getCode());
 
         if(softDelete) {
-            EntInvestChainEntity newEntity = new EntInvestChainEntity();
+            EntControlEntity newEntity = new EntControlEntity();
             newEntity.setIsDelete(IsDeleteEnum.YES.getCode());
-            entInvestChainEntityMapper.updateByExampleSelective(newEntity,conditions);
+            entControlEntityMapper.updateByExampleSelective(newEntity,conditions);
         }else{
-            entInvestChainEntityMapper.deleteByExample(conditions);
+            entControlEntityMapper.deleteByExample(conditions);
         }
 
     }

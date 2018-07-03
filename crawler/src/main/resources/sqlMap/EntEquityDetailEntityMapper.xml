@@ -23,6 +23,8 @@
     <result column="UPDATED_AT" jdbcType="TIMESTAMP" property="updatedAt" />
     <result column="UPDATER" jdbcType="VARCHAR" property="updater" />
     <result column="IS_DELETE" jdbcType="DECIMAL" property="isDelete" />
+    <result column="NODE_ID" jdbcType="VARCHAR" property="nodeId" />
+    <result column="PARENT_NODE_ID" jdbcType="VARCHAR" property="parentNodeId" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -85,7 +87,7 @@
   <sql id="Base_Column_List">
     ID, ENT_ID, ENT_NAME, PULL_DATE, SUBJECT_TYPE, TRACE_LEVEL, NODE_NAME, TAGS, CON_NAME, 
     CON_PROP, REAL_CON_PROP, POSITION, ID_CARD, CER_TYPE, ADDRESS, UNIQUE_TOKEN, CREATED_AT, 
-    CREATOR, UPDATED_AT, UPDATER, IS_DELETE
+    CREATOR, UPDATED_AT, UPDATER, IS_DELETE, NODE_ID, PARENT_NODE_ID
   </sql>
   <select id="selectByExample" parameterType="com.ajayhao.mslab.crawler.orm.entity.EntEquityDetailEntityExample" resultMap="BaseResultMap">
     select
@@ -125,16 +127,16 @@
       CON_PROP, REAL_CON_PROP, POSITION, 
       ID_CARD, CER_TYPE, ADDRESS, 
       UNIQUE_TOKEN, CREATED_AT, CREATOR, 
-      UPDATED_AT, UPDATER, IS_DELETE
-      )
+      UPDATED_AT, UPDATER, IS_DELETE, 
+      NODE_ID, PARENT_NODE_ID)
     values (#{id,jdbcType=VARCHAR}, #{entId,jdbcType=VARCHAR}, #{entName,jdbcType=VARCHAR}, 
       #{pullDate,jdbcType=VARCHAR}, #{subjectType,jdbcType=VARCHAR}, #{traceLevel,jdbcType=DECIMAL}, 
       #{nodeName,jdbcType=VARCHAR}, #{tags,jdbcType=VARCHAR}, #{conName,jdbcType=VARCHAR}, 
       #{conProp,jdbcType=DECIMAL}, #{realConProp,jdbcType=DECIMAL}, #{position,jdbcType=VARCHAR}, 
       #{idCard,jdbcType=VARCHAR}, #{cerType,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, 
       #{uniqueToken,jdbcType=VARCHAR}, #{createdAt,jdbcType=TIMESTAMP}, #{creator,jdbcType=VARCHAR}, 
-      #{updatedAt,jdbcType=TIMESTAMP}, #{updater,jdbcType=VARCHAR}, #{isDelete,jdbcType=DECIMAL}
-      )
+      #{updatedAt,jdbcType=TIMESTAMP}, #{updater,jdbcType=VARCHAR}, #{isDelete,jdbcType=DECIMAL}, 
+      #{nodeId,jdbcType=VARCHAR}, #{parentNodeId,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.ajayhao.mslab.crawler.orm.entity.EntEquityDetailEntity">
     insert into COMBS_ZXCJ_GQMX
@@ -202,6 +204,12 @@
       <if test="isDelete != null">
         IS_DELETE,
       </if>
+      <if test="nodeId != null">
+        NODE_ID,
+      </if>
+      <if test="parentNodeId != null">
+        PARENT_NODE_ID,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -266,6 +274,12 @@
       </if>
       <if test="isDelete != null">
         #{isDelete,jdbcType=DECIMAL},
+      </if>
+      <if test="nodeId != null">
+        #{nodeId,jdbcType=VARCHAR},
+      </if>
+      <if test="parentNodeId != null">
+        #{parentNodeId,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -335,6 +349,12 @@
       <if test="record.isDelete != null">
         IS_DELETE = #{record.isDelete,jdbcType=DECIMAL},
       </if>
+      <if test="record.nodeId != null">
+        NODE_ID = #{record.nodeId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.parentNodeId != null">
+        PARENT_NODE_ID = #{record.parentNodeId,jdbcType=VARCHAR},
+      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -362,7 +382,9 @@
       CREATOR = #{record.creator,jdbcType=VARCHAR},
       UPDATED_AT = #{record.updatedAt,jdbcType=TIMESTAMP},
       UPDATER = #{record.updater,jdbcType=VARCHAR},
-      IS_DELETE = #{record.isDelete,jdbcType=DECIMAL}
+      IS_DELETE = #{record.isDelete,jdbcType=DECIMAL},
+      NODE_ID = #{record.nodeId,jdbcType=VARCHAR},
+      PARENT_NODE_ID = #{record.parentNodeId,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -430,6 +452,12 @@
       <if test="isDelete != null">
         IS_DELETE = #{isDelete,jdbcType=DECIMAL},
       </if>
+      <if test="nodeId != null">
+        NODE_ID = #{nodeId,jdbcType=VARCHAR},
+      </if>
+      <if test="parentNodeId != null">
+        PARENT_NODE_ID = #{parentNodeId,jdbcType=VARCHAR},
+      </if>
     </set>
     where ID = #{id,jdbcType=VARCHAR}
   </update>
@@ -454,7 +482,9 @@
       CREATOR = #{creator,jdbcType=VARCHAR},
       UPDATED_AT = #{updatedAt,jdbcType=TIMESTAMP},
       UPDATER = #{updater,jdbcType=VARCHAR},
-      IS_DELETE = #{isDelete,jdbcType=DECIMAL}
+      IS_DELETE = #{isDelete,jdbcType=DECIMAL},
+      NODE_ID = #{nodeId,jdbcType=VARCHAR},
+      PARENT_NODE_ID = #{parentNodeId,jdbcType=VARCHAR}
     where ID = #{id,jdbcType=VARCHAR}
   </update>
 </mapper>

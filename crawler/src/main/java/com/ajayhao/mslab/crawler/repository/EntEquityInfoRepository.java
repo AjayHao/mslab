@@ -1,7 +1,7 @@
 package com.ajayhao.mslab.crawler.repository;
 
+import com.ajayhao.mslab.crawler.orm.entity.EntControlEntity;
 import com.ajayhao.mslab.crawler.orm.entity.EntEquityDetailEntity;
-import com.ajayhao.mslab.crawler.orm.entity.EntInvestChainEntity;
 
 import java.util.List;
 
@@ -17,9 +17,9 @@ public interface EntEquityInfoRepository {
     /**
      * @Description 根据entId查询大股东投资信息
      * @Param endId
-     * @return EntInvestChainEntity
+     * @return List<EntControlEntity>
      **/
-    EntInvestChainEntity queryInvestChainByEntId(String entId);
+    List<EntControlEntity> queryEntControlByEntId(String entId);
 
     /**
      * @Description 根据entId查询股权信息
@@ -34,7 +34,7 @@ public interface EntEquityInfoRepository {
      * @Param softDelete 是否软删除
      * @return
      **/
-    void deleteEntInvestChain(String entId, boolean softDelete);
+    void deleteEntControl(String entId, boolean softDelete);
 
     /**
      * @Description 股权信息删除
@@ -46,14 +46,14 @@ public interface EntEquityInfoRepository {
 
     /**
      * @Description 写入大股东信息
-     * @Param entInvestChainEntity 大股东信息实体
+     * @Param entControlEntity 大股东信息实体
      * @return
      **/
-    String insertNewInvestChainInfo(EntInvestChainEntity entInvestChainEntity);
+    String insertNewEntControl(EntControlEntity entControlEntity);
 
     /**
      * @Description 写入股权信息
-     * @Param entInvestChainEntity 股权信息实体
+     * @Param entEquityDetailEntity 股权信息明细
      * @return
      **/
     String insertNewEquityDetail(EntEquityDetailEntity entEquityDetailEntity);

@@ -4,8 +4,6 @@ import com.ajayhao.mslab.core.util.DateUtil;
 import com.ajayhao.mslab.crawler.enums.IsDeleteEnum;
 import com.ajayhao.mslab.crawler.orm.entity.EntGsInfoEntity;
 import com.ajayhao.mslab.crawler.orm.entity.EntGsInfoEntityExample;
-import com.ajayhao.mslab.crawler.orm.entity.EntInvestChainEntity;
-import com.ajayhao.mslab.crawler.orm.entity.EntInvestChainEntityExample;
 import com.ajayhao.mslab.crawler.orm.mapper.DbIdMapper;
 import com.ajayhao.mslab.crawler.orm.mapper.EntGsInfoEntityMapper;
 import com.ajayhao.mslab.crawler.repository.AbstractRepository;

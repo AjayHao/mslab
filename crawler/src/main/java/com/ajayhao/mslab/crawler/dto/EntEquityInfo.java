@@ -20,7 +20,7 @@ public class EntEquityInfo implements Serializable {
     /*
     * 大股东投资链
     * */
-    private EntInvestChainInfo investChainInfo;
+    private List<EntControlInfo> entControlList;
 
     /*
     * 股权明细

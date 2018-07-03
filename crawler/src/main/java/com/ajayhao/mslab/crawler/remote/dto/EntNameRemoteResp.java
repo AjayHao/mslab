@@ -7,20 +7,18 @@ import java.io.Serializable;
 import java.util.List;
 
 /**
- * @ClassName SaicInv
- * @Description SaicInv
+ * @ClassName EntNameRemoteResp
+ * @Description EntNameRemoteResp
  * @Author Ajay Hao
- * @Date 2018/7/2 1:22
+ * @Date 2018/7/2 10:39
  * @Version 1.0
  **/
 @Setter
 @Getter
-public class SaicInv implements Serializable{
+public class EntNameRemoteResp implements Serializable {
     private static final long serialVersionUID = 1L;
 
     private String code;
 
-    private List<Inv> inv;
-
-    private InvRoad road;
+    private List<EntName> data;
 }

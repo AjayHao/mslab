@@ -7,7 +7,7 @@ import java.math.BigDecimal;
 
 @Setter
 @Getter
-public class EntInvestChainEntity extends BaseEntDataEntity {
+public class EntControlEntity extends BaseEntDataEntity {
 
     private String subjectType;
 

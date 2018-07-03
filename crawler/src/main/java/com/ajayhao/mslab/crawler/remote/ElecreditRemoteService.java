@@ -54,7 +54,7 @@ public interface ElecreditRemoteService {
      * @Param companyId entId
      * @return java.lang.String
      **/
-    String pullEntityInvestChain(String companyId, String version);
+    String pullEntEquityControl(String companyId, String version);
 
     /**
      * @Description 查询企业新闻

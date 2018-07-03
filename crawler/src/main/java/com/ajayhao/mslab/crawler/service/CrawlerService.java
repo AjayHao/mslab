@@ -71,7 +71,7 @@ public interface CrawlerService {
      * @Param version 类型 1-全部展现 2-部分脱敏 3-全部脱敏
      * @return java.lang.String
      **/
-    ElecreditResp crawlEntityInvestChain(String companyId, String version);
+    ElecreditResp crawlEntEquityControl(String companyId, String version);
 
     ElecreditResp syncAll();
 }

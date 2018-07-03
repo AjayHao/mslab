@@ -38,6 +38,9 @@ public enum RespCodeType implements BaseResultType {
     XML_PARSE_ERROR("0102", "XML解析错误"),
     INVALID_PARAM("0103", "参数错误"),
 
+    FULL_NAME_NOT_FOUND("0200", "通过简称找不到该企业全称"),
+    TOO_MANY_FULL_NAMES("0201", "通过简称找到的企业全称不唯一:{0}"),
+
     // 9000-9999 失败相关
     FAIL("9000", "业务处理失败"),
     DB_ERROR("9991", "数据库写入异常,{0}"),

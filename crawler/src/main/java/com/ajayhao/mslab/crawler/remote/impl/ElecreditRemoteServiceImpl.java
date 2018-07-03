@@ -7,10 +7,12 @@ import com.ajayhao.mslab.crawler.dto.EntEquityInfo;
 import com.ajayhao.mslab.crawler.dto.EntGsInfo;
 import com.ajayhao.mslab.crawler.helper.ElecreditHelper;
 import com.ajayhao.mslab.crawler.remote.ElecreditRemoteService;
-import com.ajayhao.mslab.crawler.remote.dto.SaicInv;
+import com.ajayhao.mslab.crawler.remote.dto.EntNameRemoteResp;
+import com.ajayhao.mslab.crawler.remote.dto.SaicInvRemoteResp;
 import com.ajayhao.mslab.crawler.remote.dto.response.RemoteGetEntIdResp;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.ResponseEntity;
@@ -20,7 +22,7 @@ import org.springframework.web.client.RestTemplate;
 
 import java.util.Map;
 
-import static com.ajayhao.mslab.core.common.enums.RespCodeType.REMOTE_INVOKE_ERROR;
+import static com.ajayhao.mslab.core.common.enums.RespCodeType.*;
 import static com.ajayhao.mslab.crawler.constant.CrawlerConstants.REMOTE_SUCC;
 
 /**
@@ -77,25 +79,21 @@ public class ElecreditRemoteServiceImpl implements ElecreditRemoteService{
     @Override
     public EntEquityInfo pullEquityInfo(String entId) {
         //构造参数
-        Map<String,String> paramMap = elecreditHelper.buildEntityInvestChainParam(entId, "1"); //信息不脱敏
+        Map<String,String> paramMap = elecreditHelper.buildEquityInfoParam(entId, "1"); //信息不脱敏
 
         //构造请求entity
         HttpEntity<MultiValueMap> requestEntity = elecreditHelper.buildRequestEntity(paramMap);
 
         //提交post请求
         RestTemplate restTemplate = new RestTemplate();
-        ResponseEntity<SaicInv> responseEntity = restTemplate.postForEntity(elecreditConfig.getSaicInvUrl(), requestEntity, SaicInv.class);
-        /*String respEntityBody = responseEntity.getBody();
-        String jsonStr = UnicodeUtil.unicodeToString(respEntityBody);
-        JSON.parseObject(jsonStr);
-        */
-        SaicInv saicInv = responseEntity.getBody();
+        ResponseEntity<SaicInvRemoteResp> responseEntity = restTemplate.postForEntity(elecreditConfig.getSaicInvUrl(), requestEntity, SaicInvRemoteResp.class);
+        SaicInvRemoteResp saicInvRemoteResp = responseEntity.getBody();
         EntEquityInfo entEquityInfo = null;
 
-        if(saicInv == null || !REMOTE_SUCC.equals(saicInv.getCode())){
+        if(saicInvRemoteResp == null || !REMOTE_SUCC.equals(saicInvRemoteResp.getCode())){
             throw new BusinessBizException(REMOTE_INVOKE_ERROR);
         }else{
-            entEquityInfo = elecreditHelper.resolveEquityInfoResp(saicInv, entId);
+            entEquityInfo = elecreditHelper.resolveEquityInfoResp(saicInvRemoteResp, entId);
         }
         return entEquityInfo;
     }
@@ -138,9 +136,18 @@ public class ElecreditRemoteServiceImpl implements ElecreditRemoteService{
 
         //提交post请求
         RestTemplate restTemplate = new RestTemplate();
-        ResponseEntity<String> responseEntity = restTemplate.postForEntity(elecreditConfig.getMohuUrl(), requestEntity, String.class);
-        String respEntityBody = responseEntity.getBody();
-        return UnicodeUtil.unicodeToString(respEntityBody);
+        ResponseEntity<EntNameRemoteResp> responseEntity = restTemplate.postForEntity(elecreditConfig.getMohuUrl(), requestEntity, EntNameRemoteResp.class);
+        EntNameRemoteResp remoteResp = responseEntity.getBody();
+        if(remoteResp == null || !REMOTE_SUCC.equals(remoteResp.getCode())){
+            throw new BusinessBizException(REMOTE_INVOKE_ERROR);
+        }else if(remoteResp.getData() == null || remoteResp.getData().size() == 0
+                    || StringUtils.isBlank(remoteResp.getData().get(0).getEntName())){
+            throw new BusinessBizException(FULL_NAME_NOT_FOUND);
+        }else if(remoteResp.getData() == null || remoteResp.getData().size() > 1){
+            throw new BusinessBizException(TOO_MANY_FULL_NAMES, StringUtils.join(remoteResp.getData()));
+        }
+
+        return remoteResp.getData().get(0).getEntName();
     }
 
     /**
@@ -169,9 +176,9 @@ public class ElecreditRemoteServiceImpl implements ElecreditRemoteService{
      * @return java.lang.String
      **/
     @Override
-    public String pullEntityInvestChain(String companyId, String version) {
+    public String pullEntEquityControl(String companyId, String version) {
         //构造参数
-        Map<String,String> paramMap = elecreditHelper.buildEntityInvestChainParam(companyId, version);
+        Map<String,String> paramMap = elecreditHelper.buildEquityInfoParam(companyId, version);
 
         //构造请求entity
         HttpEntity<MultiValueMap> requestEntity = elecreditHelper.buildRequestEntity(paramMap);

@@ -1,17 +1,17 @@
 package com.ajayhao.mslab.crawler.helper;
 
 import com.ajayhao.mslab.core.util.HMACUtil;
+import com.ajayhao.mslab.core.util.SystemUtil;
 import com.ajayhao.mslab.crawler.config.ElecreditConfig;
+import com.ajayhao.mslab.crawler.dto.EntControlInfo;
 import com.ajayhao.mslab.crawler.dto.EntEquityDetailInfo;
 import com.ajayhao.mslab.crawler.dto.EntEquityInfo;
 import com.ajayhao.mslab.crawler.dto.EntGsInfo;
-import com.ajayhao.mslab.crawler.dto.EntInvestChainInfo;
 import com.ajayhao.mslab.crawler.remote.dto.Inv;
 import com.ajayhao.mslab.crawler.remote.dto.InvRoad;
-import com.ajayhao.mslab.crawler.remote.dto.SaicInv;
+import com.ajayhao.mslab.crawler.remote.dto.SaicInvRemoteResp;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
-import jodd.util.CollectionUtil;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -164,7 +164,7 @@ public class ElecreditHelper {
      * @Param version 请求版本
      * @return java.util.Map<java.lang.String,java.lang.String>
      **/
-    public Map<String,String> buildEntityInvestChainParam(String companyId, String version) {
+    public Map<String,String> buildEquityInfoParam(String companyId, String version) {
         Map<String,String> paramMap = new HashMap<>();
         paramMap.put("userid",elecreditConfig.getUserId());
         paramMap.put("entid",companyId);
@@ -212,54 +212,57 @@ public class ElecreditHelper {
         return entGsInfo;
     }
 
-    public EntInvestChainInfo resolveInvestChainInfoResp(SaicInv saicInv, String entId) {
-        EntInvestChainInfo entInvestChainInfo = null;
+    public List<EntControlInfo> resolveEntControlListResp(SaicInvRemoteResp saicInv, String entId) {
+        List<EntControlInfo> entControlList = null;
         if(CollectionUtils.isNotEmpty(saicInv.getInv())){
-            Inv inv = saicInv.getInv().get(0);
-            entInvestChainInfo = new EntInvestChainInfo();
-            entInvestChainInfo.setEntId(entId);
-            entInvestChainInfo.setCerType(inv.getCertype());
-            if(StringUtils.isNotBlank(inv.getCertype())){
-                entInvestChainInfo.setSubjectType(inv.getCertype().charAt(0)+"");
-            }
-            try{
-                String finalRationNumStr = inv.getFinalRatio().replaceAll("%" , "");
-                entInvestChainInfo.setFinalRatio(new BigDecimal(finalRationNumStr));
-            }catch(Exception e){
-                entInvestChainInfo.setFinalRatio(BigDecimal.ZERO);
-            }
+            entControlList = new ArrayList<>();
+            for(Inv inv : saicInv.getInv()) {
+                EntControlInfo entControl = new EntControlInfo();
+                entControl.setEntId(entId);
+                entControl.setCerType(inv.getCertype());
+                if (StringUtils.isNotBlank(inv.getCertype())) {
+                    entControl.setSubjectType(inv.getCertype().charAt(0) + "");
+                }
+                try {
+                    String finalRationNumStr = inv.getFinalRatio().replaceAll("%", "");
+                    entControl.setFinalRatio(new BigDecimal(finalRationNumStr));
+                } catch (Exception e) {
+                    entControl.setFinalRatio(BigDecimal.ZERO);
+                }
 
-            try{
-                entInvestChainInfo.setFinalSubsNum(new BigDecimal(inv.getFinalSubcOnam()));
-            }catch(Exception e){
-                entInvestChainInfo.setFinalSubsNum(BigDecimal.ZERO);
-            }
+                try {
+                    entControl.setFinalSubsNum(new BigDecimal(inv.getFinalSubcOnam()));
+                } catch (Exception e) {
+                    entControl.setFinalSubsNum(BigDecimal.ZERO);
+                }
 
-            try{
-                entInvestChainInfo.setFinalAccNum(new BigDecimal(inv.getFinalAccOnam()));
-            }catch(Exception e){
-                entInvestChainInfo.setFinalAccNum(BigDecimal.ZERO);
-            }
+                try {
+                    entControl.setFinalAccNum(new BigDecimal(inv.getFinalAccOnam()));
+                } catch (Exception e) {
+                    entControl.setFinalAccNum(BigDecimal.ZERO);
+                }
 
-            entInvestChainInfo.setIdCard(inv.getIdCard());
-            entInvestChainInfo.setRatioRoad(inv.getRatioRoad());
-            entInvestChainInfo.setAddress(inv.getAddress());
-            entInvestChainInfo.setFinalEntName(inv.getFinalEntName());
-            entInvestChainInfo.setPosition(inv.getPosition());
-            entInvestChainInfo.setCapitalChain(inv.getCapitalChain());
-            if(StringUtils.isNotBlank(inv.getCapitalChain())){
-                String[] nodes = inv.getCapitalChain().split("->");
-                entInvestChainInfo.setEntName(nodes[nodes.length-1].trim());
-            }else{
-                entInvestChainInfo.setEntName(inv.getFinalEntName());
+                entControl.setIdCard(inv.getIdCard());
+                entControl.setRatioRoad(inv.getRatioRoad());
+                entControl.setAddress(inv.getAddress());
+                entControl.setFinalEntName(inv.getFinalEntName());
+                entControl.setPosition(inv.getPosition());
+                entControl.setCapitalChain(inv.getCapitalChain());
+                if (StringUtils.isNotBlank(inv.getCapitalChain())) {
+                    String[] nodes = inv.getCapitalChain().split("->");
+                    entControl.setEntName(nodes[nodes.length - 1].trim());
+                } else {
+                    entControl.setEntName(inv.getFinalEntName());
+                }
+                entControlList.add(entControl);
             }
         }
-        return entInvestChainInfo;
+        return entControlList;
     }
 
     /**
      * @Description 解析股权返回结果
-     * @Param entInvestChainInfo 目标列表
+     * @Param entEquityDetailList 目标列表
      * @Param currentNode 待解析树当前node
      * @Param rootEntId 根entId
      * @Param rootEntName 根entName
@@ -271,10 +274,12 @@ public class ElecreditHelper {
                                                                  InvRoad currentNode,
                                                                  String rootEntId,
                                                                  String rootEntName,
+                                                                 String parentNodeId,
                                                                  String parentName,
                                                                  int level) {
 
         EntEquityDetailInfo equityDetail = new EntEquityDetailInfo();
+        String currentNodeId = SystemUtil.newUUID();
         equityDetail.setEntId(rootEntId);
         equityDetail.setEntName(rootEntName);
         equityDetail.setCerType(currentNode.getCertype());
@@ -285,6 +290,9 @@ public class ElecreditHelper {
             equityDetail.setSubjectType("C");
         }
         equityDetail.setConName(parentName);
+        equityDetail.setNodeId(currentNodeId);
+        equityDetail.setParentNodeId(parentNodeId);
+        equityDetail.setParentNodeId(parentNodeId);
         equityDetail.setNodeName(currentNode.getName());
         equityDetail.setAddress(currentNode.getAddress());
         equityDetail.setConProp(currentNode.getConprop());
@@ -296,20 +304,20 @@ public class ElecreditHelper {
         //递归生成
         if(CollectionUtils.isNotEmpty(currentNode.getChildren())){
             for(InvRoad road : currentNode.getChildren()){
-                resolveEquityDetailListResp(entEquityDetailList, road, rootEntId, rootEntName, currentNode.getName(), level+1);
+                resolveEquityDetailListResp(entEquityDetailList, road, rootEntId, rootEntName, currentNodeId, currentNode.getName(), level+1);
             }
         }
     }
 
-    public EntEquityInfo resolveEquityInfoResp(SaicInv saicInv, String entId) {
+    public EntEquityInfo resolveEquityInfoResp(SaicInvRemoteResp saicInv, String entId) {
         EntEquityInfo entEquityInfo = new EntEquityInfo();
-        EntInvestChainInfo investChainInfo = resolveInvestChainInfoResp(saicInv, entId);
+        List<EntControlInfo> entControlList = resolveEntControlListResp(saicInv, entId);
         List<EntEquityDetailInfo> equityDetailList = null;
         if(saicInv != null && saicInv.getRoad() != null) {
             equityDetailList = new ArrayList<>();
-            resolveEquityDetailListResp(equityDetailList, saicInv.getRoad(), entId, investChainInfo.getEntName(), null, 1);
+            resolveEquityDetailListResp(equityDetailList, saicInv.getRoad(), entId, entControlList.get(0).getEntName(), null, null,  1);
         }
-        entEquityInfo.setInvestChainInfo(investChainInfo);
+        entEquityInfo.setEntControlList(entControlList);
         entEquityInfo.setEquityDetailList(equityDetailList);
         return entEquityInfo;
     }

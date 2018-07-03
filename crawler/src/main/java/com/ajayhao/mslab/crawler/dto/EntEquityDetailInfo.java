@@ -23,6 +23,10 @@ public class EntEquityDetailInfo implements Serializable{
 
     private Integer traceLevel;
 
+    private String nodeId;
+
+    private String parentNodeId;
+
     private String nodeName;
 
     private String tags;
