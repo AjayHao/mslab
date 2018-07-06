@@ -5,7 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 /**
- * @ClassName ElecreditResp
+ * @ClassName EntCommonResp
  * @Description
  * @Author Ajay Hao
  * @Date 2018/6/21 16:58
@@ -13,7 +13,7 @@ import lombok.Setter;
  **/
 @Setter
 @Getter
-public class ElecreditResp extends BaseResp {
+public class EntCommonResp extends BaseResp {
 
     private String result;
 }

@@ -1,26 +1,24 @@
 package com.ajayhao.mslab.crawler.service.impl;
 
 import com.ajayhao.mslab.core.util.DateUtil;
-import com.ajayhao.mslab.crawler.dto.EntEquityDetailInfo;
 import com.ajayhao.mslab.crawler.dto.EntEquityInfo;
 import com.ajayhao.mslab.crawler.dto.EntGsInfo;
-import com.ajayhao.mslab.crawler.dto.EntControlInfo;
-import com.ajayhao.mslab.crawler.dto.response.ElecreditResp;
+import com.ajayhao.mslab.crawler.dto.response.EntCommonResp;
 import com.ajayhao.mslab.crawler.dto.response.EntEquityInfoResp;
 import com.ajayhao.mslab.crawler.dto.response.EntGsInfoResp;
-import com.ajayhao.mslab.crawler.enums.GsInfoQryType;
+import com.ajayhao.mslab.crawler.enums.EntParamType;
 import com.ajayhao.mslab.crawler.orm.entity.*;
 import com.ajayhao.mslab.crawler.orm.mapper.ManagerInfoEntityMapper;
 import com.ajayhao.mslab.crawler.remote.ElecreditRemoteService;
-import com.ajayhao.mslab.crawler.remote.enums.CreditQryType;
 import com.ajayhao.mslab.crawler.remote.enums.ElsaicQryVersion;
 import com.ajayhao.mslab.crawler.repository.EntEquityInfoRepository;
 import com.ajayhao.mslab.crawler.repository.EntGsInfoRepository;
 import com.ajayhao.mslab.crawler.service.CrawlerService;
+import com.ajayhao.mslab.crawler.service.plugins.EntBaseInfoService;
+import com.ajayhao.mslab.crawler.service.plugins.EntEquityInfoService;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cglib.beans.BeanCopier;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
@@ -38,6 +36,9 @@ import java.util.List;
 public class CrawlerServiceImpl implements CrawlerService{
 
     @Autowired
+    private EntBaseInfoService entBaseInfoService;
+
+    @Autowired
     private EntGsInfoRepository entGsInfoRepository;
 
     @Autowired
@@ -47,14 +48,10 @@ public class CrawlerServiceImpl implements CrawlerService{
     private ManagerInfoEntityMapper managerInfoEntityMapper;
 
     @Autowired
-    private ElecreditRemoteService elecreditRemoteService;
+    private EntEquityInfoService entEquityInfoService;
 
-    private final BeanCopier basicEntityCopier = BeanCopier.create(EntGsInfo.class, EntGsInfoEntity.class, false);
-    private final BeanCopier basicEntityReverseCopier = BeanCopier.create(EntGsInfoEntity.class, EntGsInfo.class, false);
-    private final BeanCopier entControlEntityCopier = BeanCopier.create(EntControlInfo.class, EntControlEntity.class, false);
-    private final BeanCopier entControlEntityReverseCopier = BeanCopier.create(EntControlEntity.class, EntControlInfo.class, false);
-    private final BeanCopier equityDetailEntityCopier = BeanCopier.create(EntEquityDetailInfo.class, EntEquityDetailEntity.class, false);
-    private final BeanCopier equityDetailEntityReverseCopier = BeanCopier.create(EntEquityDetailEntity.class, EntEquityDetailInfo.class, false);
+    @Autowired
+    private ElecreditRemoteService elecreditRemoteService;
 
 
     /**
@@ -64,40 +61,20 @@ public class CrawlerServiceImpl implements CrawlerService{
      * @return EntGsInfoResp
      **/
     @Override
-    public EntGsInfoResp queryGsBaseInfo(String key, GsInfoQryType type){
+    public EntGsInfoResp queryGsBaseInfo(EntParamType type, String key){
         EntGsInfoResp entGsInfoResp = new EntGsInfoResp().buildSuccess();
-        String entId = getEntIdByKey(key, type);
+        String entId = entBaseInfoService.getEntIdByKey(type, key);
         //local查询
         final EntGsInfoEntity oldEntGsInfoEntity = entGsInfoRepository.queryGsInfoByEntId(entId);
         EntGsInfo entGsInfo = null;
         //数据失效则重新加载
         if(isDataExpired(oldEntGsInfoEntity)){
-            //作废老数据，重新拉取入库
-            entGsInfoRepository.deleteEntGsInfo(entId, false);
-            entGsInfo = elecreditRemoteService.pullEleCreditInfo(entId, ElsaicQryVersion.BASIC.getCode());
-            if(entGsInfo != null){
-                EntGsInfoEntity newBasicEntity = new EntGsInfoEntity();
-                basicEntityCopier.copy(entGsInfo,newBasicEntity,null);
-                entGsInfoRepository.insertNewGsInfo(newBasicEntity);
-            }
+            entGsInfo = entBaseInfoService.refreshEntBaseInfo(EntParamType.BY_ENT_ID, entId);
         }else{
-            entGsInfo = new EntGsInfo();
-            basicEntityReverseCopier.copy(oldEntGsInfoEntity,entGsInfo,null);
+            entGsInfo = entBaseInfoService.resolveEntBaseInfo(oldEntGsInfoEntity);
         }
-
         entGsInfoResp.setResult(entGsInfo);
         return entGsInfoResp;
-    }
-
-    private String getEntIdByKey(String key, GsInfoQryType type) {
-        String entId;
-        if(type == GsInfoQryType.BY_ID){
-            entId = key;
-        }else{
-            //获取entId
-            entId = elecreditRemoteService.pullEntId(key, CreditQryType.ENT_NAME.getCode());
-        }
-        return entId;
     }
 
     //数据失效规则 有效期一周
@@ -110,56 +87,26 @@ public class CrawlerServiceImpl implements CrawlerService{
     /**
      * @Description 查询公司股权结构
      * @Param key 查询条件
-     * @Param type  "1"-entId "2"-企业全名
+     * @Param type  "1"-entId "2"-统一社会认证编号 "3"-企业全名
      * @return
      **/
     @Override
-    public EntEquityInfoResp queryEquityInfo(String key, GsInfoQryType type) {
+    public EntEquityInfoResp queryEquityInfo(EntParamType type, String key) {
         EntEquityInfoResp equityInfoResp = new EntEquityInfoResp().buildSuccess();
-        String entId = getEntIdByKey(key, type);
+        String entId = entBaseInfoService.getEntIdByKey(type, key);
         //local查询
         final List<EntControlEntity> oldEntControlEntityList = entEquityInfoRepository.queryEntControlByEntId(entId);
         EntEquityInfo equityInfo = null;
 
         //数据失效则重新加载
         if(CollectionUtils.isEmpty(oldEntControlEntityList) || isDataExpired(oldEntControlEntityList.get(0))){
-            //作废老数据，重新拉取入库
-            entEquityInfoRepository.deleteEntControl(entId, false);
-            entEquityInfoRepository.deleteEntEquityDetail(entId, false);
-            equityInfo = elecreditRemoteService.pullEquityInfo(entId);
-            if(equityInfo != null){
-                refreshEquityInfo(equityInfo);
-            }
+            entEquityInfoService.refreshEntEquityInfo(type ,key);
         }else{
             final List<EntEquityDetailEntity> oldEquityDetailEntityList = entEquityInfoRepository.queryEquityDetailEntity(key);
-            equityInfo = resolveEquityInfo(oldEntControlEntityList, oldEquityDetailEntityList);
+            equityInfo = entEquityInfoService.resolveEquityInfo(oldEntControlEntityList, oldEquityDetailEntityList);
         }
         equityInfoResp.setResult(equityInfo);
         return equityInfoResp;
-    }
-
-    private EntEquityInfo resolveEquityInfo(List<EntControlEntity> oldEntControlEntity, List<EntEquityDetailEntity> oldEquityDetailEntityList) {
-        return null;
-    }
-
-    private void refreshEquityInfo(EntEquityInfo equityInfo) {
-        List<EntControlInfo> entControlInfoList = equityInfo.getEntControlList();
-        if(CollectionUtils.isNotEmpty(entControlInfoList)){
-            for(EntControlInfo entControl : entControlInfoList) {
-                EntControlEntity entControlEntity = new EntControlEntity();
-                entControlEntityCopier.copy(entControl, entControlEntity, null);
-                entEquityInfoRepository.insertNewEntControl(entControlEntity);
-            }
-        }
-
-        List<EntEquityDetailInfo> equityDetailList = equityInfo.getEquityDetailList();
-        if(CollectionUtils.isNotEmpty(equityDetailList)){
-            for(EntEquityDetailInfo equityDetailInfo : equityDetailList){
-                EntEquityDetailEntity entEquityDetailEntity = new EntEquityDetailEntity();
-                equityDetailEntityCopier.copy(equityDetailInfo, entEquityDetailEntity, null);
-                entEquityInfoRepository.insertNewEquityDetail(entEquityDetailEntity);
-            }
-        }
     }
 
     /**
@@ -172,10 +119,6 @@ public class CrawlerServiceImpl implements CrawlerService{
         EntGsInfoResp entGsInfoResp = new EntGsInfoResp();
         entGsInfoResp.buildSuccess();
         EntGsInfo entGsInfo = elecreditRemoteService.pullEleCreditInfo(entId, ElsaicQryVersion.BASIC.getCode());
-        if(entGsInfo != null){
-            EntGsInfoEntity newBasicEntity = new EntGsInfoEntity();
-            basicEntityCopier.copy(entGsInfo,newBasicEntity,null);
-        }
         entGsInfoResp.setResult(entGsInfo);
         return entGsInfoResp;
     }
@@ -186,8 +129,8 @@ public class CrawlerServiceImpl implements CrawlerService{
      * @return java.lang.String
      **/
     @Override
-    public ElecreditResp pullEntId(String key, String type){
-        ElecreditResp elecreditResp = new ElecreditResp();
+    public EntCommonResp pullEntId(String key, String type){
+        EntCommonResp elecreditResp = new EntCommonResp();
         elecreditResp.buildSuccess();
         String info = elecreditRemoteService.pullEntId(key, type);
         elecreditResp.setResult(info);
@@ -200,8 +143,8 @@ public class CrawlerServiceImpl implements CrawlerService{
      * @return java.lang.String
      **/
     @Override
-    public ElecreditResp pullCompanyFullName(String key) {
-        ElecreditResp elecreditResp = new ElecreditResp().buildSuccess();
+    public EntCommonResp pullCompanyFullName(String key) {
+        EntCommonResp elecreditResp = new EntCommonResp().buildSuccess();
         String companyName = elecreditRemoteService.pullCompanyFullName(key);
         elecreditResp.setResult(companyName);
         return elecreditResp;
@@ -213,8 +156,8 @@ public class CrawlerServiceImpl implements CrawlerService{
      * @return java.lang.String
      **/
     @Override
-    public ElecreditResp crawlCompanyNameByCreditCode(String key) {
-        ElecreditResp elecreditResp = new ElecreditResp();
+    public EntCommonResp crawlCompanyNameByCreditCode(String key) {
+        EntCommonResp elecreditResp = new EntCommonResp();
         elecreditResp.buildSuccess();
         String info = elecreditRemoteService.pullCompanyNameByCreditCode(key);
         elecreditResp.setResult(info);
@@ -227,8 +170,8 @@ public class CrawlerServiceImpl implements CrawlerService{
      * @return java.lang.String
      **/
     @Override
-    public ElecreditResp crawlPublicVoices(String companyId, String begin, String end) {
-        ElecreditResp elecreditResp = new ElecreditResp();
+    public EntCommonResp crawlPublicVoices(String companyId, String begin, String end) {
+        EntCommonResp elecreditResp = new EntCommonResp();
         elecreditResp.buildSuccess();
         String info = elecreditRemoteService.pullPublicVoices(companyId, begin, end);
         elecreditResp.setResult(info);
@@ -242,8 +185,8 @@ public class CrawlerServiceImpl implements CrawlerService{
      * @return java.lang.String
      **/
     @Override
-    public ElecreditResp crawlEntEquityControl(String companyId, String version) {
-        ElecreditResp elecreditResp = new ElecreditResp();
+    public EntCommonResp crawlEntEquityControl(String companyId, String version) {
+        EntCommonResp elecreditResp = new EntCommonResp();
         elecreditResp.buildSuccess();
         String info = elecreditRemoteService.pullEntEquityControl(companyId, version);
         elecreditResp.setResult(info);
@@ -251,28 +194,26 @@ public class CrawlerServiceImpl implements CrawlerService{
     }
 
     /**
-     * @Description 查询公司股权结构
+     * @Description 全量重刷
      * @Param companyId 公司entId
      * @Param version 类型 1-全部展现 2-部分脱敏 3-全部脱敏
      * @return java.lang.String
      **/
-    @Override
-    public ElecreditResp syncAll() {
-        ElecreditResp elecreditResp = new ElecreditResp();
+    /*@Override
+    public EntCommonResp syncAll() {
+        EntCommonResp elecreditResp = new EntCommonResp();
         elecreditResp.buildSuccess();
         ManagerInfoEntityExample example = new ManagerInfoEntityExample();
-        //TODO 条件待删除
-        example.createCriteria().andKhdmGreaterThanOrEqualTo("P1060127");
-        example.setOrderByClause("khdm");
         List<ManagerInfoEntity> lists = managerInfoEntityMapper.selectByExample(example);
         for(ManagerInfoEntity manager : lists){
             try {
-                queryEquityInfo(manager.getGlrmc(), GsInfoQryType.BY_NAME);
+                queryEquityInfo(EntParamType.BY_NAME, manager.getGlrmc());
             }catch(Exception e){
                 System.out.println(e);
             }
         }
         elecreditResp.setResult(lists.size()+"");
         return elecreditResp;
-    }
+    }*/
+
 }

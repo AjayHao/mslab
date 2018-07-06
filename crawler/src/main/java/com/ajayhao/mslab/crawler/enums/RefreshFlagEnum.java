@@ -6,19 +6,18 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 /**
- * @ClassName ElsaicQryVersion
- * @Description 工商信息 查询类型字典
+ * @EnumName RefreshFlagEnum
+ * @Description 数据更新方式
  * @Author Ajay Hao
- * @Date 2018/6/29 14:27
+ * @Date 2018.05.23
  * @Version 1.0
- **/
+ */
 @Getter
 @AllArgsConstructor
-public enum GsInfoQryType implements IBaseEnum {
+public enum RefreshFlagEnum implements IBaseEnum {
 
-    BY_ID("1", "通过entid"),
-    BY_NAME("2", "通过全称"),
-    ;
+    FULL("1", "全量同步"),
+    INCRE("2", "增量同步");
 
     private final String code;
     private final String message;
@@ -29,7 +28,7 @@ public enum GsInfoQryType implements IBaseEnum {
      * @param code the code
      * @return the yes no enum
      */
-    public static GsInfoQryType get(String code) {
-        return EnumUtil.<GsInfoQryType> valueOf(GsInfoQryType.class, code);
+    public static RefreshFlagEnum get(String code) {
+        return EnumUtil.<RefreshFlagEnum> valueOf(RefreshFlagEnum.class, code);
     }
 }

@@ -1,9 +1,9 @@
 package com.ajayhao.mslab.crawler.service;
 
-import com.ajayhao.mslab.crawler.dto.response.ElecreditResp;
+import com.ajayhao.mslab.crawler.dto.response.EntCommonResp;
 import com.ajayhao.mslab.crawler.dto.response.EntEquityInfoResp;
 import com.ajayhao.mslab.crawler.dto.response.EntGsInfoResp;
-import com.ajayhao.mslab.crawler.enums.GsInfoQryType;
+import com.ajayhao.mslab.crawler.enums.EntParamType;
 
 /**
  * @ClassName CrawlerService
@@ -19,7 +19,7 @@ public interface CrawlerService {
      * @Param
      * @return java.lang.String
      **/
-    EntGsInfoResp queryGsBaseInfo(String key, GsInfoQryType type);
+    EntGsInfoResp queryGsBaseInfo(EntParamType type, String key);
 
     /**
      * @Description 查询公司股权结构
@@ -27,7 +27,7 @@ public interface CrawlerService {
      * @Param type  "1"-entId "2"-企业全名
      * @return
      **/
-    EntEquityInfoResp queryEquityInfo(String key, GsInfoQryType type);
+    EntEquityInfoResp queryEquityInfo(EntParamType type, String key);
 
     /**
      * @Description 爬取企业征信信息
@@ -41,28 +41,28 @@ public interface CrawlerService {
      * @Param [key, type]
      * @return java.lang.String
      **/
-    ElecreditResp pullEntId(String keyword, String type);
+    EntCommonResp pullEntId(String keyword, String type);
 
     /**
      * @Description 根据简称取企业全称
      * @Param key 公司名称关键字
      * @return java.lang.String
      **/
-    ElecreditResp pullCompanyFullName(String key);
+    EntCommonResp pullCompanyFullName(String key);
 
     /**
      * @Description 根据工商企业号取企业全称
      * @Param key 工商企业号
      * @return java.lang.String
      **/
-    ElecreditResp crawlCompanyNameByCreditCode(String key);
+    EntCommonResp crawlCompanyNameByCreditCode(String key);
 
     /**
      * @Description 查询公司新闻
      * @Param companyId,公司entId
      * @return java.lang.String
      **/
-    ElecreditResp crawlPublicVoices(String companyId, String begin, String end);
+    EntCommonResp crawlPublicVoices(String companyId, String begin, String end);
 
 
     /**
@@ -71,7 +71,6 @@ public interface CrawlerService {
      * @Param version 类型 1-全部展现 2-部分脱敏 3-全部脱敏
      * @return java.lang.String
      **/
-    ElecreditResp crawlEntEquityControl(String companyId, String version);
+    EntCommonResp crawlEntEquityControl(String companyId, String version);
 
-    ElecreditResp syncAll();
 }
