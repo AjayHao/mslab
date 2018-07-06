@@ -114,7 +114,7 @@ public class CrawlerController {
     }
 
 
-    @ApiOperation("全量同步 - 临时接口")
+    /*@ApiOperation("全量同步 - 临时接口")
     @RequestMapping(value = "/syncAll", method = GET)
     public EntCommonResp syncAll() {
         return crawlerService.syncAll();
@@ -135,4 +135,5 @@ public class CrawlerController {
         }
         return entEquityInfoResp;
     }
+    */
 }
