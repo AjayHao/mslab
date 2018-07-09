@@ -1,313 +1,246 @@
 package com.ajayhao.mslab.crawler.orm.entity;
 
+import java.math.BigDecimal;
+import java.util.Date;
+
 public class ManagerInfoEntity {
-    private String glrdm;
+    private String id;
 
-    private String khdm;
+    private String entId;
 
-    private String khfwlx;
+    private String entName;
 
-    private String glrmc;
+    private String pullDate;
 
-    private String glrlx;
+    private String subjectType;
 
-    private String glrlb;
+    private Short traceLevel;
 
-    private String glrcx;
+    private String nodeName;
 
-    private String clrq;
+    private String tags;
 
-    private String zzjgdm;
+    private String conName;
 
-    private String glrfr;
+    private BigDecimal conProp;
 
-    private String glrlxdz;
+    private BigDecimal realConProp;
 
-    private String glrlxdh;
+    private String position;
 
-    private String xycpsl;
+    private String idCard;
 
-    private String hzcpsl;
+    private String cerType;
 
-    private String bz;
+    private String address;
 
-    private String gxry;
+    private String uniqueToken;
 
-    private String gxrq;
+    private Date createdAt;
 
-    private String gxsj;
+    private String creator;
 
-    private String khjl;
+    private Date updatedAt;
 
-    private String khjl1;
+    private String updater;
 
-    private String xhjs;
+    private Short isDelete;
 
-    private String glrzcdz;
+    private String nodeId;
 
-    private String fwptzt;
+    private String parentNodeId;
 
-    private String sfbmd;
+    private BigDecimal regAmt;
 
-    private String yxjl;
-
-    private String sfhmd;
-
-    private String sfxg;
-
-    private String yclx;
-
-    private String ycbz;
-
-    private String ywlx;
-
-    private String zzlx;
-
-    public String getGlrdm() {
-        return glrdm;
+    public String getId() {
+        return id;
     }
 
-    public void setGlrdm(String glrdm) {
-        this.glrdm = glrdm == null ? null : glrdm.trim();
+    public void setId(String id) {
+        this.id = id == null ? null : id.trim();
     }
 
-    public String getKhdm() {
-        return khdm;
+    public String getEntId() {
+        return entId;
     }
 
-    public void setKhdm(String khdm) {
-        this.khdm = khdm == null ? null : khdm.trim();
+    public void setEntId(String entId) {
+        this.entId = entId == null ? null : entId.trim();
     }
 
-    public String getKhfwlx() {
-        return khfwlx;
+    public String getEntName() {
+        return entName;
     }
 
-    public void setKhfwlx(String khfwlx) {
-        this.khfwlx = khfwlx == null ? null : khfwlx.trim();
+    public void setEntName(String entName) {
+        this.entName = entName == null ? null : entName.trim();
     }
 
-    public String getGlrmc() {
-        return glrmc;
+    public String getPullDate() {
+        return pullDate;
     }
 
-    public void setGlrmc(String glrmc) {
-        this.glrmc = glrmc == null ? null : glrmc.trim();
+    public void setPullDate(String pullDate) {
+        this.pullDate = pullDate == null ? null : pullDate.trim();
     }
 
-    public String getGlrlx() {
-        return glrlx;
+    public String getSubjectType() {
+        return subjectType;
     }
 
-    public void setGlrlx(String glrlx) {
-        this.glrlx = glrlx == null ? null : glrlx.trim();
+    public void setSubjectType(String subjectType) {
+        this.subjectType = subjectType == null ? null : subjectType.trim();
     }
 
-    public String getGlrlb() {
-        return glrlb;
+    public Short getTraceLevel() {
+        return traceLevel;
     }
 
-    public void setGlrlb(String glrlb) {
-        this.glrlb = glrlb == null ? null : glrlb.trim();
+    public void setTraceLevel(Short traceLevel) {
+        this.traceLevel = traceLevel;
     }
 
-    public String getGlrcx() {
-        return glrcx;
+    public String getNodeName() {
+        return nodeName;
     }
 
-    public void setGlrcx(String glrcx) {
-        this.glrcx = glrcx == null ? null : glrcx.trim();
+    public void setNodeName(String nodeName) {
+        this.nodeName = nodeName == null ? null : nodeName.trim();
     }
 
-    public String getClrq() {
-        return clrq;
+    public String getTags() {
+        return tags;
     }
 
-    public void setClrq(String clrq) {
-        this.clrq = clrq == null ? null : clrq.trim();
+    public void setTags(String tags) {
+        this.tags = tags == null ? null : tags.trim();
     }
 
-    public String getZzjgdm() {
-        return zzjgdm;
+    public String getConName() {
+        return conName;
     }
 
-    public void setZzjgdm(String zzjgdm) {
-        this.zzjgdm = zzjgdm == null ? null : zzjgdm.trim();
+    public void setConName(String conName) {
+        this.conName = conName == null ? null : conName.trim();
     }
 
-    public String getGlrfr() {
-        return glrfr;
+    public BigDecimal getConProp() {
+        return conProp;
     }
 
-    public void setGlrfr(String glrfr) {
-        this.glrfr = glrfr == null ? null : glrfr.trim();
+    public void setConProp(BigDecimal conProp) {
+        this.conProp = conProp;
     }
 
-    public String getGlrlxdz() {
-        return glrlxdz;
+    public BigDecimal getRealConProp() {
+        return realConProp;
     }
 
-    public void setGlrlxdz(String glrlxdz) {
-        this.glrlxdz = glrlxdz == null ? null : glrlxdz.trim();
+    public void setRealConProp(BigDecimal realConProp) {
+        this.realConProp = realConProp;
     }
 
-    public String getGlrlxdh() {
-        return glrlxdh;
+    public String getPosition() {
+        return position;
     }
 
-    public void setGlrlxdh(String glrlxdh) {
-        this.glrlxdh = glrlxdh == null ? null : glrlxdh.trim();
+    public void setPosition(String position) {
+        this.position = position == null ? null : position.trim();
     }
 
-    public String getXycpsl() {
-        return xycpsl;
+    public String getIdCard() {
+        return idCard;
     }
 
-    public void setXycpsl(String xycpsl) {
-        this.xycpsl = xycpsl == null ? null : xycpsl.trim();
+    public void setIdCard(String idCard) {
+        this.idCard = idCard == null ? null : idCard.trim();
     }
 
-    public String getHzcpsl() {
-        return hzcpsl;
+    public String getCerType() {
+        return cerType;
     }
 
-    public void setHzcpsl(String hzcpsl) {
-        this.hzcpsl = hzcpsl == null ? null : hzcpsl.trim();
+    public void setCerType(String cerType) {
+        this.cerType = cerType == null ? null : cerType.trim();
     }
 
-    public String getBz() {
-        return bz;
+    public String getAddress() {
+        return address;
     }
 
-    public void setBz(String bz) {
-        this.bz = bz == null ? null : bz.trim();
+    public void setAddress(String address) {
+        this.address = address == null ? null : address.trim();
     }
 
-    public String getGxry() {
-        return gxry;
+    public String getUniqueToken() {
+        return uniqueToken;
     }
 
-    public void setGxry(String gxry) {
-        this.gxry = gxry == null ? null : gxry.trim();
+    public void setUniqueToken(String uniqueToken) {
+        this.uniqueToken = uniqueToken == null ? null : uniqueToken.trim();
     }
 
-    public String getGxrq() {
-        return gxrq;
+    public Date getCreatedAt() {
+        return createdAt;
     }
 
-    public void setGxrq(String gxrq) {
-        this.gxrq = gxrq == null ? null : gxrq.trim();
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
     }
 
-    public String getGxsj() {
-        return gxsj;
+    public String getCreator() {
+        return creator;
     }
 
-    public void setGxsj(String gxsj) {
-        this.gxsj = gxsj == null ? null : gxsj.trim();
+    public void setCreator(String creator) {
+        this.creator = creator == null ? null : creator.trim();
     }
 
-    public String getKhjl() {
-        return khjl;
+    public Date getUpdatedAt() {
+        return updatedAt;
     }
 
-    public void setKhjl(String khjl) {
-        this.khjl = khjl == null ? null : khjl.trim();
+    public void setUpdatedAt(Date updatedAt) {
+        this.updatedAt = updatedAt;
     }
 
-    public String getKhjl1() {
-        return khjl1;
+    public String getUpdater() {
+        return updater;
     }
 
-    public void setKhjl1(String khjl1) {
-        this.khjl1 = khjl1 == null ? null : khjl1.trim();
+    public void setUpdater(String updater) {
+        this.updater = updater == null ? null : updater.trim();
     }
 
-    public String getXhjs() {
-        return xhjs;
+    public Short getIsDelete() {
+        return isDelete;
     }
 
-    public void setXhjs(String xhjs) {
-        this.xhjs = xhjs == null ? null : xhjs.trim();
+    public void setIsDelete(Short isDelete) {
+        this.isDelete = isDelete;
     }
 
-    public String getGlrzcdz() {
-        return glrzcdz;
+    public String getNodeId() {
+        return nodeId;
     }
 
-    public void setGlrzcdz(String glrzcdz) {
-        this.glrzcdz = glrzcdz == null ? null : glrzcdz.trim();
+    public void setNodeId(String nodeId) {
+        this.nodeId = nodeId == null ? null : nodeId.trim();
     }
 
-    public String getFwptzt() {
-        return fwptzt;
+    public String getParentNodeId() {
+        return parentNodeId;
     }
 
-    public void setFwptzt(String fwptzt) {
-        this.fwptzt = fwptzt == null ? null : fwptzt.trim();
+    public void setParentNodeId(String parentNodeId) {
+        this.parentNodeId = parentNodeId == null ? null : parentNodeId.trim();
     }
 
-    public String getSfbmd() {
-        return sfbmd;
+    public BigDecimal getRegAmt() {
+        return regAmt;
     }
 
-    public void setSfbmd(String sfbmd) {
-        this.sfbmd = sfbmd == null ? null : sfbmd.trim();
-    }
-
-    public String getYxjl() {
-        return yxjl;
-    }
-
-    public void setYxjl(String yxjl) {
-        this.yxjl = yxjl == null ? null : yxjl.trim();
-    }
-
-    public String getSfhmd() {
-        return sfhmd;
-    }
-
-    public void setSfhmd(String sfhmd) {
-        this.sfhmd = sfhmd == null ? null : sfhmd.trim();
-    }
-
-    public String getSfxg() {
-        return sfxg;
-    }
-
-    public void setSfxg(String sfxg) {
-        this.sfxg = sfxg == null ? null : sfxg.trim();
-    }
-
-    public String getYclx() {
-        return yclx;
-    }
-
-    public void setYclx(String yclx) {
-        this.yclx = yclx == null ? null : yclx.trim();
-    }
-
-    public String getYcbz() {
-        return ycbz;
-    }
-
-    public void setYcbz(String ycbz) {
-        this.ycbz = ycbz == null ? null : ycbz.trim();
-    }
-
-    public String getYwlx() {
-        return ywlx;
-    }
-
-    public void setYwlx(String ywlx) {
-        this.ywlx = ywlx == null ? null : ywlx.trim();
-    }
-
-    public String getZzlx() {
-        return zzlx;
-    }
-
-    public void setZzlx(String zzlx) {
-        this.zzlx = zzlx == null ? null : zzlx.trim();
+    public void setRegAmt(BigDecimal regAmt) {
+        this.regAmt = regAmt;
     }
 }

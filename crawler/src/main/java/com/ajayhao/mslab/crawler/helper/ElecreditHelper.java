@@ -37,6 +37,7 @@ public class ElecreditHelper {
 
     private final String charset = "UTF-8";
 
+
     @Autowired
     private ElecreditConfig elecreditConfig;
 

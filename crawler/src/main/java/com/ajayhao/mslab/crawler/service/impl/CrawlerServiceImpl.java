@@ -77,13 +77,6 @@ public class CrawlerServiceImpl implements CrawlerService{
         return entGsInfoResp;
     }
 
-    //数据失效规则 有效期一周
-    private boolean isDataExpired(final BaseEntDataEntity entDataEntity) {
-        return (entDataEntity == null || StringUtils.isEmpty(entDataEntity.getPullDate()) ||
-                DateUtil.getDays(new Date(), DateUtil.parseDateByYYYY_MM_DD(entDataEntity.getPullDate())) > 6);
-    }
-
-
     /**
      * @Description 查询公司股权结构
      * @Param key 查询条件
@@ -100,13 +93,21 @@ public class CrawlerServiceImpl implements CrawlerService{
 
         //数据失效则重新加载
         if(CollectionUtils.isEmpty(oldEntControlEntityList) || isDataExpired(oldEntControlEntityList.get(0))){
-            entEquityInfoService.refreshEntEquityInfo(type ,key);
+            equityInfo = entEquityInfoService.refreshEntEquityInfo(type ,key);
         }else{
             final List<EntEquityDetailEntity> oldEquityDetailEntityList = entEquityInfoRepository.queryEquityDetailEntity(key);
             equityInfo = entEquityInfoService.resolveEquityInfo(oldEntControlEntityList, oldEquityDetailEntityList);
         }
         equityInfoResp.setResult(equityInfo);
         return equityInfoResp;
+    }
+
+    /**
+     * 数据失效规则 有效期一周
+     */
+    private boolean isDataExpired(final BaseEntDataEntity entDataEntity) {
+        return (entDataEntity == null || StringUtils.isEmpty(entDataEntity.getPullDate()) ||
+                DateUtil.getDays(new Date(), DateUtil.parseDateByYYYY_MM_DD(entDataEntity.getPullDate())) > 6);
     }
 
     /**

@@ -37,6 +37,8 @@ public class EntEquityDetailInfo implements Serializable{
 
     private BigDecimal realConProp;
 
+    private BigDecimal regAmt;
+
     private String position;
 
     private String idCard;
@@ -45,13 +47,13 @@ public class EntEquityDetailInfo implements Serializable{
 
     private String address;
 
-    private Date createdAt;
-
     private String creator;
 
-    private Date modifiedAt;
+    private Date createdAt;
 
-    private String modifier;
+    private String updater;
+
+    private Date updatedAt;
 
     private Integer isDelete;
 

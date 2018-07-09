@@ -10,6 +10,7 @@ import com.ajayhao.mslab.crawler.remote.ElecreditRemoteService;
 import com.ajayhao.mslab.crawler.remote.dto.EntNameRemoteResp;
 import com.ajayhao.mslab.crawler.remote.dto.SaicInvRemoteResp;
 import com.ajayhao.mslab.crawler.remote.dto.response.RemoteGetEntIdResp;
+import com.ajayhao.mslab.crawler.remote.enums.DesenseType;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import org.apache.commons.lang3.StringUtils;
@@ -24,6 +25,8 @@ import java.util.Map;
 
 import static com.ajayhao.mslab.core.common.enums.RespCodeType.*;
 import static com.ajayhao.mslab.crawler.constant.CrawlerConstants.REMOTE_SUCC;
+import static com.ajayhao.mslab.crawler.remote.constant.RemoteConstant.ELSAIC_CODE;
+import static com.ajayhao.mslab.crawler.remote.constant.RemoteConstant.ELSAIC_META;
 
 /**
  * @ClassName ElecreditRemoteServiceImpl
@@ -62,7 +65,7 @@ public class ElecreditRemoteServiceImpl implements ElecreditRemoteService{
         EntGsInfo entGsInfo = null;
         JSONObject json = JSON.parseObject(jsonStr);
 
-        if(json == null || json.get("meta") == null || !REMOTE_SUCC.equals(((JSONObject)json.get("meta")).get("code"))){
+        if(json == null || json.get(ELSAIC_META) == null || !REMOTE_SUCC.equals(((JSONObject)json.get(ELSAIC_META)).get(ELSAIC_CODE))){
             throw new BusinessBizException(REMOTE_INVOKE_ERROR);
         }else{
             entGsInfo = elecreditHelper.resolveElsaicResp(json);
@@ -78,8 +81,8 @@ public class ElecreditRemoteServiceImpl implements ElecreditRemoteService{
      **/
     @Override
     public EntEquityInfo pullEquityInfo(String entId) {
-        //构造参数
-        Map<String,String> paramMap = elecreditHelper.buildEquityInfoParam(entId, "1"); //信息不脱敏
+        //构造参数,信息不脱敏
+        Map<String,String> paramMap = elecreditHelper.buildEquityInfoParam(entId, DesenseType.NONE.getCode());
 
         //构造请求entity
         HttpEntity<MultiValueMap> requestEntity = elecreditHelper.buildRequestEntity(paramMap);

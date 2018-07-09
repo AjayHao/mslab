@@ -2,37 +2,30 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ajayhao.mslab.crawler.orm.mapper.ManagerInfoEntityMapper">
   <resultMap id="BaseResultMap" type="com.ajayhao.mslab.crawler.orm.entity.ManagerInfoEntity">
-    <id column="GLRDM" jdbcType="VARCHAR" property="glrdm" />
-    <result column="KHDM" jdbcType="VARCHAR" property="khdm" />
-    <result column="KHFWLX" jdbcType="VARCHAR" property="khfwlx" />
-    <result column="GLRMC" jdbcType="VARCHAR" property="glrmc" />
-    <result column="GLRLX" jdbcType="VARCHAR" property="glrlx" />
-    <result column="GLRLB" jdbcType="VARCHAR" property="glrlb" />
-    <result column="GLRCX" jdbcType="VARCHAR" property="glrcx" />
-    <result column="CLRQ" jdbcType="VARCHAR" property="clrq" />
-    <result column="ZZJGDM" jdbcType="VARCHAR" property="zzjgdm" />
-    <result column="GLRFR" jdbcType="VARCHAR" property="glrfr" />
-    <result column="GLRLXDZ" jdbcType="VARCHAR" property="glrlxdz" />
-    <result column="GLRLXDH" jdbcType="VARCHAR" property="glrlxdh" />
-    <result column="XYCPSL" jdbcType="VARCHAR" property="xycpsl" />
-    <result column="HZCPSL" jdbcType="VARCHAR" property="hzcpsl" />
-    <result column="BZ" jdbcType="VARCHAR" property="bz" />
-    <result column="GXRY" jdbcType="VARCHAR" property="gxry" />
-    <result column="GXRQ" jdbcType="VARCHAR" property="gxrq" />
-    <result column="GXSJ" jdbcType="VARCHAR" property="gxsj" />
-    <result column="KHJL" jdbcType="VARCHAR" property="khjl" />
-    <result column="KHJL1" jdbcType="VARCHAR" property="khjl1" />
-    <result column="XHJS" jdbcType="VARCHAR" property="xhjs" />
-    <result column="GLRZCDZ" jdbcType="VARCHAR" property="glrzcdz" />
-    <result column="FWPTZT" jdbcType="CHAR" property="fwptzt" />
-    <result column="SFBMD" jdbcType="VARCHAR" property="sfbmd" />
-    <result column="YXJL" jdbcType="VARCHAR" property="yxjl" />
-    <result column="SFHMD" jdbcType="VARCHAR" property="sfhmd" />
-    <result column="SFXG" jdbcType="VARCHAR" property="sfxg" />
-    <result column="YCLX" jdbcType="VARCHAR" property="yclx" />
-    <result column="YCBZ" jdbcType="VARCHAR" property="ycbz" />
-    <result column="YWLX" jdbcType="VARCHAR" property="ywlx" />
-    <result column="ZZLX" jdbcType="VARCHAR" property="zzlx" />
+    <id column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="ENT_ID" jdbcType="VARCHAR" property="entId" />
+    <result column="ENT_NAME" jdbcType="VARCHAR" property="entName" />
+    <result column="PULL_DATE" jdbcType="VARCHAR" property="pullDate" />
+    <result column="SUBJECT_TYPE" jdbcType="VARCHAR" property="subjectType" />
+    <result column="TRACE_LEVEL" jdbcType="DECIMAL" property="traceLevel" />
+    <result column="NODE_NAME" jdbcType="VARCHAR" property="nodeName" />
+    <result column="TAGS" jdbcType="VARCHAR" property="tags" />
+    <result column="CON_NAME" jdbcType="VARCHAR" property="conName" />
+    <result column="CON_PROP" jdbcType="DECIMAL" property="conProp" />
+    <result column="REAL_CON_PROP" jdbcType="DECIMAL" property="realConProp" />
+    <result column="POSITION" jdbcType="VARCHAR" property="position" />
+    <result column="ID_CARD" jdbcType="VARCHAR" property="idCard" />
+    <result column="CER_TYPE" jdbcType="VARCHAR" property="cerType" />
+    <result column="ADDRESS" jdbcType="VARCHAR" property="address" />
+    <result column="UNIQUE_TOKEN" jdbcType="VARCHAR" property="uniqueToken" />
+    <result column="CREATED_AT" jdbcType="TIMESTAMP" property="createdAt" />
+    <result column="CREATOR" jdbcType="VARCHAR" property="creator" />
+    <result column="UPDATED_AT" jdbcType="TIMESTAMP" property="updatedAt" />
+    <result column="UPDATER" jdbcType="VARCHAR" property="updater" />
+    <result column="IS_DELETE" jdbcType="DECIMAL" property="isDelete" />
+    <result column="NODE_ID" jdbcType="VARCHAR" property="nodeId" />
+    <result column="PARENT_NODE_ID" jdbcType="VARCHAR" property="parentNodeId" />
+    <result column="REG_AMT" jdbcType="DECIMAL" property="regAmt" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -93,9 +86,9 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    GLRDM, KHDM, KHFWLX, GLRMC, GLRLX, GLRLB, GLRCX, CLRQ, ZZJGDM, GLRFR, GLRLXDZ, GLRLXDH, 
-    XYCPSL, HZCPSL, BZ, GXRY, GXRQ, GXSJ, KHJL, KHJL1, XHJS, GLRZCDZ, FWPTZT, SFBMD, 
-    YXJL, SFHMD, SFXG, YCLX, YCBZ, YWLX, ZZLX
+    ID, ENT_ID, ENT_NAME, PULL_DATE, SUBJECT_TYPE, TRACE_LEVEL, NODE_NAME, TAGS, CON_NAME, 
+    CON_PROP, REAL_CON_PROP, POSITION, ID_CARD, CER_TYPE, ADDRESS, UNIQUE_TOKEN, CREATED_AT, 
+    CREATOR, UPDATED_AT, UPDATER, IS_DELETE, NODE_ID, PARENT_NODE_ID, REG_AMT
   </sql>
   <select id="selectByExample" parameterType="com.ajayhao.mslab.crawler.orm.entity.ManagerInfoEntityExample" resultMap="BaseResultMap">
     select
@@ -104,7 +97,7 @@
     </if>
     'false' as QUERYID,
     <include refid="Base_Column_List" />
-    from XZPT_GLRXX
+    from COMBS_ZXCJ_GQMX
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
@@ -115,329 +108,264 @@
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
-    from XZPT_GLRXX
-    where GLRDM = #{glrdm,jdbcType=VARCHAR}
+    from COMBS_ZXCJ_GQMX
+    where ID = #{id,jdbcType=VARCHAR}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
-    delete from XZPT_GLRXX
-    where GLRDM = #{glrdm,jdbcType=VARCHAR}
+    delete from COMBS_ZXCJ_GQMX
+    where ID = #{id,jdbcType=VARCHAR}
   </delete>
   <delete id="deleteByExample" parameterType="com.ajayhao.mslab.crawler.orm.entity.ManagerInfoEntityExample">
-    delete from XZPT_GLRXX
+    delete from COMBS_ZXCJ_GQMX
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
   <insert id="insert" parameterType="com.ajayhao.mslab.crawler.orm.entity.ManagerInfoEntity">
-    insert into XZPT_GLRXX (GLRDM, KHDM, KHFWLX, 
-      GLRMC, GLRLX, GLRLB, 
-      GLRCX, CLRQ, ZZJGDM, 
-      GLRFR, GLRLXDZ, GLRLXDH, 
-      XYCPSL, HZCPSL, BZ, 
-      GXRY, GXRQ, GXSJ, KHJL, 
-      KHJL1, XHJS, GLRZCDZ, 
-      FWPTZT, SFBMD, YXJL, SFHMD, 
-      SFXG, YCLX, YCBZ, YWLX, 
-      ZZLX)
-    values (#{glrdm,jdbcType=VARCHAR}, #{khdm,jdbcType=VARCHAR}, #{khfwlx,jdbcType=VARCHAR}, 
-      #{glrmc,jdbcType=VARCHAR}, #{glrlx,jdbcType=VARCHAR}, #{glrlb,jdbcType=VARCHAR}, 
-      #{glrcx,jdbcType=VARCHAR}, #{clrq,jdbcType=VARCHAR}, #{zzjgdm,jdbcType=VARCHAR}, 
-      #{glrfr,jdbcType=VARCHAR}, #{glrlxdz,jdbcType=VARCHAR}, #{glrlxdh,jdbcType=VARCHAR}, 
-      #{xycpsl,jdbcType=VARCHAR}, #{hzcpsl,jdbcType=VARCHAR}, #{bz,jdbcType=VARCHAR}, 
-      #{gxry,jdbcType=VARCHAR}, #{gxrq,jdbcType=VARCHAR}, #{gxsj,jdbcType=VARCHAR}, #{khjl,jdbcType=VARCHAR}, 
-      #{khjl1,jdbcType=VARCHAR}, #{xhjs,jdbcType=VARCHAR}, #{glrzcdz,jdbcType=VARCHAR}, 
-      #{fwptzt,jdbcType=CHAR}, #{sfbmd,jdbcType=VARCHAR}, #{yxjl,jdbcType=VARCHAR}, #{sfhmd,jdbcType=VARCHAR}, 
-      #{sfxg,jdbcType=VARCHAR}, #{yclx,jdbcType=VARCHAR}, #{ycbz,jdbcType=VARCHAR}, #{ywlx,jdbcType=VARCHAR}, 
-      #{zzlx,jdbcType=VARCHAR})
+    insert into COMBS_ZXCJ_GQMX (ID, ENT_ID, ENT_NAME, 
+      PULL_DATE, SUBJECT_TYPE, TRACE_LEVEL, 
+      NODE_NAME, TAGS, CON_NAME, 
+      CON_PROP, REAL_CON_PROP, POSITION, 
+      ID_CARD, CER_TYPE, ADDRESS, 
+      UNIQUE_TOKEN, CREATED_AT, CREATOR, 
+      UPDATED_AT, UPDATER, IS_DELETE, 
+      NODE_ID, PARENT_NODE_ID, REG_AMT
+      )
+    values (#{id,jdbcType=VARCHAR}, #{entId,jdbcType=VARCHAR}, #{entName,jdbcType=VARCHAR}, 
+      #{pullDate,jdbcType=VARCHAR}, #{subjectType,jdbcType=VARCHAR}, #{traceLevel,jdbcType=DECIMAL}, 
+      #{nodeName,jdbcType=VARCHAR}, #{tags,jdbcType=VARCHAR}, #{conName,jdbcType=VARCHAR}, 
+      #{conProp,jdbcType=DECIMAL}, #{realConProp,jdbcType=DECIMAL}, #{position,jdbcType=VARCHAR}, 
+      #{idCard,jdbcType=VARCHAR}, #{cerType,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, 
+      #{uniqueToken,jdbcType=VARCHAR}, #{createdAt,jdbcType=TIMESTAMP}, #{creator,jdbcType=VARCHAR}, 
+      #{updatedAt,jdbcType=TIMESTAMP}, #{updater,jdbcType=VARCHAR}, #{isDelete,jdbcType=DECIMAL}, 
+      #{nodeId,jdbcType=VARCHAR}, #{parentNodeId,jdbcType=VARCHAR}, #{regAmt,jdbcType=DECIMAL}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.ajayhao.mslab.crawler.orm.entity.ManagerInfoEntity">
-    insert into XZPT_GLRXX
+    insert into COMBS_ZXCJ_GQMX
     <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="glrdm != null">
-        GLRDM,
+      <if test="id != null">
+        ID,
       </if>
-      <if test="khdm != null">
-        KHDM,
+      <if test="entId != null">
+        ENT_ID,
       </if>
-      <if test="khfwlx != null">
-        KHFWLX,
+      <if test="entName != null">
+        ENT_NAME,
       </if>
-      <if test="glrmc != null">
-        GLRMC,
+      <if test="pullDate != null">
+        PULL_DATE,
       </if>
-      <if test="glrlx != null">
-        GLRLX,
+      <if test="subjectType != null">
+        SUBJECT_TYPE,
       </if>
-      <if test="glrlb != null">
-        GLRLB,
+      <if test="traceLevel != null">
+        TRACE_LEVEL,
       </if>
-      <if test="glrcx != null">
-        GLRCX,
+      <if test="nodeName != null">
+        NODE_NAME,
       </if>
-      <if test="clrq != null">
-        CLRQ,
+      <if test="tags != null">
+        TAGS,
       </if>
-      <if test="zzjgdm != null">
-        ZZJGDM,
+      <if test="conName != null">
+        CON_NAME,
       </if>
-      <if test="glrfr != null">
-        GLRFR,
+      <if test="conProp != null">
+        CON_PROP,
       </if>
-      <if test="glrlxdz != null">
-        GLRLXDZ,
+      <if test="realConProp != null">
+        REAL_CON_PROP,
       </if>
-      <if test="glrlxdh != null">
-        GLRLXDH,
+      <if test="position != null">
+        POSITION,
       </if>
-      <if test="xycpsl != null">
-        XYCPSL,
+      <if test="idCard != null">
+        ID_CARD,
       </if>
-      <if test="hzcpsl != null">
-        HZCPSL,
+      <if test="cerType != null">
+        CER_TYPE,
       </if>
-      <if test="bz != null">
-        BZ,
+      <if test="address != null">
+        ADDRESS,
       </if>
-      <if test="gxry != null">
-        GXRY,
+      <if test="uniqueToken != null">
+        UNIQUE_TOKEN,
       </if>
-      <if test="gxrq != null">
-        GXRQ,
+      <if test="createdAt != null">
+        CREATED_AT,
       </if>
-      <if test="gxsj != null">
-        GXSJ,
+      <if test="creator != null">
+        CREATOR,
       </if>
-      <if test="khjl != null">
-        KHJL,
+      <if test="updatedAt != null">
+        UPDATED_AT,
       </if>
-      <if test="khjl1 != null">
-        KHJL1,
+      <if test="updater != null">
+        UPDATER,
       </if>
-      <if test="xhjs != null">
-        XHJS,
+      <if test="isDelete != null">
+        IS_DELETE,
       </if>
-      <if test="glrzcdz != null">
-        GLRZCDZ,
+      <if test="nodeId != null">
+        NODE_ID,
       </if>
-      <if test="fwptzt != null">
-        FWPTZT,
+      <if test="parentNodeId != null">
+        PARENT_NODE_ID,
       </if>
-      <if test="sfbmd != null">
-        SFBMD,
-      </if>
-      <if test="yxjl != null">
-        YXJL,
-      </if>
-      <if test="sfhmd != null">
-        SFHMD,
-      </if>
-      <if test="sfxg != null">
-        SFXG,
-      </if>
-      <if test="yclx != null">
-        YCLX,
-      </if>
-      <if test="ycbz != null">
-        YCBZ,
-      </if>
-      <if test="ywlx != null">
-        YWLX,
-      </if>
-      <if test="zzlx != null">
-        ZZLX,
+      <if test="regAmt != null">
+        REG_AMT,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="glrdm != null">
-        #{glrdm,jdbcType=VARCHAR},
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
       </if>
-      <if test="khdm != null">
-        #{khdm,jdbcType=VARCHAR},
+      <if test="entId != null">
+        #{entId,jdbcType=VARCHAR},
       </if>
-      <if test="khfwlx != null">
-        #{khfwlx,jdbcType=VARCHAR},
+      <if test="entName != null">
+        #{entName,jdbcType=VARCHAR},
       </if>
-      <if test="glrmc != null">
-        #{glrmc,jdbcType=VARCHAR},
+      <if test="pullDate != null">
+        #{pullDate,jdbcType=VARCHAR},
       </if>
-      <if test="glrlx != null">
-        #{glrlx,jdbcType=VARCHAR},
+      <if test="subjectType != null">
+        #{subjectType,jdbcType=VARCHAR},
       </if>
-      <if test="glrlb != null">
-        #{glrlb,jdbcType=VARCHAR},
+      <if test="traceLevel != null">
+        #{traceLevel,jdbcType=DECIMAL},
       </if>
-      <if test="glrcx != null">
-        #{glrcx,jdbcType=VARCHAR},
+      <if test="nodeName != null">
+        #{nodeName,jdbcType=VARCHAR},
       </if>
-      <if test="clrq != null">
-        #{clrq,jdbcType=VARCHAR},
+      <if test="tags != null">
+        #{tags,jdbcType=VARCHAR},
       </if>
-      <if test="zzjgdm != null">
-        #{zzjgdm,jdbcType=VARCHAR},
+      <if test="conName != null">
+        #{conName,jdbcType=VARCHAR},
       </if>
-      <if test="glrfr != null">
-        #{glrfr,jdbcType=VARCHAR},
+      <if test="conProp != null">
+        #{conProp,jdbcType=DECIMAL},
       </if>
-      <if test="glrlxdz != null">
-        #{glrlxdz,jdbcType=VARCHAR},
+      <if test="realConProp != null">
+        #{realConProp,jdbcType=DECIMAL},
       </if>
-      <if test="glrlxdh != null">
-        #{glrlxdh,jdbcType=VARCHAR},
+      <if test="position != null">
+        #{position,jdbcType=VARCHAR},
       </if>
-      <if test="xycpsl != null">
-        #{xycpsl,jdbcType=VARCHAR},
+      <if test="idCard != null">
+        #{idCard,jdbcType=VARCHAR},
       </if>
-      <if test="hzcpsl != null">
-        #{hzcpsl,jdbcType=VARCHAR},
+      <if test="cerType != null">
+        #{cerType,jdbcType=VARCHAR},
       </if>
-      <if test="bz != null">
-        #{bz,jdbcType=VARCHAR},
+      <if test="address != null">
+        #{address,jdbcType=VARCHAR},
       </if>
-      <if test="gxry != null">
-        #{gxry,jdbcType=VARCHAR},
+      <if test="uniqueToken != null">
+        #{uniqueToken,jdbcType=VARCHAR},
       </if>
-      <if test="gxrq != null">
-        #{gxrq,jdbcType=VARCHAR},
+      <if test="createdAt != null">
+        #{createdAt,jdbcType=TIMESTAMP},
       </if>
-      <if test="gxsj != null">
-        #{gxsj,jdbcType=VARCHAR},
+      <if test="creator != null">
+        #{creator,jdbcType=VARCHAR},
       </if>
-      <if test="khjl != null">
-        #{khjl,jdbcType=VARCHAR},
+      <if test="updatedAt != null">
+        #{updatedAt,jdbcType=TIMESTAMP},
       </if>
-      <if test="khjl1 != null">
-        #{khjl1,jdbcType=VARCHAR},
+      <if test="updater != null">
+        #{updater,jdbcType=VARCHAR},
       </if>
-      <if test="xhjs != null">
-        #{xhjs,jdbcType=VARCHAR},
+      <if test="isDelete != null">
+        #{isDelete,jdbcType=DECIMAL},
       </if>
-      <if test="glrzcdz != null">
-        #{glrzcdz,jdbcType=VARCHAR},
+      <if test="nodeId != null">
+        #{nodeId,jdbcType=VARCHAR},
       </if>
-      <if test="fwptzt != null">
-        #{fwptzt,jdbcType=CHAR},
+      <if test="parentNodeId != null">
+        #{parentNodeId,jdbcType=VARCHAR},
       </if>
-      <if test="sfbmd != null">
-        #{sfbmd,jdbcType=VARCHAR},
-      </if>
-      <if test="yxjl != null">
-        #{yxjl,jdbcType=VARCHAR},
-      </if>
-      <if test="sfhmd != null">
-        #{sfhmd,jdbcType=VARCHAR},
-      </if>
-      <if test="sfxg != null">
-        #{sfxg,jdbcType=VARCHAR},
-      </if>
-      <if test="yclx != null">
-        #{yclx,jdbcType=VARCHAR},
-      </if>
-      <if test="ycbz != null">
-        #{ycbz,jdbcType=VARCHAR},
-      </if>
-      <if test="ywlx != null">
-        #{ywlx,jdbcType=VARCHAR},
-      </if>
-      <if test="zzlx != null">
-        #{zzlx,jdbcType=VARCHAR},
+      <if test="regAmt != null">
+        #{regAmt,jdbcType=DECIMAL},
       </if>
     </trim>
   </insert>
   <update id="updateByExampleSelective" parameterType="map">
-    update XZPT_GLRXX
+    update COMBS_ZXCJ_GQMX
     <set>
-      <if test="record.glrdm != null">
-        GLRDM = #{record.glrdm,jdbcType=VARCHAR},
+      <if test="record.id != null">
+        ID = #{record.id,jdbcType=VARCHAR},
       </if>
-      <if test="record.khdm != null">
-        KHDM = #{record.khdm,jdbcType=VARCHAR},
+      <if test="record.entId != null">
+        ENT_ID = #{record.entId,jdbcType=VARCHAR},
       </if>
-      <if test="record.khfwlx != null">
-        KHFWLX = #{record.khfwlx,jdbcType=VARCHAR},
+      <if test="record.entName != null">
+        ENT_NAME = #{record.entName,jdbcType=VARCHAR},
       </if>
-      <if test="record.glrmc != null">
-        GLRMC = #{record.glrmc,jdbcType=VARCHAR},
+      <if test="record.pullDate != null">
+        PULL_DATE = #{record.pullDate,jdbcType=VARCHAR},
       </if>
-      <if test="record.glrlx != null">
-        GLRLX = #{record.glrlx,jdbcType=VARCHAR},
+      <if test="record.subjectType != null">
+        SUBJECT_TYPE = #{record.subjectType,jdbcType=VARCHAR},
       </if>
-      <if test="record.glrlb != null">
-        GLRLB = #{record.glrlb,jdbcType=VARCHAR},
+      <if test="record.traceLevel != null">
+        TRACE_LEVEL = #{record.traceLevel,jdbcType=DECIMAL},
       </if>
-      <if test="record.glrcx != null">
-        GLRCX = #{record.glrcx,jdbcType=VARCHAR},
+      <if test="record.nodeName != null">
+        NODE_NAME = #{record.nodeName,jdbcType=VARCHAR},
       </if>
-      <if test="record.clrq != null">
-        CLRQ = #{record.clrq,jdbcType=VARCHAR},
+      <if test="record.tags != null">
+        TAGS = #{record.tags,jdbcType=VARCHAR},
       </if>
-      <if test="record.zzjgdm != null">
-        ZZJGDM = #{record.zzjgdm,jdbcType=VARCHAR},
+      <if test="record.conName != null">
+        CON_NAME = #{record.conName,jdbcType=VARCHAR},
       </if>
-      <if test="record.glrfr != null">
-        GLRFR = #{record.glrfr,jdbcType=VARCHAR},
+      <if test="record.conProp != null">
+        CON_PROP = #{record.conProp,jdbcType=DECIMAL},
       </if>
-      <if test="record.glrlxdz != null">
-        GLRLXDZ = #{record.glrlxdz,jdbcType=VARCHAR},
+      <if test="record.realConProp != null">
+        REAL_CON_PROP = #{record.realConProp,jdbcType=DECIMAL},
       </if>
-      <if test="record.glrlxdh != null">
-        GLRLXDH = #{record.glrlxdh,jdbcType=VARCHAR},
+      <if test="record.position != null">
+        POSITION = #{record.position,jdbcType=VARCHAR},
       </if>
-      <if test="record.xycpsl != null">
-        XYCPSL = #{record.xycpsl,jdbcType=VARCHAR},
+      <if test="record.idCard != null">
+        ID_CARD = #{record.idCard,jdbcType=VARCHAR},
       </if>
-      <if test="record.hzcpsl != null">
-        HZCPSL = #{record.hzcpsl,jdbcType=VARCHAR},
+      <if test="record.cerType != null">
+        CER_TYPE = #{record.cerType,jdbcType=VARCHAR},
       </if>
-      <if test="record.bz != null">
-        BZ = #{record.bz,jdbcType=VARCHAR},
+      <if test="record.address != null">
+        ADDRESS = #{record.address,jdbcType=VARCHAR},
       </if>
-      <if test="record.gxry != null">
-        GXRY = #{record.gxry,jdbcType=VARCHAR},
+      <if test="record.uniqueToken != null">
+        UNIQUE_TOKEN = #{record.uniqueToken,jdbcType=VARCHAR},
       </if>
-      <if test="record.gxrq != null">
-        GXRQ = #{record.gxrq,jdbcType=VARCHAR},
+      <if test="record.createdAt != null">
+        CREATED_AT = #{record.createdAt,jdbcType=TIMESTAMP},
       </if>
-      <if test="record.gxsj != null">
-        GXSJ = #{record.gxsj,jdbcType=VARCHAR},
+      <if test="record.creator != null">
+        CREATOR = #{record.creator,jdbcType=VARCHAR},
       </if>
-      <if test="record.khjl != null">
-        KHJL = #{record.khjl,jdbcType=VARCHAR},
+      <if test="record.updatedAt != null">
+        UPDATED_AT = #{record.updatedAt,jdbcType=TIMESTAMP},
       </if>
-      <if test="record.khjl1 != null">
-        KHJL1 = #{record.khjl1,jdbcType=VARCHAR},
+      <if test="record.updater != null">
+        UPDATER = #{record.updater,jdbcType=VARCHAR},
       </if>
-      <if test="record.xhjs != null">
-        XHJS = #{record.xhjs,jdbcType=VARCHAR},
+      <if test="record.isDelete != null">
+        IS_DELETE = #{record.isDelete,jdbcType=DECIMAL},
       </if>
-      <if test="record.glrzcdz != null">
-        GLRZCDZ = #{record.glrzcdz,jdbcType=VARCHAR},
+      <if test="record.nodeId != null">
+        NODE_ID = #{record.nodeId,jdbcType=VARCHAR},
       </if>
-      <if test="record.fwptzt != null">
-        FWPTZT = #{record.fwptzt,jdbcType=CHAR},
+      <if test="record.parentNodeId != null">
+        PARENT_NODE_ID = #{record.parentNodeId,jdbcType=VARCHAR},
       </if>
-      <if test="record.sfbmd != null">
-        SFBMD = #{record.sfbmd,jdbcType=VARCHAR},
-      </if>
-      <if test="record.yxjl != null">
-        YXJL = #{record.yxjl,jdbcType=VARCHAR},
-      </if>
-      <if test="record.sfhmd != null">
-        SFHMD = #{record.sfhmd,jdbcType=VARCHAR},
-      </if>
-      <if test="record.sfxg != null">
-        SFXG = #{record.sfxg,jdbcType=VARCHAR},
-      </if>
-      <if test="record.yclx != null">
-        YCLX = #{record.yclx,jdbcType=VARCHAR},
-      </if>
-      <if test="record.ycbz != null">
-        YCBZ = #{record.ycbz,jdbcType=VARCHAR},
-      </if>
-      <if test="record.ywlx != null">
-        YWLX = #{record.ywlx,jdbcType=VARCHAR},
-      </if>
-      <if test="record.zzlx != null">
-        ZZLX = #{record.zzlx,jdbcType=VARCHAR},
+      <if test="record.regAmt != null">
+        REG_AMT = #{record.regAmt,jdbcType=DECIMAL},
       </if>
     </set>
     <if test="_parameter != null">
@@ -445,170 +373,135 @@
     </if>
   </update>
   <update id="updateByExample" parameterType="map">
-    update XZPT_GLRXX
-    set GLRDM = #{record.glrdm,jdbcType=VARCHAR},
-      KHDM = #{record.khdm,jdbcType=VARCHAR},
-      KHFWLX = #{record.khfwlx,jdbcType=VARCHAR},
-      GLRMC = #{record.glrmc,jdbcType=VARCHAR},
-      GLRLX = #{record.glrlx,jdbcType=VARCHAR},
-      GLRLB = #{record.glrlb,jdbcType=VARCHAR},
-      GLRCX = #{record.glrcx,jdbcType=VARCHAR},
-      CLRQ = #{record.clrq,jdbcType=VARCHAR},
-      ZZJGDM = #{record.zzjgdm,jdbcType=VARCHAR},
-      GLRFR = #{record.glrfr,jdbcType=VARCHAR},
-      GLRLXDZ = #{record.glrlxdz,jdbcType=VARCHAR},
-      GLRLXDH = #{record.glrlxdh,jdbcType=VARCHAR},
-      XYCPSL = #{record.xycpsl,jdbcType=VARCHAR},
-      HZCPSL = #{record.hzcpsl,jdbcType=VARCHAR},
-      BZ = #{record.bz,jdbcType=VARCHAR},
-      GXRY = #{record.gxry,jdbcType=VARCHAR},
-      GXRQ = #{record.gxrq,jdbcType=VARCHAR},
-      GXSJ = #{record.gxsj,jdbcType=VARCHAR},
-      KHJL = #{record.khjl,jdbcType=VARCHAR},
-      KHJL1 = #{record.khjl1,jdbcType=VARCHAR},
-      XHJS = #{record.xhjs,jdbcType=VARCHAR},
-      GLRZCDZ = #{record.glrzcdz,jdbcType=VARCHAR},
-      FWPTZT = #{record.fwptzt,jdbcType=CHAR},
-      SFBMD = #{record.sfbmd,jdbcType=VARCHAR},
-      YXJL = #{record.yxjl,jdbcType=VARCHAR},
-      SFHMD = #{record.sfhmd,jdbcType=VARCHAR},
-      SFXG = #{record.sfxg,jdbcType=VARCHAR},
-      YCLX = #{record.yclx,jdbcType=VARCHAR},
-      YCBZ = #{record.ycbz,jdbcType=VARCHAR},
-      YWLX = #{record.ywlx,jdbcType=VARCHAR},
-      ZZLX = #{record.zzlx,jdbcType=VARCHAR}
+    update COMBS_ZXCJ_GQMX
+    set ID = #{record.id,jdbcType=VARCHAR},
+      ENT_ID = #{record.entId,jdbcType=VARCHAR},
+      ENT_NAME = #{record.entName,jdbcType=VARCHAR},
+      PULL_DATE = #{record.pullDate,jdbcType=VARCHAR},
+      SUBJECT_TYPE = #{record.subjectType,jdbcType=VARCHAR},
+      TRACE_LEVEL = #{record.traceLevel,jdbcType=DECIMAL},
+      NODE_NAME = #{record.nodeName,jdbcType=VARCHAR},
+      TAGS = #{record.tags,jdbcType=VARCHAR},
+      CON_NAME = #{record.conName,jdbcType=VARCHAR},
+      CON_PROP = #{record.conProp,jdbcType=DECIMAL},
+      REAL_CON_PROP = #{record.realConProp,jdbcType=DECIMAL},
+      POSITION = #{record.position,jdbcType=VARCHAR},
+      ID_CARD = #{record.idCard,jdbcType=VARCHAR},
+      CER_TYPE = #{record.cerType,jdbcType=VARCHAR},
+      ADDRESS = #{record.address,jdbcType=VARCHAR},
+      UNIQUE_TOKEN = #{record.uniqueToken,jdbcType=VARCHAR},
+      CREATED_AT = #{record.createdAt,jdbcType=TIMESTAMP},
+      CREATOR = #{record.creator,jdbcType=VARCHAR},
+      UPDATED_AT = #{record.updatedAt,jdbcType=TIMESTAMP},
+      UPDATER = #{record.updater,jdbcType=VARCHAR},
+      IS_DELETE = #{record.isDelete,jdbcType=DECIMAL},
+      NODE_ID = #{record.nodeId,jdbcType=VARCHAR},
+      PARENT_NODE_ID = #{record.parentNodeId,jdbcType=VARCHAR},
+      REG_AMT = #{record.regAmt,jdbcType=DECIMAL}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
   <update id="updateByPrimaryKeySelective" parameterType="com.ajayhao.mslab.crawler.orm.entity.ManagerInfoEntity">
-    update XZPT_GLRXX
+    update COMBS_ZXCJ_GQMX
     <set>
-      <if test="khdm != null">
-        KHDM = #{khdm,jdbcType=VARCHAR},
+      <if test="entId != null">
+        ENT_ID = #{entId,jdbcType=VARCHAR},
       </if>
-      <if test="khfwlx != null">
-        KHFWLX = #{khfwlx,jdbcType=VARCHAR},
+      <if test="entName != null">
+        ENT_NAME = #{entName,jdbcType=VARCHAR},
       </if>
-      <if test="glrmc != null">
-        GLRMC = #{glrmc,jdbcType=VARCHAR},
+      <if test="pullDate != null">
+        PULL_DATE = #{pullDate,jdbcType=VARCHAR},
       </if>
-      <if test="glrlx != null">
-        GLRLX = #{glrlx,jdbcType=VARCHAR},
+      <if test="subjectType != null">
+        SUBJECT_TYPE = #{subjectType,jdbcType=VARCHAR},
       </if>
-      <if test="glrlb != null">
-        GLRLB = #{glrlb,jdbcType=VARCHAR},
+      <if test="traceLevel != null">
+        TRACE_LEVEL = #{traceLevel,jdbcType=DECIMAL},
       </if>
-      <if test="glrcx != null">
-        GLRCX = #{glrcx,jdbcType=VARCHAR},
+      <if test="nodeName != null">
+        NODE_NAME = #{nodeName,jdbcType=VARCHAR},
       </if>
-      <if test="clrq != null">
-        CLRQ = #{clrq,jdbcType=VARCHAR},
+      <if test="tags != null">
+        TAGS = #{tags,jdbcType=VARCHAR},
       </if>
-      <if test="zzjgdm != null">
-        ZZJGDM = #{zzjgdm,jdbcType=VARCHAR},
+      <if test="conName != null">
+        CON_NAME = #{conName,jdbcType=VARCHAR},
       </if>
-      <if test="glrfr != null">
-        GLRFR = #{glrfr,jdbcType=VARCHAR},
+      <if test="conProp != null">
+        CON_PROP = #{conProp,jdbcType=DECIMAL},
       </if>
-      <if test="glrlxdz != null">
-        GLRLXDZ = #{glrlxdz,jdbcType=VARCHAR},
+      <if test="realConProp != null">
+        REAL_CON_PROP = #{realConProp,jdbcType=DECIMAL},
       </if>
-      <if test="glrlxdh != null">
-        GLRLXDH = #{glrlxdh,jdbcType=VARCHAR},
+      <if test="position != null">
+        POSITION = #{position,jdbcType=VARCHAR},
       </if>
-      <if test="xycpsl != null">
-        XYCPSL = #{xycpsl,jdbcType=VARCHAR},
+      <if test="idCard != null">
+        ID_CARD = #{idCard,jdbcType=VARCHAR},
       </if>
-      <if test="hzcpsl != null">
-        HZCPSL = #{hzcpsl,jdbcType=VARCHAR},
+      <if test="cerType != null">
+        CER_TYPE = #{cerType,jdbcType=VARCHAR},
       </if>
-      <if test="bz != null">
-        BZ = #{bz,jdbcType=VARCHAR},
+      <if test="address != null">
+        ADDRESS = #{address,jdbcType=VARCHAR},
       </if>
-      <if test="gxry != null">
-        GXRY = #{gxry,jdbcType=VARCHAR},
+      <if test="uniqueToken != null">
+        UNIQUE_TOKEN = #{uniqueToken,jdbcType=VARCHAR},
       </if>
-      <if test="gxrq != null">
-        GXRQ = #{gxrq,jdbcType=VARCHAR},
+      <if test="createdAt != null">
+        CREATED_AT = #{createdAt,jdbcType=TIMESTAMP},
       </if>
-      <if test="gxsj != null">
-        GXSJ = #{gxsj,jdbcType=VARCHAR},
+      <if test="creator != null">
+        CREATOR = #{creator,jdbcType=VARCHAR},
       </if>
-      <if test="khjl != null">
-        KHJL = #{khjl,jdbcType=VARCHAR},
+      <if test="updatedAt != null">
+        UPDATED_AT = #{updatedAt,jdbcType=TIMESTAMP},
       </if>
-      <if test="khjl1 != null">
-        KHJL1 = #{khjl1,jdbcType=VARCHAR},
+      <if test="updater != null">
+        UPDATER = #{updater,jdbcType=VARCHAR},
       </if>
-      <if test="xhjs != null">
-        XHJS = #{xhjs,jdbcType=VARCHAR},
+      <if test="isDelete != null">
+        IS_DELETE = #{isDelete,jdbcType=DECIMAL},
       </if>
-      <if test="glrzcdz != null">
-        GLRZCDZ = #{glrzcdz,jdbcType=VARCHAR},
+      <if test="nodeId != null">
+        NODE_ID = #{nodeId,jdbcType=VARCHAR},
       </if>
-      <if test="fwptzt != null">
-        FWPTZT = #{fwptzt,jdbcType=CHAR},
+      <if test="parentNodeId != null">
+        PARENT_NODE_ID = #{parentNodeId,jdbcType=VARCHAR},
       </if>
-      <if test="sfbmd != null">
-        SFBMD = #{sfbmd,jdbcType=VARCHAR},
-      </if>
-      <if test="yxjl != null">
-        YXJL = #{yxjl,jdbcType=VARCHAR},
-      </if>
-      <if test="sfhmd != null">
-        SFHMD = #{sfhmd,jdbcType=VARCHAR},
-      </if>
-      <if test="sfxg != null">
-        SFXG = #{sfxg,jdbcType=VARCHAR},
-      </if>
-      <if test="yclx != null">
-        YCLX = #{yclx,jdbcType=VARCHAR},
-      </if>
-      <if test="ycbz != null">
-        YCBZ = #{ycbz,jdbcType=VARCHAR},
-      </if>
-      <if test="ywlx != null">
-        YWLX = #{ywlx,jdbcType=VARCHAR},
-      </if>
-      <if test="zzlx != null">
-        ZZLX = #{zzlx,jdbcType=VARCHAR},
+      <if test="regAmt != null">
+        REG_AMT = #{regAmt,jdbcType=DECIMAL},
       </if>
     </set>
-    where GLRDM = #{glrdm,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.ajayhao.mslab.crawler.orm.entity.ManagerInfoEntity">
-    update XZPT_GLRXX
-    set KHDM = #{khdm,jdbcType=VARCHAR},
-      KHFWLX = #{khfwlx,jdbcType=VARCHAR},
-      GLRMC = #{glrmc,jdbcType=VARCHAR},
-      GLRLX = #{glrlx,jdbcType=VARCHAR},
-      GLRLB = #{glrlb,jdbcType=VARCHAR},
-      GLRCX = #{glrcx,jdbcType=VARCHAR},
-      CLRQ = #{clrq,jdbcType=VARCHAR},
-      ZZJGDM = #{zzjgdm,jdbcType=VARCHAR},
-      GLRFR = #{glrfr,jdbcType=VARCHAR},
-      GLRLXDZ = #{glrlxdz,jdbcType=VARCHAR},
-      GLRLXDH = #{glrlxdh,jdbcType=VARCHAR},
-      XYCPSL = #{xycpsl,jdbcType=VARCHAR},
-      HZCPSL = #{hzcpsl,jdbcType=VARCHAR},
-      BZ = #{bz,jdbcType=VARCHAR},
-      GXRY = #{gxry,jdbcType=VARCHAR},
-      GXRQ = #{gxrq,jdbcType=VARCHAR},
-      GXSJ = #{gxsj,jdbcType=VARCHAR},
-      KHJL = #{khjl,jdbcType=VARCHAR},
-      KHJL1 = #{khjl1,jdbcType=VARCHAR},
-      XHJS = #{xhjs,jdbcType=VARCHAR},
-      GLRZCDZ = #{glrzcdz,jdbcType=VARCHAR},
-      FWPTZT = #{fwptzt,jdbcType=CHAR},
-      SFBMD = #{sfbmd,jdbcType=VARCHAR},
-      YXJL = #{yxjl,jdbcType=VARCHAR},
-      SFHMD = #{sfhmd,jdbcType=VARCHAR},
-      SFXG = #{sfxg,jdbcType=VARCHAR},
-      YCLX = #{yclx,jdbcType=VARCHAR},
-      YCBZ = #{ycbz,jdbcType=VARCHAR},
-      YWLX = #{ywlx,jdbcType=VARCHAR},
-      ZZLX = #{zzlx,jdbcType=VARCHAR}
-    where GLRDM = #{glrdm,jdbcType=VARCHAR}
+    update COMBS_ZXCJ_GQMX
+    set ENT_ID = #{entId,jdbcType=VARCHAR},
+      ENT_NAME = #{entName,jdbcType=VARCHAR},
+      PULL_DATE = #{pullDate,jdbcType=VARCHAR},
+      SUBJECT_TYPE = #{subjectType,jdbcType=VARCHAR},
+      TRACE_LEVEL = #{traceLevel,jdbcType=DECIMAL},
+      NODE_NAME = #{nodeName,jdbcType=VARCHAR},
+      TAGS = #{tags,jdbcType=VARCHAR},
+      CON_NAME = #{conName,jdbcType=VARCHAR},
+      CON_PROP = #{conProp,jdbcType=DECIMAL},
+      REAL_CON_PROP = #{realConProp,jdbcType=DECIMAL},
+      POSITION = #{position,jdbcType=VARCHAR},
+      ID_CARD = #{idCard,jdbcType=VARCHAR},
+      CER_TYPE = #{cerType,jdbcType=VARCHAR},
+      ADDRESS = #{address,jdbcType=VARCHAR},
+      UNIQUE_TOKEN = #{uniqueToken,jdbcType=VARCHAR},
+      CREATED_AT = #{createdAt,jdbcType=TIMESTAMP},
+      CREATOR = #{creator,jdbcType=VARCHAR},
+      UPDATED_AT = #{updatedAt,jdbcType=TIMESTAMP},
+      UPDATER = #{updater,jdbcType=VARCHAR},
+      IS_DELETE = #{isDelete,jdbcType=DECIMAL},
+      NODE_ID = #{nodeId,jdbcType=VARCHAR},
+      PARENT_NODE_ID = #{parentNodeId,jdbcType=VARCHAR},
+      REG_AMT = #{regAmt,jdbcType=DECIMAL}
+    where ID = #{id,jdbcType=VARCHAR}
   </update>
 </mapper>

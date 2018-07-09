@@ -25,6 +25,7 @@
     <result column="IS_DELETE" jdbcType="DECIMAL" property="isDelete" />
     <result column="NODE_ID" jdbcType="VARCHAR" property="nodeId" />
     <result column="PARENT_NODE_ID" jdbcType="VARCHAR" property="parentNodeId" />
+    <result column="REG_AMT" jdbcType="DECIMAL" property="regAmt" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -87,7 +88,7 @@
   <sql id="Base_Column_List">
     ID, ENT_ID, ENT_NAME, PULL_DATE, SUBJECT_TYPE, TRACE_LEVEL, NODE_NAME, TAGS, CON_NAME, 
     CON_PROP, REAL_CON_PROP, POSITION, ID_CARD, CER_TYPE, ADDRESS, UNIQUE_TOKEN, CREATED_AT, 
-    CREATOR, UPDATED_AT, UPDATER, IS_DELETE, NODE_ID, PARENT_NODE_ID
+    CREATOR, UPDATED_AT, UPDATER, IS_DELETE, NODE_ID, PARENT_NODE_ID, REG_AMT
   </sql>
   <select id="selectByExample" parameterType="com.ajayhao.mslab.crawler.orm.entity.EntEquityDetailEntityExample" resultMap="BaseResultMap">
     select
@@ -128,7 +129,8 @@
       ID_CARD, CER_TYPE, ADDRESS, 
       UNIQUE_TOKEN, CREATED_AT, CREATOR, 
       UPDATED_AT, UPDATER, IS_DELETE, 
-      NODE_ID, PARENT_NODE_ID)
+      NODE_ID, PARENT_NODE_ID, REG_AMT
+      )
     values (#{id,jdbcType=VARCHAR}, #{entId,jdbcType=VARCHAR}, #{entName,jdbcType=VARCHAR}, 
       #{pullDate,jdbcType=VARCHAR}, #{subjectType,jdbcType=VARCHAR}, #{traceLevel,jdbcType=DECIMAL}, 
       #{nodeName,jdbcType=VARCHAR}, #{tags,jdbcType=VARCHAR}, #{conName,jdbcType=VARCHAR}, 
@@ -136,7 +138,8 @@
       #{idCard,jdbcType=VARCHAR}, #{cerType,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, 
       #{uniqueToken,jdbcType=VARCHAR}, #{createdAt,jdbcType=TIMESTAMP}, #{creator,jdbcType=VARCHAR}, 
       #{updatedAt,jdbcType=TIMESTAMP}, #{updater,jdbcType=VARCHAR}, #{isDelete,jdbcType=DECIMAL}, 
-      #{nodeId,jdbcType=VARCHAR}, #{parentNodeId,jdbcType=VARCHAR})
+      #{nodeId,jdbcType=VARCHAR}, #{parentNodeId,jdbcType=VARCHAR}, #{regAmt,jdbcType=DECIMAL}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.ajayhao.mslab.crawler.orm.entity.EntEquityDetailEntity">
     insert into COMBS_ZXCJ_GQMX
@@ -210,6 +213,9 @@
       <if test="parentNodeId != null">
         PARENT_NODE_ID,
       </if>
+      <if test="regAmt != null">
+        REG_AMT,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -280,6 +286,9 @@
       </if>
       <if test="parentNodeId != null">
         #{parentNodeId,jdbcType=VARCHAR},
+      </if>
+      <if test="regAmt != null">
+        #{regAmt,jdbcType=DECIMAL},
       </if>
     </trim>
   </insert>
@@ -355,6 +364,9 @@
       <if test="record.parentNodeId != null">
         PARENT_NODE_ID = #{record.parentNodeId,jdbcType=VARCHAR},
       </if>
+      <if test="record.regAmt != null">
+        REG_AMT = #{record.regAmt,jdbcType=DECIMAL},
+      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -384,7 +396,8 @@
       UPDATER = #{record.updater,jdbcType=VARCHAR},
       IS_DELETE = #{record.isDelete,jdbcType=DECIMAL},
       NODE_ID = #{record.nodeId,jdbcType=VARCHAR},
-      PARENT_NODE_ID = #{record.parentNodeId,jdbcType=VARCHAR}
+      PARENT_NODE_ID = #{record.parentNodeId,jdbcType=VARCHAR},
+      REG_AMT = #{record.regAmt,jdbcType=DECIMAL}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -458,6 +471,9 @@
       <if test="parentNodeId != null">
         PARENT_NODE_ID = #{parentNodeId,jdbcType=VARCHAR},
       </if>
+      <if test="regAmt != null">
+        REG_AMT = #{regAmt,jdbcType=DECIMAL},
+      </if>
     </set>
     where ID = #{id,jdbcType=VARCHAR}
   </update>
@@ -484,7 +500,8 @@
       UPDATER = #{updater,jdbcType=VARCHAR},
       IS_DELETE = #{isDelete,jdbcType=DECIMAL},
       NODE_ID = #{nodeId,jdbcType=VARCHAR},
-      PARENT_NODE_ID = #{parentNodeId,jdbcType=VARCHAR}
+      PARENT_NODE_ID = #{parentNodeId,jdbcType=VARCHAR},
+      REG_AMT = #{regAmt,jdbcType=DECIMAL}
     where ID = #{id,jdbcType=VARCHAR}
   </update>
 </mapper>

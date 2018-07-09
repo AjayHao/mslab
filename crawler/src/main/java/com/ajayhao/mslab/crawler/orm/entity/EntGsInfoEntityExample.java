@@ -246,76 +246,6 @@ public class EntGsInfoEntityExample {
             return (Criteria) this;
         }
 
-        public Criteria andPullDateIsNull() {
-            addCriterion("PULL_DATE is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andPullDateIsNotNull() {
-            addCriterion("PULL_DATE is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andPullDateEqualTo(String value) {
-            addCriterion("PULL_DATE =", value, "pullDate");
-            return (Criteria) this;
-        }
-
-        public Criteria andPullDateNotEqualTo(String value) {
-            addCriterion("PULL_DATE <>", value, "pullDate");
-            return (Criteria) this;
-        }
-
-        public Criteria andPullDateGreaterThan(String value) {
-            addCriterion("PULL_DATE >", value, "pullDate");
-            return (Criteria) this;
-        }
-
-        public Criteria andPullDateGreaterThanOrEqualTo(String value) {
-            addCriterion("PULL_DATE >=", value, "pullDate");
-            return (Criteria) this;
-        }
-
-        public Criteria andPullDateLessThan(String value) {
-            addCriterion("PULL_DATE <", value, "pullDate");
-            return (Criteria) this;
-        }
-
-        public Criteria andPullDateLessThanOrEqualTo(String value) {
-            addCriterion("PULL_DATE <=", value, "pullDate");
-            return (Criteria) this;
-        }
-
-        public Criteria andPullDateLike(String value) {
-            addCriterion("PULL_DATE like", value, "pullDate");
-            return (Criteria) this;
-        }
-
-        public Criteria andPullDateNotLike(String value) {
-            addCriterion("PULL_DATE not like", value, "pullDate");
-            return (Criteria) this;
-        }
-
-        public Criteria andPullDateIn(List<String> values) {
-            addCriterion("PULL_DATE in", values, "pullDate");
-            return (Criteria) this;
-        }
-
-        public Criteria andPullDateNotIn(List<String> values) {
-            addCriterion("PULL_DATE not in", values, "pullDate");
-            return (Criteria) this;
-        }
-
-        public Criteria andPullDateBetween(String value1, String value2) {
-            addCriterion("PULL_DATE between", value1, value2, "pullDate");
-            return (Criteria) this;
-        }
-
-        public Criteria andPullDateNotBetween(String value1, String value2) {
-            addCriterion("PULL_DATE not between", value1, value2, "pullDate");
-            return (Criteria) this;
-        }
-
         public Criteria andEntNameIsNull() {
             addCriterion("ENT_NAME is null");
             return (Criteria) this;
@@ -383,6 +313,76 @@ public class EntGsInfoEntityExample {
 
         public Criteria andEntNameNotBetween(String value1, String value2) {
             addCriterion("ENT_NAME not between", value1, value2, "entName");
+            return (Criteria) this;
+        }
+
+        public Criteria andPullDateIsNull() {
+            addCriterion("PULL_DATE is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andPullDateIsNotNull() {
+            addCriterion("PULL_DATE is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andPullDateEqualTo(String value) {
+            addCriterion("PULL_DATE =", value, "pullDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andPullDateNotEqualTo(String value) {
+            addCriterion("PULL_DATE <>", value, "pullDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andPullDateGreaterThan(String value) {
+            addCriterion("PULL_DATE >", value, "pullDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andPullDateGreaterThanOrEqualTo(String value) {
+            addCriterion("PULL_DATE >=", value, "pullDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andPullDateLessThan(String value) {
+            addCriterion("PULL_DATE <", value, "pullDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andPullDateLessThanOrEqualTo(String value) {
+            addCriterion("PULL_DATE <=", value, "pullDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andPullDateLike(String value) {
+            addCriterion("PULL_DATE like", value, "pullDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andPullDateNotLike(String value) {
+            addCriterion("PULL_DATE not like", value, "pullDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andPullDateIn(List<String> values) {
+            addCriterion("PULL_DATE in", values, "pullDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andPullDateNotIn(List<String> values) {
+            addCriterion("PULL_DATE not in", values, "pullDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andPullDateBetween(String value1, String value2) {
+            addCriterion("PULL_DATE between", value1, value2, "pullDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andPullDateNotBetween(String value1, String value2) {
+            addCriterion("PULL_DATE not between", value1, value2, "pullDate");
             return (Criteria) this;
         }
 
@@ -793,6 +793,136 @@ public class EntGsInfoEntityExample {
 
         public Criteria andRegCapCurNotBetween(String value1, String value2) {
             addCriterion("REG_CAP_CUR not between", value1, value2, "regCapCur");
+            return (Criteria) this;
+        }
+
+        public Criteria andRecCapIsNull() {
+            addCriterion("REC_CAP is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andRecCapIsNotNull() {
+            addCriterion("REC_CAP is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andRecCapEqualTo(BigDecimal value) {
+            addCriterion("REC_CAP =", value, "recCap");
+            return (Criteria) this;
+        }
+
+        public Criteria andRecCapNotEqualTo(BigDecimal value) {
+            addCriterion("REC_CAP <>", value, "recCap");
+            return (Criteria) this;
+        }
+
+        public Criteria andRecCapGreaterThan(BigDecimal value) {
+            addCriterion("REC_CAP >", value, "recCap");
+            return (Criteria) this;
+        }
+
+        public Criteria andRecCapGreaterThanOrEqualTo(BigDecimal value) {
+            addCriterion("REC_CAP >=", value, "recCap");
+            return (Criteria) this;
+        }
+
+        public Criteria andRecCapLessThan(BigDecimal value) {
+            addCriterion("REC_CAP <", value, "recCap");
+            return (Criteria) this;
+        }
+
+        public Criteria andRecCapLessThanOrEqualTo(BigDecimal value) {
+            addCriterion("REC_CAP <=", value, "recCap");
+            return (Criteria) this;
+        }
+
+        public Criteria andRecCapIn(List<BigDecimal> values) {
+            addCriterion("REC_CAP in", values, "recCap");
+            return (Criteria) this;
+        }
+
+        public Criteria andRecCapNotIn(List<BigDecimal> values) {
+            addCriterion("REC_CAP not in", values, "recCap");
+            return (Criteria) this;
+        }
+
+        public Criteria andRecCapBetween(BigDecimal value1, BigDecimal value2) {
+            addCriterion("REC_CAP between", value1, value2, "recCap");
+            return (Criteria) this;
+        }
+
+        public Criteria andRecCapNotBetween(BigDecimal value1, BigDecimal value2) {
+            addCriterion("REC_CAP not between", value1, value2, "recCap");
+            return (Criteria) this;
+        }
+
+        public Criteria andRecCapCurIsNull() {
+            addCriterion("REC_CAP_CUR is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andRecCapCurIsNotNull() {
+            addCriterion("REC_CAP_CUR is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andRecCapCurEqualTo(String value) {
+            addCriterion("REC_CAP_CUR =", value, "recCapCur");
+            return (Criteria) this;
+        }
+
+        public Criteria andRecCapCurNotEqualTo(String value) {
+            addCriterion("REC_CAP_CUR <>", value, "recCapCur");
+            return (Criteria) this;
+        }
+
+        public Criteria andRecCapCurGreaterThan(String value) {
+            addCriterion("REC_CAP_CUR >", value, "recCapCur");
+            return (Criteria) this;
+        }
+
+        public Criteria andRecCapCurGreaterThanOrEqualTo(String value) {
+            addCriterion("REC_CAP_CUR >=", value, "recCapCur");
+            return (Criteria) this;
+        }
+
+        public Criteria andRecCapCurLessThan(String value) {
+            addCriterion("REC_CAP_CUR <", value, "recCapCur");
+            return (Criteria) this;
+        }
+
+        public Criteria andRecCapCurLessThanOrEqualTo(String value) {
+            addCriterion("REC_CAP_CUR <=", value, "recCapCur");
+            return (Criteria) this;
+        }
+
+        public Criteria andRecCapCurLike(String value) {
+            addCriterion("REC_CAP_CUR like", value, "recCapCur");
+            return (Criteria) this;
+        }
+
+        public Criteria andRecCapCurNotLike(String value) {
+            addCriterion("REC_CAP_CUR not like", value, "recCapCur");
+            return (Criteria) this;
+        }
+
+        public Criteria andRecCapCurIn(List<String> values) {
+            addCriterion("REC_CAP_CUR in", values, "recCapCur");
+            return (Criteria) this;
+        }
+
+        public Criteria andRecCapCurNotIn(List<String> values) {
+            addCriterion("REC_CAP_CUR not in", values, "recCapCur");
+            return (Criteria) this;
+        }
+
+        public Criteria andRecCapCurBetween(String value1, String value2) {
+            addCriterion("REC_CAP_CUR between", value1, value2, "recCapCur");
+            return (Criteria) this;
+        }
+
+        public Criteria andRecCapCurNotBetween(String value1, String value2) {
+            addCriterion("REC_CAP_CUR not between", value1, value2, "recCapCur");
             return (Criteria) this;
         }
 
@@ -1836,6 +1966,76 @@ public class EntGsInfoEntityExample {
             return (Criteria) this;
         }
 
+        public Criteria andUniqueTokenIsNull() {
+            addCriterion("UNIQUE_TOKEN is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andUniqueTokenIsNotNull() {
+            addCriterion("UNIQUE_TOKEN is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andUniqueTokenEqualTo(String value) {
+            addCriterion("UNIQUE_TOKEN =", value, "uniqueToken");
+            return (Criteria) this;
+        }
+
+        public Criteria andUniqueTokenNotEqualTo(String value) {
+            addCriterion("UNIQUE_TOKEN <>", value, "uniqueToken");
+            return (Criteria) this;
+        }
+
+        public Criteria andUniqueTokenGreaterThan(String value) {
+            addCriterion("UNIQUE_TOKEN >", value, "uniqueToken");
+            return (Criteria) this;
+        }
+
+        public Criteria andUniqueTokenGreaterThanOrEqualTo(String value) {
+            addCriterion("UNIQUE_TOKEN >=", value, "uniqueToken");
+            return (Criteria) this;
+        }
+
+        public Criteria andUniqueTokenLessThan(String value) {
+            addCriterion("UNIQUE_TOKEN <", value, "uniqueToken");
+            return (Criteria) this;
+        }
+
+        public Criteria andUniqueTokenLessThanOrEqualTo(String value) {
+            addCriterion("UNIQUE_TOKEN <=", value, "uniqueToken");
+            return (Criteria) this;
+        }
+
+        public Criteria andUniqueTokenLike(String value) {
+            addCriterion("UNIQUE_TOKEN like", value, "uniqueToken");
+            return (Criteria) this;
+        }
+
+        public Criteria andUniqueTokenNotLike(String value) {
+            addCriterion("UNIQUE_TOKEN not like", value, "uniqueToken");
+            return (Criteria) this;
+        }
+
+        public Criteria andUniqueTokenIn(List<String> values) {
+            addCriterion("UNIQUE_TOKEN in", values, "uniqueToken");
+            return (Criteria) this;
+        }
+
+        public Criteria andUniqueTokenNotIn(List<String> values) {
+            addCriterion("UNIQUE_TOKEN not in", values, "uniqueToken");
+            return (Criteria) this;
+        }
+
+        public Criteria andUniqueTokenBetween(String value1, String value2) {
+            addCriterion("UNIQUE_TOKEN between", value1, value2, "uniqueToken");
+            return (Criteria) this;
+        }
+
+        public Criteria andUniqueTokenNotBetween(String value1, String value2) {
+            addCriterion("UNIQUE_TOKEN not between", value1, value2, "uniqueToken");
+            return (Criteria) this;
+        }
+
         public Criteria andCreatedAtIsNull() {
             addCriterion("CREATED_AT is null");
             return (Criteria) this;
@@ -2153,76 +2353,6 @@ public class EntGsInfoEntityExample {
 
         public Criteria andIsDeleteNotBetween(Integer value1, Integer value2) {
             addCriterion("IS_DELETE not between", value1, value2, "isDelete");
-            return (Criteria) this;
-        }
-
-        public Criteria andUniqueTokenIsNull() {
-            addCriterion("UNIQUE_TOKEN is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andUniqueTokenIsNotNull() {
-            addCriterion("UNIQUE_TOKEN is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andUniqueTokenEqualTo(String value) {
-            addCriterion("UNIQUE_TOKEN =", value, "uniqueToken");
-            return (Criteria) this;
-        }
-
-        public Criteria andUniqueTokenNotEqualTo(String value) {
-            addCriterion("UNIQUE_TOKEN <>", value, "uniqueToken");
-            return (Criteria) this;
-        }
-
-        public Criteria andUniqueTokenGreaterThan(String value) {
-            addCriterion("UNIQUE_TOKEN >", value, "uniqueToken");
-            return (Criteria) this;
-        }
-
-        public Criteria andUniqueTokenGreaterThanOrEqualTo(String value) {
-            addCriterion("UNIQUE_TOKEN >=", value, "uniqueToken");
-            return (Criteria) this;
-        }
-
-        public Criteria andUniqueTokenLessThan(String value) {
-            addCriterion("UNIQUE_TOKEN <", value, "uniqueToken");
-            return (Criteria) this;
-        }
-
-        public Criteria andUniqueTokenLessThanOrEqualTo(String value) {
-            addCriterion("UNIQUE_TOKEN <=", value, "uniqueToken");
-            return (Criteria) this;
-        }
-
-        public Criteria andUniqueTokenLike(String value) {
-            addCriterion("UNIQUE_TOKEN like", value, "uniqueToken");
-            return (Criteria) this;
-        }
-
-        public Criteria andUniqueTokenNotLike(String value) {
-            addCriterion("UNIQUE_TOKEN not like", value, "uniqueToken");
-            return (Criteria) this;
-        }
-
-        public Criteria andUniqueTokenIn(List<String> values) {
-            addCriterion("UNIQUE_TOKEN in", values, "uniqueToken");
-            return (Criteria) this;
-        }
-
-        public Criteria andUniqueTokenNotIn(List<String> values) {
-            addCriterion("UNIQUE_TOKEN not in", values, "uniqueToken");
-            return (Criteria) this;
-        }
-
-        public Criteria andUniqueTokenBetween(String value1, String value2) {
-            addCriterion("UNIQUE_TOKEN between", value1, value2, "uniqueToken");
-            return (Criteria) this;
-        }
-
-        public Criteria andUniqueTokenNotBetween(String value1, String value2) {
-            addCriterion("UNIQUE_TOKEN not between", value1, value2, "uniqueToken");
             return (Criteria) this;
         }
     }

@@ -12,6 +12,8 @@
     <result column="FR_NAME" jdbcType="VARCHAR" property="frName" />
     <result column="REG_CAP" jdbcType="DECIMAL" property="regCap" />
     <result column="REG_CAP_CUR" jdbcType="VARCHAR" property="regCapCur" />
+    <result column="REC_CAP" jdbcType="DECIMAL" property="recCap" />
+    <result column="REC_CAP_CUR" jdbcType="VARCHAR" property="recCapCur" />
     <result column="ENT_STATUS" jdbcType="VARCHAR" property="entStatus" />
     <result column="ENT_TYPE" jdbcType="VARCHAR" property="entType" />
     <result column="ES_DATE" jdbcType="VARCHAR" property="esDate" />
@@ -94,9 +96,10 @@
   </sql>
   <sql id="Base_Column_List">
     ID, ENT_ID, ENT_NAME, PULL_DATE, REG_NO, ORI_REG_NO, CREDIT_CODE, FR_NAME, REG_CAP, 
-    REG_CAP_CUR, ENT_STATUS, ENT_TYPE, ES_DATE, OP_FROM, OP_TO, REG_ADDR, REG_ORG, REG_ORG_CODE, 
-    REG_ORG_PROVINCE, EMP_NUM, TEL, OP_LOCATION, INDUSTRY_CODE, INDUSTRY_NAME, OP_SCOPE, 
-    UNIQUE_TOKEN, CREATED_AT, CREATOR, UPDATED_AT, UPDATER, IS_DELETE
+    REG_CAP_CUR, REC_CAP, REC_CAP_CUR, ENT_STATUS, ENT_TYPE, ES_DATE, OP_FROM, OP_TO, 
+    REG_ADDR, REG_ORG, REG_ORG_CODE, REG_ORG_PROVINCE, EMP_NUM, TEL, OP_LOCATION, INDUSTRY_CODE, 
+    INDUSTRY_NAME, OP_SCOPE, UNIQUE_TOKEN, CREATED_AT, CREATOR, UPDATED_AT, UPDATER, 
+    IS_DELETE
   </sql>
   <select id="selectByExample" parameterType="com.ajayhao.mslab.crawler.orm.entity.EntGsInfoEntityExample" resultMap="BaseResultMap">
     select
@@ -133,25 +136,27 @@
     insert into COMBS_ZXCJ_GSXX (ID, ENT_ID, ENT_NAME, 
       PULL_DATE, REG_NO, ORI_REG_NO, 
       CREDIT_CODE, FR_NAME, REG_CAP, 
-      REG_CAP_CUR, ENT_STATUS, ENT_TYPE, 
-      ES_DATE, OP_FROM, OP_TO, 
-      REG_ADDR, REG_ORG, REG_ORG_CODE, 
-      REG_ORG_PROVINCE, EMP_NUM, TEL, 
-      OP_LOCATION, INDUSTRY_CODE, INDUSTRY_NAME, 
-      OP_SCOPE, UNIQUE_TOKEN, CREATED_AT, 
-      CREATOR, UPDATED_AT, UPDATER, 
-      IS_DELETE)
+      REG_CAP_CUR, REC_CAP, REC_CAP_CUR, 
+      ENT_STATUS, ENT_TYPE, ES_DATE, 
+      OP_FROM, OP_TO, REG_ADDR, 
+      REG_ORG, REG_ORG_CODE, REG_ORG_PROVINCE, 
+      EMP_NUM, TEL, OP_LOCATION, 
+      INDUSTRY_CODE, INDUSTRY_NAME, OP_SCOPE, 
+      UNIQUE_TOKEN, CREATED_AT, CREATOR, 
+      UPDATED_AT, UPDATER, IS_DELETE
+      )
     values (#{id,jdbcType=VARCHAR}, #{entId,jdbcType=VARCHAR}, #{entName,jdbcType=VARCHAR}, 
       #{pullDate,jdbcType=VARCHAR}, #{regNo,jdbcType=VARCHAR}, #{oriRegNo,jdbcType=VARCHAR}, 
       #{creditCode,jdbcType=VARCHAR}, #{frName,jdbcType=VARCHAR}, #{regCap,jdbcType=DECIMAL}, 
-      #{regCapCur,jdbcType=VARCHAR}, #{entStatus,jdbcType=VARCHAR}, #{entType,jdbcType=VARCHAR}, 
-      #{esDate,jdbcType=VARCHAR}, #{opFrom,jdbcType=VARCHAR}, #{opTo,jdbcType=VARCHAR}, 
-      #{regAddr,jdbcType=VARCHAR}, #{regOrg,jdbcType=VARCHAR}, #{regOrgCode,jdbcType=VARCHAR}, 
-      #{regOrgProvince,jdbcType=VARCHAR}, #{empNum,jdbcType=DECIMAL}, #{tel,jdbcType=VARCHAR}, 
-      #{opLocation,jdbcType=VARCHAR}, #{industryCode,jdbcType=VARCHAR}, #{industryName,jdbcType=VARCHAR}, 
-      #{opScope,jdbcType=VARCHAR}, #{uniqueToken,jdbcType=VARCHAR}, #{createdAt,jdbcType=TIMESTAMP}, 
-      #{creator,jdbcType=VARCHAR}, #{updatedAt,jdbcType=TIMESTAMP}, #{updater,jdbcType=VARCHAR}, 
-      #{isDelete,jdbcType=DECIMAL})
+      #{regCapCur,jdbcType=VARCHAR}, #{recCap,jdbcType=DECIMAL}, #{recCapCur,jdbcType=VARCHAR}, 
+      #{entStatus,jdbcType=VARCHAR}, #{entType,jdbcType=VARCHAR}, #{esDate,jdbcType=VARCHAR}, 
+      #{opFrom,jdbcType=VARCHAR}, #{opTo,jdbcType=VARCHAR}, #{regAddr,jdbcType=VARCHAR}, 
+      #{regOrg,jdbcType=VARCHAR}, #{regOrgCode,jdbcType=VARCHAR}, #{regOrgProvince,jdbcType=VARCHAR}, 
+      #{empNum,jdbcType=DECIMAL}, #{tel,jdbcType=VARCHAR}, #{opLocation,jdbcType=VARCHAR}, 
+      #{industryCode,jdbcType=VARCHAR}, #{industryName,jdbcType=VARCHAR}, #{opScope,jdbcType=VARCHAR}, 
+      #{uniqueToken,jdbcType=VARCHAR}, #{createdAt,jdbcType=TIMESTAMP}, #{creator,jdbcType=VARCHAR}, 
+      #{updatedAt,jdbcType=TIMESTAMP}, #{updater,jdbcType=VARCHAR}, #{isDelete,jdbcType=DECIMAL}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.ajayhao.mslab.crawler.orm.entity.EntGsInfoEntity">
     insert into COMBS_ZXCJ_GSXX
@@ -185,6 +190,12 @@
       </if>
       <if test="regCapCur != null">
         REG_CAP_CUR,
+      </if>
+      <if test="recCap != null">
+        REC_CAP,
+      </if>
+      <if test="recCapCur != null">
+        REC_CAP_CUR,
       </if>
       <if test="entStatus != null">
         ENT_STATUS,
@@ -280,6 +291,12 @@
       </if>
       <if test="regCapCur != null">
         #{regCapCur,jdbcType=VARCHAR},
+      </if>
+      <if test="recCap != null">
+        #{recCap,jdbcType=DECIMAL},
+      </if>
+      <if test="recCapCur != null">
+        #{recCapCur,jdbcType=VARCHAR},
       </if>
       <if test="entStatus != null">
         #{entStatus,jdbcType=VARCHAR},
@@ -379,6 +396,12 @@
       <if test="record.regCapCur != null">
         REG_CAP_CUR = #{record.regCapCur,jdbcType=VARCHAR},
       </if>
+      <if test="record.recCap != null">
+        REC_CAP = #{record.recCap,jdbcType=DECIMAL},
+      </if>
+      <if test="record.recCapCur != null">
+        REC_CAP_CUR = #{record.recCapCur,jdbcType=VARCHAR},
+      </if>
       <if test="record.entStatus != null">
         ENT_STATUS = #{record.entStatus,jdbcType=VARCHAR},
       </if>
@@ -459,6 +482,8 @@
       FR_NAME = #{record.frName,jdbcType=VARCHAR},
       REG_CAP = #{record.regCap,jdbcType=DECIMAL},
       REG_CAP_CUR = #{record.regCapCur,jdbcType=VARCHAR},
+      REC_CAP = #{record.recCap,jdbcType=DECIMAL},
+      REC_CAP_CUR = #{record.recCapCur,jdbcType=VARCHAR},
       ENT_STATUS = #{record.entStatus,jdbcType=VARCHAR},
       ENT_TYPE = #{record.entType,jdbcType=VARCHAR},
       ES_DATE = #{record.esDate,jdbcType=VARCHAR},
@@ -513,6 +538,12 @@
       </if>
       <if test="regCapCur != null">
         REG_CAP_CUR = #{regCapCur,jdbcType=VARCHAR},
+      </if>
+      <if test="recCap != null">
+        REC_CAP = #{recCap,jdbcType=DECIMAL},
+      </if>
+      <if test="recCapCur != null">
+        REC_CAP_CUR = #{recCapCur,jdbcType=VARCHAR},
       </if>
       <if test="entStatus != null">
         ENT_STATUS = #{entStatus,jdbcType=VARCHAR},
@@ -591,6 +622,8 @@
       FR_NAME = #{frName,jdbcType=VARCHAR},
       REG_CAP = #{regCap,jdbcType=DECIMAL},
       REG_CAP_CUR = #{regCapCur,jdbcType=VARCHAR},
+      REC_CAP = #{recCap,jdbcType=DECIMAL},
+      REC_CAP_CUR = #{recCapCur,jdbcType=VARCHAR},
       ENT_STATUS = #{entStatus,jdbcType=VARCHAR},
       ENT_TYPE = #{entType,jdbcType=VARCHAR},
       ES_DATE = #{esDate,jdbcType=VARCHAR},

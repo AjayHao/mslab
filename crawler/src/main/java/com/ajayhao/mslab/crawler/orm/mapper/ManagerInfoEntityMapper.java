@@ -8,7 +8,7 @@ import org.apache.ibatis.annotations.Param;
 public interface ManagerInfoEntityMapper {
     int deleteByExample(ManagerInfoEntityExample example);
 
-    int deleteByPrimaryKey(String glrdm);
+    int deleteByPrimaryKey(String id);
 
     int insert(ManagerInfoEntity record);
 
@@ -16,7 +16,7 @@ public interface ManagerInfoEntityMapper {
 
     List<ManagerInfoEntity> selectByExample(ManagerInfoEntityExample example);
 
-    ManagerInfoEntity selectByPrimaryKey(String glrdm);
+    ManagerInfoEntity selectByPrimaryKey(String id);
 
     int updateByExampleSelective(@Param("record") ManagerInfoEntity record, @Param("example") ManagerInfoEntityExample example);
 

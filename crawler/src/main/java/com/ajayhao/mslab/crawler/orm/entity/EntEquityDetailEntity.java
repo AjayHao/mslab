@@ -11,11 +11,7 @@ public class EntEquityDetailEntity extends BaseEntDataEntity{
 
     private String subjectType;
 
-    private Integer traceLevel;
-
-    private String nodeId;
-
-    private String parentNodeId;
+    private Short traceLevel;
 
     private String nodeName;
 
@@ -34,5 +30,11 @@ public class EntEquityDetailEntity extends BaseEntDataEntity{
     private String cerType;
 
     private String address;
+
+    private String nodeId;
+
+    private String parentNodeId;
+
+    private BigDecimal regAmt;
 
 }

@@ -45,10 +45,10 @@ public class EntControlInfo implements Serializable {
 
     private String creator;
 
-    private Date modifiedAt;
+    private Date updatedAt;
 
-    private String modifier;
+    private String updater;
 
-    private Short isDelete;
+    private Integer isDelete;
 
 }

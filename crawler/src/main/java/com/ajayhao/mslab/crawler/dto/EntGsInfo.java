@@ -31,6 +31,10 @@ public class EntGsInfo implements Serializable{
 
     private String regCapCur;
 
+    private BigDecimal recCap;
+
+    private String recCapCur;
+
     private String entStatus;
 
     private String entType;

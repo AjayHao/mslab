@@ -15,6 +15,7 @@ create table COMBS_ZXCJ_GQMX
   con_name         VARCHAR2(100),
   con_prop          NUMBER(9,6),
   real_con_prop    NUMBER(9,6),
+  reg_amt           NUMBER(15,2),
   position         VARCHAR2(64),
   id_card          VARCHAR2(30),
   cer_type         VARCHAR2(10),
@@ -57,6 +58,8 @@ comment on column COMBS_ZXCJ_GQMX.con_prop
   is '上级节点投资比例';
 comment on column COMBS_ZXCJ_GQMX.real_con_prop
   is '目标节点投资比例';
+comment on column COMBS_ZXCJ_GQMX.reg_amt
+  is '认缴金额（万元）';
 comment on column COMBS_ZXCJ_GQMX.position
   is '职位';
 comment on column COMBS_ZXCJ_GQMX.id_card

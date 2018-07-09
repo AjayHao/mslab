@@ -516,146 +516,6 @@ public class EntEquityDetailEntityExample {
             return (Criteria) this;
         }
 
-        public Criteria andNodeIdIsNull() {
-            addCriterion("NODE_ID is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andNodeIdIsNotNull() {
-            addCriterion("NODE_ID is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andNodeIdEqualTo(String value) {
-            addCriterion("NODE_ID =", value, "nodeId");
-            return (Criteria) this;
-        }
-
-        public Criteria andNodeIdNotEqualTo(String value) {
-            addCriterion("NODE_ID <>", value, "nodeId");
-            return (Criteria) this;
-        }
-
-        public Criteria andNodeIdGreaterThan(String value) {
-            addCriterion("NODE_ID >", value, "nodeId");
-            return (Criteria) this;
-        }
-
-        public Criteria andNodeIdGreaterThanOrEqualTo(String value) {
-            addCriterion("NODE_ID >=", value, "nodeId");
-            return (Criteria) this;
-        }
-
-        public Criteria andNodeIdLessThan(String value) {
-            addCriterion("NODE_ID <", value, "nodeId");
-            return (Criteria) this;
-        }
-
-        public Criteria andNodeIdLessThanOrEqualTo(String value) {
-            addCriterion("NODE_ID <=", value, "nodeId");
-            return (Criteria) this;
-        }
-
-        public Criteria andNodeIdLike(String value) {
-            addCriterion("NODE_ID like", value, "nodeId");
-            return (Criteria) this;
-        }
-
-        public Criteria andNodeIdNotLike(String value) {
-            addCriterion("NODE_ID not like", value, "nodeId");
-            return (Criteria) this;
-        }
-
-        public Criteria andNodeIdIn(List<String> values) {
-            addCriterion("NODE_ID in", values, "nodeId");
-            return (Criteria) this;
-        }
-
-        public Criteria andNodeIdNotIn(List<String> values) {
-            addCriterion("NODE_ID not in", values, "nodeId");
-            return (Criteria) this;
-        }
-
-        public Criteria andNodeIdBetween(String value1, String value2) {
-            addCriterion("NODE_ID between", value1, value2, "nodeId");
-            return (Criteria) this;
-        }
-
-        public Criteria andNodeIdNotBetween(String value1, String value2) {
-            addCriterion("NODE_ID not between", value1, value2, "nodeId");
-            return (Criteria) this;
-        }
-
-        public Criteria andParentNodeIdIsNull() {
-            addCriterion("PARENT_NODE_ID is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andParentNodeIdIsNotNull() {
-            addCriterion("PARENT_NODE_ID is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andParentNodeIdEqualTo(String value) {
-            addCriterion("PARENT_NODE_ID =", value, "parentNodeId");
-            return (Criteria) this;
-        }
-
-        public Criteria andParentNodeIdNotEqualTo(String value) {
-            addCriterion("PARENT_NODE_ID <>", value, "parentNodeId");
-            return (Criteria) this;
-        }
-
-        public Criteria andParentNodeIdGreaterThan(String value) {
-            addCriterion("PARENT_NODE_ID >", value, "parentNodeId");
-            return (Criteria) this;
-        }
-
-        public Criteria andParentNodeIdGreaterThanOrEqualTo(String value) {
-            addCriterion("PARENT_NODE_ID >=", value, "parentNodeId");
-            return (Criteria) this;
-        }
-
-        public Criteria andParentNodeIdLessThan(String value) {
-            addCriterion("PARENT_NODE_ID <", value, "parentNodeId");
-            return (Criteria) this;
-        }
-
-        public Criteria andParentNodeIdLessThanOrEqualTo(String value) {
-            addCriterion("PARENT_NODE_ID <=", value, "parentNodeId");
-            return (Criteria) this;
-        }
-
-        public Criteria andParentNodeIdLike(String value) {
-            addCriterion("PARENT_NODE_ID like", value, "parentNodeId");
-            return (Criteria) this;
-        }
-
-        public Criteria andParentNodeIdNotLike(String value) {
-            addCriterion("PARENT_NODE_ID not like", value, "parentNodeId");
-            return (Criteria) this;
-        }
-
-        public Criteria andParentNodeIdIn(List<String> values) {
-            addCriterion("PARENT_NODE_ID in", values, "parentNodeId");
-            return (Criteria) this;
-        }
-
-        public Criteria andParentNodeIdNotIn(List<String> values) {
-            addCriterion("PARENT_NODE_ID not in", values, "parentNodeId");
-            return (Criteria) this;
-        }
-
-        public Criteria andParentNodeIdBetween(String value1, String value2) {
-            addCriterion("PARENT_NODE_ID between", value1, value2, "parentNodeId");
-            return (Criteria) this;
-        }
-
-        public Criteria andParentNodeIdNotBetween(String value1, String value2) {
-            addCriterion("PARENT_NODE_ID not between", value1, value2, "parentNodeId");
-            return (Criteria) this;
-        }
-
         public Criteria andNodeNameIsNull() {
             addCriterion("NODE_NAME is null");
             return (Criteria) this;
@@ -1266,6 +1126,76 @@ public class EntEquityDetailEntityExample {
             return (Criteria) this;
         }
 
+        public Criteria andUniqueTokenIsNull() {
+            addCriterion("UNIQUE_TOKEN is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andUniqueTokenIsNotNull() {
+            addCriterion("UNIQUE_TOKEN is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andUniqueTokenEqualTo(String value) {
+            addCriterion("UNIQUE_TOKEN =", value, "uniqueToken");
+            return (Criteria) this;
+        }
+
+        public Criteria andUniqueTokenNotEqualTo(String value) {
+            addCriterion("UNIQUE_TOKEN <>", value, "uniqueToken");
+            return (Criteria) this;
+        }
+
+        public Criteria andUniqueTokenGreaterThan(String value) {
+            addCriterion("UNIQUE_TOKEN >", value, "uniqueToken");
+            return (Criteria) this;
+        }
+
+        public Criteria andUniqueTokenGreaterThanOrEqualTo(String value) {
+            addCriterion("UNIQUE_TOKEN >=", value, "uniqueToken");
+            return (Criteria) this;
+        }
+
+        public Criteria andUniqueTokenLessThan(String value) {
+            addCriterion("UNIQUE_TOKEN <", value, "uniqueToken");
+            return (Criteria) this;
+        }
+
+        public Criteria andUniqueTokenLessThanOrEqualTo(String value) {
+            addCriterion("UNIQUE_TOKEN <=", value, "uniqueToken");
+            return (Criteria) this;
+        }
+
+        public Criteria andUniqueTokenLike(String value) {
+            addCriterion("UNIQUE_TOKEN like", value, "uniqueToken");
+            return (Criteria) this;
+        }
+
+        public Criteria andUniqueTokenNotLike(String value) {
+            addCriterion("UNIQUE_TOKEN not like", value, "uniqueToken");
+            return (Criteria) this;
+        }
+
+        public Criteria andUniqueTokenIn(List<String> values) {
+            addCriterion("UNIQUE_TOKEN in", values, "uniqueToken");
+            return (Criteria) this;
+        }
+
+        public Criteria andUniqueTokenNotIn(List<String> values) {
+            addCriterion("UNIQUE_TOKEN not in", values, "uniqueToken");
+            return (Criteria) this;
+        }
+
+        public Criteria andUniqueTokenBetween(String value1, String value2) {
+            addCriterion("UNIQUE_TOKEN between", value1, value2, "uniqueToken");
+            return (Criteria) this;
+        }
+
+        public Criteria andUniqueTokenNotBetween(String value1, String value2) {
+            addCriterion("UNIQUE_TOKEN not between", value1, value2, "uniqueToken");
+            return (Criteria) this;
+        }
+
         public Criteria andCreatedAtIsNull() {
             addCriterion("CREATED_AT is null");
             return (Criteria) this;
@@ -1395,7 +1325,6 @@ public class EntEquityDetailEntityExample {
             addCriterion("CREATOR not between", value1, value2, "creator");
             return (Criteria) this;
         }
-
 
         public Criteria andUpdatedAtIsNull() {
             addCriterion("UPDATED_AT is null");
@@ -1527,7 +1456,6 @@ public class EntEquityDetailEntityExample {
             return (Criteria) this;
         }
 
-
         public Criteria andIsDeleteIsNull() {
             addCriterion("IS_DELETE is null");
             return (Criteria) this;
@@ -1588,73 +1516,203 @@ public class EntEquityDetailEntityExample {
             return (Criteria) this;
         }
 
-        public Criteria andUniqueTokenIsNull() {
-            addCriterion("UNIQUE_TOKEN is null");
+        public Criteria andNodeIdIsNull() {
+            addCriterion("NODE_ID is null");
             return (Criteria) this;
         }
 
-        public Criteria andUniqueTokenIsNotNull() {
-            addCriterion("UNIQUE_TOKEN is not null");
+        public Criteria andNodeIdIsNotNull() {
+            addCriterion("NODE_ID is not null");
             return (Criteria) this;
         }
 
-        public Criteria andUniqueTokenEqualTo(String value) {
-            addCriterion("UNIQUE_TOKEN =", value, "uniqueToken");
+        public Criteria andNodeIdEqualTo(String value) {
+            addCriterion("NODE_ID =", value, "nodeId");
             return (Criteria) this;
         }
 
-        public Criteria andUniqueTokenNotEqualTo(String value) {
-            addCriterion("UNIQUE_TOKEN <>", value, "uniqueToken");
+        public Criteria andNodeIdNotEqualTo(String value) {
+            addCriterion("NODE_ID <>", value, "nodeId");
             return (Criteria) this;
         }
 
-        public Criteria andUniqueTokenGreaterThan(String value) {
-            addCriterion("UNIQUE_TOKEN >", value, "uniqueToken");
+        public Criteria andNodeIdGreaterThan(String value) {
+            addCriterion("NODE_ID >", value, "nodeId");
             return (Criteria) this;
         }
 
-        public Criteria andUniqueTokenGreaterThanOrEqualTo(String value) {
-            addCriterion("UNIQUE_TOKEN >=", value, "uniqueToken");
+        public Criteria andNodeIdGreaterThanOrEqualTo(String value) {
+            addCriterion("NODE_ID >=", value, "nodeId");
             return (Criteria) this;
         }
 
-        public Criteria andUniqueTokenLessThan(String value) {
-            addCriterion("UNIQUE_TOKEN <", value, "uniqueToken");
+        public Criteria andNodeIdLessThan(String value) {
+            addCriterion("NODE_ID <", value, "nodeId");
             return (Criteria) this;
         }
 
-        public Criteria andUniqueTokenLessThanOrEqualTo(String value) {
-            addCriterion("UNIQUE_TOKEN <=", value, "uniqueToken");
+        public Criteria andNodeIdLessThanOrEqualTo(String value) {
+            addCriterion("NODE_ID <=", value, "nodeId");
             return (Criteria) this;
         }
 
-        public Criteria andUniqueTokenLike(String value) {
-            addCriterion("UNIQUE_TOKEN like", value, "uniqueToken");
+        public Criteria andNodeIdLike(String value) {
+            addCriterion("NODE_ID like", value, "nodeId");
             return (Criteria) this;
         }
 
-        public Criteria andUniqueTokenNotLike(String value) {
-            addCriterion("UNIQUE_TOKEN not like", value, "uniqueToken");
+        public Criteria andNodeIdNotLike(String value) {
+            addCriterion("NODE_ID not like", value, "nodeId");
             return (Criteria) this;
         }
 
-        public Criteria andUniqueTokenIn(List<String> values) {
-            addCriterion("UNIQUE_TOKEN in", values, "uniqueToken");
+        public Criteria andNodeIdIn(List<String> values) {
+            addCriterion("NODE_ID in", values, "nodeId");
             return (Criteria) this;
         }
 
-        public Criteria andUniqueTokenNotIn(List<String> values) {
-            addCriterion("UNIQUE_TOKEN not in", values, "uniqueToken");
+        public Criteria andNodeIdNotIn(List<String> values) {
+            addCriterion("NODE_ID not in", values, "nodeId");
             return (Criteria) this;
         }
 
-        public Criteria andUniqueTokenBetween(String value1, String value2) {
-            addCriterion("UNIQUE_TOKEN between", value1, value2, "uniqueToken");
+        public Criteria andNodeIdBetween(String value1, String value2) {
+            addCriterion("NODE_ID between", value1, value2, "nodeId");
             return (Criteria) this;
         }
 
-        public Criteria andUniqueTokenNotBetween(String value1, String value2) {
-            addCriterion("UNIQUE_TOKEN not between", value1, value2, "uniqueToken");
+        public Criteria andNodeIdNotBetween(String value1, String value2) {
+            addCriterion("NODE_ID not between", value1, value2, "nodeId");
+            return (Criteria) this;
+        }
+
+        public Criteria andParentNodeIdIsNull() {
+            addCriterion("PARENT_NODE_ID is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andParentNodeIdIsNotNull() {
+            addCriterion("PARENT_NODE_ID is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andParentNodeIdEqualTo(String value) {
+            addCriterion("PARENT_NODE_ID =", value, "parentNodeId");
+            return (Criteria) this;
+        }
+
+        public Criteria andParentNodeIdNotEqualTo(String value) {
+            addCriterion("PARENT_NODE_ID <>", value, "parentNodeId");
+            return (Criteria) this;
+        }
+
+        public Criteria andParentNodeIdGreaterThan(String value) {
+            addCriterion("PARENT_NODE_ID >", value, "parentNodeId");
+            return (Criteria) this;
+        }
+
+        public Criteria andParentNodeIdGreaterThanOrEqualTo(String value) {
+            addCriterion("PARENT_NODE_ID >=", value, "parentNodeId");
+            return (Criteria) this;
+        }
+
+        public Criteria andParentNodeIdLessThan(String value) {
+            addCriterion("PARENT_NODE_ID <", value, "parentNodeId");
+            return (Criteria) this;
+        }
+
+        public Criteria andParentNodeIdLessThanOrEqualTo(String value) {
+            addCriterion("PARENT_NODE_ID <=", value, "parentNodeId");
+            return (Criteria) this;
+        }
+
+        public Criteria andParentNodeIdLike(String value) {
+            addCriterion("PARENT_NODE_ID like", value, "parentNodeId");
+            return (Criteria) this;
+        }
+
+        public Criteria andParentNodeIdNotLike(String value) {
+            addCriterion("PARENT_NODE_ID not like", value, "parentNodeId");
+            return (Criteria) this;
+        }
+
+        public Criteria andParentNodeIdIn(List<String> values) {
+            addCriterion("PARENT_NODE_ID in", values, "parentNodeId");
+            return (Criteria) this;
+        }
+
+        public Criteria andParentNodeIdNotIn(List<String> values) {
+            addCriterion("PARENT_NODE_ID not in", values, "parentNodeId");
+            return (Criteria) this;
+        }
+
+        public Criteria andParentNodeIdBetween(String value1, String value2) {
+            addCriterion("PARENT_NODE_ID between", value1, value2, "parentNodeId");
+            return (Criteria) this;
+        }
+
+        public Criteria andParentNodeIdNotBetween(String value1, String value2) {
+            addCriterion("PARENT_NODE_ID not between", value1, value2, "parentNodeId");
+            return (Criteria) this;
+        }
+
+        public Criteria andRegAmtIsNull() {
+            addCriterion("REG_AMT is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andRegAmtIsNotNull() {
+            addCriterion("REG_AMT is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andRegAmtEqualTo(BigDecimal value) {
+            addCriterion("REG_AMT =", value, "regAmt");
+            return (Criteria) this;
+        }
+
+        public Criteria andRegAmtNotEqualTo(BigDecimal value) {
+            addCriterion("REG_AMT <>", value, "regAmt");
+            return (Criteria) this;
+        }
+
+        public Criteria andRegAmtGreaterThan(BigDecimal value) {
+            addCriterion("REG_AMT >", value, "regAmt");
+            return (Criteria) this;
+        }
+
+        public Criteria andRegAmtGreaterThanOrEqualTo(BigDecimal value) {
+            addCriterion("REG_AMT >=", value, "regAmt");
+            return (Criteria) this;
+        }
+
+        public Criteria andRegAmtLessThan(BigDecimal value) {
+            addCriterion("REG_AMT <", value, "regAmt");
+            return (Criteria) this;
+        }
+
+        public Criteria andRegAmtLessThanOrEqualTo(BigDecimal value) {
+            addCriterion("REG_AMT <=", value, "regAmt");
+            return (Criteria) this;
+        }
+
+        public Criteria andRegAmtIn(List<BigDecimal> values) {
+            addCriterion("REG_AMT in", values, "regAmt");
+            return (Criteria) this;
+        }
+
+        public Criteria andRegAmtNotIn(List<BigDecimal> values) {
+            addCriterion("REG_AMT not in", values, "regAmt");
+            return (Criteria) this;
+        }
+
+        public Criteria andRegAmtBetween(BigDecimal value1, BigDecimal value2) {
+            addCriterion("REG_AMT between", value1, value2, "regAmt");
+            return (Criteria) this;
+        }
+
+        public Criteria andRegAmtNotBetween(BigDecimal value1, BigDecimal value2) {
+            addCriterion("REG_AMT not between", value1, value2, "regAmt");
             return (Criteria) this;
         }
     }

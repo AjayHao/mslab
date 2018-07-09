@@ -21,6 +21,10 @@ public class EntGsInfoEntity extends BaseEntDataEntity{
 
     private String regCapCur;
 
+    private BigDecimal recCap;
+
+    private String recCapCur;
+
     private String entStatus;
 
     private String entType;

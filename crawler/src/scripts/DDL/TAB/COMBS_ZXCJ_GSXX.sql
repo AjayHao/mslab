@@ -12,6 +12,8 @@ create table COMBS_ZXCJ_GSXX
   fr_name          VARCHAR2(100),
   reg_cap          NUMBER(15,2),
   reg_cap_cur      VARCHAR2(64),
+  rec_cap          NUMBER(15,2),
+  rec_cap_cur      VARCHAR2(64),
   ent_status       VARCHAR2(64),
   ent_type         VARCHAR2(64),
   es_date          VARCHAR2(10),
@@ -58,7 +60,11 @@ comment on column COMBS_ZXCJ_GSXX.fr_name
 comment on column COMBS_ZXCJ_GSXX.reg_cap
   is '注册资本（万元）';
 comment on column COMBS_ZXCJ_GSXX.reg_cap_cur
-  is '币种';
+  is '注册币种';
+comment on column COMBS_ZXCJ_GSXX.rec_cap
+  is '实缴资本（万元）';
+comment on column COMBS_ZXCJ_GSXX.rec_cap_cur
+  is '实缴币种';
 comment on column COMBS_ZXCJ_GSXX.ent_status
   is '经营状态';
 comment on column COMBS_ZXCJ_GSXX.ent_type
