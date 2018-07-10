@@ -11,7 +11,7 @@ public class EntEquityDetailEntity extends BaseEntDataEntity{
 
     private String subjectType;
 
-    private Short traceLevel;
+    private Integer traceLevel;
 
     private String nodeName;
 
