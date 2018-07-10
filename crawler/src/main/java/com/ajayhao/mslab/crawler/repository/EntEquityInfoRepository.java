@@ -36,6 +36,15 @@ public interface EntEquityInfoRepository {
      **/
     void deleteEntControl(String entId, boolean softDelete);
 
+
+    /**
+     * @Description 根据entId, 父节点查询股权明细
+     * @Param entId
+     * @Param parentNodeId
+     * @return List<EntEquityDetailEntity>
+     **/
+    List<EntEquityDetailEntity> queryEquityDetailByParentNode(String entId, String parentNodeId);
+
     /**
      * @Description 股权信息删除
      * @Param entId 元素企业Id

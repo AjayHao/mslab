@@ -1,18 +1,19 @@
 package com.ajayhao.mslab.crawler.service;
 
 import com.ajayhao.mslab.crawler.dto.response.EntCommonResp;
-import com.ajayhao.mslab.crawler.dto.response.EntEquityInfoResp;
+import com.ajayhao.mslab.crawler.dto.response.EntEquityDetailResp;
+import com.ajayhao.mslab.crawler.dto.response.EntEquityFullResp;
 import com.ajayhao.mslab.crawler.dto.response.EntGsInfoResp;
 import com.ajayhao.mslab.crawler.enums.EntParamType;
 
 /**
- * @ClassName CrawlerService
+ * @ClassName EntCreditService
  * @Description 爬虫服务
  * @Author Ajay Hao
  * @Date 2018/6/6 17:45
  * @Version 1.0
  **/
-public interface CrawlerService {
+public interface EntCreditService {
 
     /**
      * @Description 抓取工商信息
@@ -27,7 +28,9 @@ public interface CrawlerService {
      * @Param type  "1"-entId "2"-企业全名
      * @return
      **/
-    EntEquityInfoResp queryEquityInfo(EntParamType type, String key);
+    EntEquityFullResp queryEquityInfo(EntParamType type, String key);
+
+    EntEquityDetailResp queryEquityDetailByParent(String entId, String parentNodeId);
 
     /**
      * @Description 爬取企业征信信息

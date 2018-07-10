@@ -1,19 +1,24 @@
 package com.ajayhao.mslab.crawler.service.impl;
 
 import com.ajayhao.mslab.core.util.DateUtil;
+import com.ajayhao.mslab.crawler.dto.EntEquityDetailInfo;
 import com.ajayhao.mslab.crawler.dto.EntEquityInfo;
 import com.ajayhao.mslab.crawler.dto.EntGsInfo;
 import com.ajayhao.mslab.crawler.dto.response.EntCommonResp;
-import com.ajayhao.mslab.crawler.dto.response.EntEquityInfoResp;
+import com.ajayhao.mslab.crawler.dto.response.EntEquityDetailResp;
+import com.ajayhao.mslab.crawler.dto.response.EntEquityFullResp;
 import com.ajayhao.mslab.crawler.dto.response.EntGsInfoResp;
 import com.ajayhao.mslab.crawler.enums.EntParamType;
-import com.ajayhao.mslab.crawler.orm.entity.*;
+import com.ajayhao.mslab.crawler.orm.entity.BaseEntDataEntity;
+import com.ajayhao.mslab.crawler.orm.entity.EntControlEntity;
+import com.ajayhao.mslab.crawler.orm.entity.EntEquityDetailEntity;
+import com.ajayhao.mslab.crawler.orm.entity.EntGsInfoEntity;
 import com.ajayhao.mslab.crawler.orm.mapper.ManagerInfoEntityMapper;
 import com.ajayhao.mslab.crawler.remote.ElecreditRemoteService;
 import com.ajayhao.mslab.crawler.remote.enums.ElsaicQryVersion;
 import com.ajayhao.mslab.crawler.repository.EntEquityInfoRepository;
 import com.ajayhao.mslab.crawler.repository.EntGsInfoRepository;
-import com.ajayhao.mslab.crawler.service.CrawlerService;
+import com.ajayhao.mslab.crawler.service.EntCreditService;
 import com.ajayhao.mslab.crawler.service.plugins.EntBaseInfoService;
 import com.ajayhao.mslab.crawler.service.plugins.EntEquityInfoService;
 import org.apache.commons.collections.CollectionUtils;
@@ -25,15 +30,15 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * @ClassName CrawlerServiceImpl
- * @Description 爬虫服务
+ * @ClassName EntCreditServiceImpl
+ * @Description 企业征信服务
  * @Author Ajay Hao
  * @Date 2018/6/6 17:47
  * @Version 1.0
  **/
 
 @Service
-public class CrawlerServiceImpl implements CrawlerService{
+public class EntCreditServiceImpl implements EntCreditService {
 
     @Autowired
     private EntBaseInfoService entBaseInfoService;
@@ -43,9 +48,6 @@ public class CrawlerServiceImpl implements CrawlerService{
 
     @Autowired
     private EntEquityInfoRepository entEquityInfoRepository;
-
-    @Autowired
-    private ManagerInfoEntityMapper managerInfoEntityMapper;
 
     @Autowired
     private EntEquityInfoService entEquityInfoService;
@@ -84,8 +86,8 @@ public class CrawlerServiceImpl implements CrawlerService{
      * @return
      **/
     @Override
-    public EntEquityInfoResp queryEquityInfo(EntParamType type, String key) {
-        EntEquityInfoResp equityInfoResp = new EntEquityInfoResp().buildSuccess();
+    public EntEquityFullResp queryEquityInfo(EntParamType type, String key) {
+        EntEquityFullResp equityInfoResp = new EntEquityFullResp().buildSuccess();
         String entId = entBaseInfoService.getEntIdByKey(type, key);
         //local查询
         final List<EntControlEntity> oldEntControlEntityList = entEquityInfoRepository.queryEntControlByEntId(entId);
@@ -100,6 +102,22 @@ public class CrawlerServiceImpl implements CrawlerService{
         }
         equityInfoResp.setResult(equityInfo);
         return equityInfoResp;
+    }
+
+    /**
+     * @Description 查询公司股权结构明细(父节点分层查询)
+     * @Param entId 查询条件
+     * @Param parentNodeId 查询条件
+     * @return
+     **/
+    @Override
+    public EntEquityDetailResp queryEquityDetailByParent(String entId, String parentNodeId) {
+        EntEquityDetailResp equityDetailResp = new EntEquityDetailResp().buildSuccess();
+
+        final List<EntEquityDetailEntity> equityDetailEntityList = entEquityInfoRepository.queryEquityDetailByParentNode(entId, parentNodeId);
+        List<EntEquityDetailInfo> equityDetailList = entEquityInfoService.resolveEntEquityDetailInfo(equityDetailEntityList);
+        equityDetailResp.setResult(equityDetailList);
+        return equityDetailResp;
     }
 
     /**

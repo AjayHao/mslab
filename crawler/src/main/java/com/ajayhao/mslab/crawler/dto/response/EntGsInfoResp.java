@@ -16,6 +16,8 @@ import lombok.Setter;
 @Getter
 public class EntGsInfoResp extends BaseResp {
 
-    /* 企业工商信息 */
+    /**
+     * 企业工商信息
+     */
     private EntGsInfo result;
 }

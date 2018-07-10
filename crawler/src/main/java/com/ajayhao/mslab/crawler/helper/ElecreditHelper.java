@@ -193,6 +193,9 @@ public class ElecreditHelper {
             entGsInfo.setFrName(basicObj.getString("FRNAME"));
             entGsInfo.setRegCap(basicObj.getBigDecimal("REGCAP"));
             entGsInfo.setRegCapCur(basicObj.getString("REGCAPCUR"));
+            entGsInfo.setRecCap(basicObj.getBigDecimal("RECCAP"));
+            //默认实缴资本币种同认缴资本币种
+            entGsInfo.setRecCapCur(basicObj.getString("REGCAPCUR"));
             entGsInfo.setEntStatus(basicObj.getString("ENTSTATUS"));
             entGsInfo.setEntType(basicObj.getString("ENTTYPE"));
             entGsInfo.setEsDate(basicObj.getString("ESDATE"));

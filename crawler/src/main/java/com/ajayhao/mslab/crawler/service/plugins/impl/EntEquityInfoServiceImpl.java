@@ -118,11 +118,17 @@ public class EntEquityInfoServiceImpl implements EntEquityInfoService {
         return entControlInfoList;
     }
 
-    private List<EntEquityDetailInfo> resolveEntEquityDetailInfo(List<EntEquityDetailEntity> oldEquityDetailEntityList) {
+    /**
+     * @Description 解析股权详情
+     * @Param equityDetailEntityList 股权详情
+     * @return List<EntEquityDetailInfo>
+     **/
+    @Override
+    public List<EntEquityDetailInfo> resolveEntEquityDetailInfo(List<EntEquityDetailEntity> equityDetailEntityList) {
         List<EntEquityDetailInfo> entEquityDetailInfoList = null;
-        if(CollectionUtils.isNotEmpty(oldEquityDetailEntityList)){
+        if(CollectionUtils.isNotEmpty(equityDetailEntityList)){
             entEquityDetailInfoList = new ArrayList<>();
-            for(final EntEquityDetailEntity equityDetailEntity: oldEquityDetailEntityList) {
+            for(final EntEquityDetailEntity equityDetailEntity: equityDetailEntityList) {
                 EntEquityDetailInfo entEquityDetailInfo = new EntEquityDetailInfo();
                 equityDetailEntityReverseCopier.copy(equityDetailEntity, entEquityDetailInfo, null);
                 entEquityDetailInfoList.add(entEquityDetailInfo);

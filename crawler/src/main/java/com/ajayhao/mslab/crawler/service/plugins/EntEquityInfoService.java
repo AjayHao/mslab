@@ -1,5 +1,6 @@
 package com.ajayhao.mslab.crawler.service.plugins;
 
+import com.ajayhao.mslab.crawler.dto.EntEquityDetailInfo;
 import com.ajayhao.mslab.crawler.dto.EntEquityInfo;
 import com.ajayhao.mslab.crawler.enums.EntParamType;
 import com.ajayhao.mslab.crawler.orm.entity.EntControlEntity;
@@ -30,4 +31,11 @@ public interface EntEquityInfoService {
      * @return EntEquityInfo
      **/
     EntEquityInfo resolveEquityInfo(List<EntControlEntity> oldEntControlEntity, List<EntEquityDetailEntity> oldEquityDetailEntityList);
+
+    /**
+     * @Description 解析股权详情
+     * @Param equityDetailEntityList 股权详情
+     * @return List<EntEquityDetailInfo>
+     **/
+    List<EntEquityDetailInfo> resolveEntEquityDetailInfo(List<EntEquityDetailEntity> equityDetailEntityList);
 }

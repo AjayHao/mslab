@@ -15,8 +15,10 @@ import lombok.Setter;
  **/
 @Setter
 @Getter
-public class EntEquityInfoResp extends BaseResp {
+public class EntEquityFullResp extends BaseResp {
 
-    /* 企业股权信息 */
+    /**
+     * 企业股权信息
+     */
     private EntEquityInfo result;
 }

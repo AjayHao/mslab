@@ -79,6 +79,27 @@ public class EntEquityInfoRepositoryImpl extends AbstractRepository implements E
     }
 
     /**
+     * @Description 根据entId, 父节点查询股权明细
+     * @Param entId
+     * @Param parentNodeId
+     * @return List<EntEquityDetailEntity>
+     **/
+    @Override
+    public List<EntEquityDetailEntity> queryEquityDetailByParentNode(String entId, String parentNodeId) {
+        EntEquityDetailEntityExample equityDetailEntityExample = new EntEquityDetailEntityExample();
+        equityDetailEntityExample.createCriteria()
+                .andEntIdEqualTo(entId)
+                .andParentNodeIdEqualTo(parentNodeId)
+                .andUniqueTokenEqualTo(UNIQUE_TOKEN_VALID)
+                .andIsDeleteEqualTo(IsDeleteEnum.NO.getCode());
+        List<EntEquityDetailEntity> rslt = entEquityDetailEntityMapper.selectByExample(equityDetailEntityExample);
+        if(CollectionUtils.isEmpty(rslt)){
+            return null;
+        }
+        return rslt;
+    }
+
+    /**
      * @Description 控股信息删除
      * @Param entId 元素企业Id
      * @Param softDelete 是否软删除
