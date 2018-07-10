@@ -7,6 +7,9 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 
+/**
+ * @author AjayHao
+ */
 @Setter
 @Getter
 public class EntGsInfo implements Serializable{
@@ -64,6 +67,10 @@ public class EntGsInfo implements Serializable{
     private String industryName;
 
     private String opScope;
+
+    private String amacFlag;
+
+    private String custodyFlag;
 
     private Date createdAt;
 

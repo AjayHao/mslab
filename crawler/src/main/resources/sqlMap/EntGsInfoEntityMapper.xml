@@ -29,6 +29,8 @@
     <result column="INDUSTRY_CODE" jdbcType="VARCHAR" property="industryCode" />
     <result column="INDUSTRY_NAME" jdbcType="VARCHAR" property="industryName" />
     <result column="OP_SCOPE" jdbcType="VARCHAR" property="opScope" />
+    <result column="AMAC_FLAG" jdbcType="VARCHAR" property="amacFlag" />
+    <result column="CUSTODY_FLAG" jdbcType="VARCHAR" property="custodyFlag" />
     <result column="UNIQUE_TOKEN" jdbcType="VARCHAR" property="uniqueToken" />
     <result column="CREATED_AT" jdbcType="TIMESTAMP" property="createdAt" />
     <result column="CREATOR" jdbcType="VARCHAR" property="creator" />
@@ -98,8 +100,8 @@
     ID, ENT_ID, ENT_NAME, PULL_DATE, REG_NO, ORI_REG_NO, CREDIT_CODE, FR_NAME, REG_CAP, 
     REG_CAP_CUR, REC_CAP, REC_CAP_CUR, ENT_STATUS, ENT_TYPE, ES_DATE, OP_FROM, OP_TO, 
     REG_ADDR, REG_ORG, REG_ORG_CODE, REG_ORG_PROVINCE, EMP_NUM, TEL, OP_LOCATION, INDUSTRY_CODE, 
-    INDUSTRY_NAME, OP_SCOPE, UNIQUE_TOKEN, CREATED_AT, CREATOR, UPDATED_AT, UPDATER, 
-    IS_DELETE
+    INDUSTRY_NAME, OP_SCOPE, AMAC_FLAG, CUSTODY_FLAG, UNIQUE_TOKEN, CREATED_AT, CREATOR, 
+    UPDATED_AT, UPDATER, IS_DELETE
   </sql>
   <select id="selectByExample" parameterType="com.ajayhao.mslab.crawler.orm.entity.EntGsInfoEntityExample" resultMap="BaseResultMap">
     select
@@ -142,9 +144,9 @@
       REG_ORG, REG_ORG_CODE, REG_ORG_PROVINCE, 
       EMP_NUM, TEL, OP_LOCATION, 
       INDUSTRY_CODE, INDUSTRY_NAME, OP_SCOPE, 
-      UNIQUE_TOKEN, CREATED_AT, CREATOR, 
-      UPDATED_AT, UPDATER, IS_DELETE
-      )
+      AMAC_FLAG, CUSTODY_FLAG, UNIQUE_TOKEN, 
+      CREATED_AT, CREATOR, UPDATED_AT, 
+      UPDATER, IS_DELETE)
     values (#{id,jdbcType=VARCHAR}, #{entId,jdbcType=VARCHAR}, #{entName,jdbcType=VARCHAR}, 
       #{pullDate,jdbcType=VARCHAR}, #{regNo,jdbcType=VARCHAR}, #{oriRegNo,jdbcType=VARCHAR}, 
       #{creditCode,jdbcType=VARCHAR}, #{frName,jdbcType=VARCHAR}, #{regCap,jdbcType=DECIMAL}, 
@@ -154,9 +156,9 @@
       #{regOrg,jdbcType=VARCHAR}, #{regOrgCode,jdbcType=VARCHAR}, #{regOrgProvince,jdbcType=VARCHAR}, 
       #{empNum,jdbcType=DECIMAL}, #{tel,jdbcType=VARCHAR}, #{opLocation,jdbcType=VARCHAR}, 
       #{industryCode,jdbcType=VARCHAR}, #{industryName,jdbcType=VARCHAR}, #{opScope,jdbcType=VARCHAR}, 
-      #{uniqueToken,jdbcType=VARCHAR}, #{createdAt,jdbcType=TIMESTAMP}, #{creator,jdbcType=VARCHAR}, 
-      #{updatedAt,jdbcType=TIMESTAMP}, #{updater,jdbcType=VARCHAR}, #{isDelete,jdbcType=DECIMAL}
-      )
+      #{amacFlag,jdbcType=VARCHAR}, #{custodyFlag,jdbcType=VARCHAR}, #{uniqueToken,jdbcType=VARCHAR}, 
+      #{createdAt,jdbcType=TIMESTAMP}, #{creator,jdbcType=VARCHAR}, #{updatedAt,jdbcType=TIMESTAMP}, 
+      #{updater,jdbcType=VARCHAR}, #{isDelete,jdbcType=DECIMAL})
   </insert>
   <insert id="insertSelective" parameterType="com.ajayhao.mslab.crawler.orm.entity.EntGsInfoEntity">
     insert into COMBS_ZXCJ_GSXX
@@ -241,6 +243,12 @@
       </if>
       <if test="opScope != null">
         OP_SCOPE,
+      </if>
+      <if test="amacFlag != null">
+        AMAC_FLAG,
+      </if>
+      <if test="custodyFlag != null">
+        CUSTODY_FLAG,
       </if>
       <if test="uniqueToken != null">
         UNIQUE_TOKEN,
@@ -342,6 +350,12 @@
       </if>
       <if test="opScope != null">
         #{opScope,jdbcType=VARCHAR},
+      </if>
+      <if test="amacFlag != null">
+        #{amacFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="custodyFlag != null">
+        #{custodyFlag,jdbcType=VARCHAR},
       </if>
       <if test="uniqueToken != null">
         #{uniqueToken,jdbcType=VARCHAR},
@@ -447,6 +461,12 @@
       <if test="record.opScope != null">
         OP_SCOPE = #{record.opScope,jdbcType=VARCHAR},
       </if>
+      <if test="record.amacFlag != null">
+        AMAC_FLAG = #{record.amacFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="record.custodyFlag != null">
+        CUSTODY_FLAG = #{record.custodyFlag,jdbcType=VARCHAR},
+      </if>
       <if test="record.uniqueToken != null">
         UNIQUE_TOKEN = #{record.uniqueToken,jdbcType=VARCHAR},
       </if>
@@ -499,6 +519,8 @@
       INDUSTRY_CODE = #{record.industryCode,jdbcType=VARCHAR},
       INDUSTRY_NAME = #{record.industryName,jdbcType=VARCHAR},
       OP_SCOPE = #{record.opScope,jdbcType=VARCHAR},
+      AMAC_FLAG = #{record.amacFlag,jdbcType=VARCHAR},
+      CUSTODY_FLAG = #{record.custodyFlag,jdbcType=VARCHAR},
       UNIQUE_TOKEN = #{record.uniqueToken,jdbcType=VARCHAR},
       CREATED_AT = #{record.createdAt,jdbcType=TIMESTAMP},
       CREATOR = #{record.creator,jdbcType=VARCHAR},
@@ -590,6 +612,12 @@
       <if test="opScope != null">
         OP_SCOPE = #{opScope,jdbcType=VARCHAR},
       </if>
+      <if test="amacFlag != null">
+        AMAC_FLAG = #{amacFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="custodyFlag != null">
+        CUSTODY_FLAG = #{custodyFlag,jdbcType=VARCHAR},
+      </if>
       <if test="uniqueToken != null">
         UNIQUE_TOKEN = #{uniqueToken,jdbcType=VARCHAR},
       </if>
@@ -639,6 +667,8 @@
       INDUSTRY_CODE = #{industryCode,jdbcType=VARCHAR},
       INDUSTRY_NAME = #{industryName,jdbcType=VARCHAR},
       OP_SCOPE = #{opScope,jdbcType=VARCHAR},
+      AMAC_FLAG = #{amacFlag,jdbcType=VARCHAR},
+      CUSTODY_FLAG = #{custodyFlag,jdbcType=VARCHAR},
       UNIQUE_TOKEN = #{uniqueToken,jdbcType=VARCHAR},
       CREATED_AT = #{createdAt,jdbcType=TIMESTAMP},
       CREATOR = #{creator,jdbcType=VARCHAR},

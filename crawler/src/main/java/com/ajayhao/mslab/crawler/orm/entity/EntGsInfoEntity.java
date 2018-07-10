@@ -5,6 +5,9 @@ import lombok.Setter;
 
 import java.math.BigDecimal;
 
+/**
+ * @author AjayHao
+ */
 @Setter
 @Getter
 public class EntGsInfoEntity extends BaseEntDataEntity{
@@ -54,5 +57,9 @@ public class EntGsInfoEntity extends BaseEntDataEntity{
     private String industryName;
 
     private String opScope;
+
+    private String amacFlag;
+
+    private String custodyFlag;
 
 }

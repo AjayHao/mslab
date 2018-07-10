@@ -1966,6 +1966,146 @@ public class EntGsInfoEntityExample {
             return (Criteria) this;
         }
 
+        public Criteria andAmacFlagIsNull() {
+            addCriterion("AMAC_FLAG is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andAmacFlagIsNotNull() {
+            addCriterion("AMAC_FLAG is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andAmacFlagEqualTo(String value) {
+            addCriterion("AMAC_FLAG =", value, "amacFlag");
+            return (Criteria) this;
+        }
+
+        public Criteria andAmacFlagNotEqualTo(String value) {
+            addCriterion("AMAC_FLAG <>", value, "amacFlag");
+            return (Criteria) this;
+        }
+
+        public Criteria andAmacFlagGreaterThan(String value) {
+            addCriterion("AMAC_FLAG >", value, "amacFlag");
+            return (Criteria) this;
+        }
+
+        public Criteria andAmacFlagGreaterThanOrEqualTo(String value) {
+            addCriterion("AMAC_FLAG >=", value, "amacFlag");
+            return (Criteria) this;
+        }
+
+        public Criteria andAmacFlagLessThan(String value) {
+            addCriterion("AMAC_FLAG <", value, "amacFlag");
+            return (Criteria) this;
+        }
+
+        public Criteria andAmacFlagLessThanOrEqualTo(String value) {
+            addCriterion("AMAC_FLAG <=", value, "amacFlag");
+            return (Criteria) this;
+        }
+
+        public Criteria andAmacFlagLike(String value) {
+            addCriterion("AMAC_FLAG like", value, "amacFlag");
+            return (Criteria) this;
+        }
+
+        public Criteria andAmacFlagNotLike(String value) {
+            addCriterion("AMAC_FLAG not like", value, "amacFlag");
+            return (Criteria) this;
+        }
+
+        public Criteria andAmacFlagIn(List<String> values) {
+            addCriterion("AMAC_FLAG in", values, "amacFlag");
+            return (Criteria) this;
+        }
+
+        public Criteria andAmacFlagNotIn(List<String> values) {
+            addCriterion("AMAC_FLAG not in", values, "amacFlag");
+            return (Criteria) this;
+        }
+
+        public Criteria andAmacFlagBetween(String value1, String value2) {
+            addCriterion("AMAC_FLAG between", value1, value2, "amacFlag");
+            return (Criteria) this;
+        }
+
+        public Criteria andAmacFlagNotBetween(String value1, String value2) {
+            addCriterion("AMAC_FLAG not between", value1, value2, "amacFlag");
+            return (Criteria) this;
+        }
+
+        public Criteria andCustodyFlagIsNull() {
+            addCriterion("CUSTODY_FLAG is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCustodyFlagIsNotNull() {
+            addCriterion("CUSTODY_FLAG is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCustodyFlagEqualTo(String value) {
+            addCriterion("CUSTODY_FLAG =", value, "custodyFlag");
+            return (Criteria) this;
+        }
+
+        public Criteria andCustodyFlagNotEqualTo(String value) {
+            addCriterion("CUSTODY_FLAG <>", value, "custodyFlag");
+            return (Criteria) this;
+        }
+
+        public Criteria andCustodyFlagGreaterThan(String value) {
+            addCriterion("CUSTODY_FLAG >", value, "custodyFlag");
+            return (Criteria) this;
+        }
+
+        public Criteria andCustodyFlagGreaterThanOrEqualTo(String value) {
+            addCriterion("CUSTODY_FLAG >=", value, "custodyFlag");
+            return (Criteria) this;
+        }
+
+        public Criteria andCustodyFlagLessThan(String value) {
+            addCriterion("CUSTODY_FLAG <", value, "custodyFlag");
+            return (Criteria) this;
+        }
+
+        public Criteria andCustodyFlagLessThanOrEqualTo(String value) {
+            addCriterion("CUSTODY_FLAG <=", value, "custodyFlag");
+            return (Criteria) this;
+        }
+
+        public Criteria andCustodyFlagLike(String value) {
+            addCriterion("CUSTODY_FLAG like", value, "custodyFlag");
+            return (Criteria) this;
+        }
+
+        public Criteria andCustodyFlagNotLike(String value) {
+            addCriterion("CUSTODY_FLAG not like", value, "custodyFlag");
+            return (Criteria) this;
+        }
+
+        public Criteria andCustodyFlagIn(List<String> values) {
+            addCriterion("CUSTODY_FLAG in", values, "custodyFlag");
+            return (Criteria) this;
+        }
+
+        public Criteria andCustodyFlagNotIn(List<String> values) {
+            addCriterion("CUSTODY_FLAG not in", values, "custodyFlag");
+            return (Criteria) this;
+        }
+
+        public Criteria andCustodyFlagBetween(String value1, String value2) {
+            addCriterion("CUSTODY_FLAG between", value1, value2, "custodyFlag");
+            return (Criteria) this;
+        }
+
+        public Criteria andCustodyFlagNotBetween(String value1, String value2) {
+            addCriterion("CUSTODY_FLAG not between", value1, value2, "custodyFlag");
+            return (Criteria) this;
+        }
+
         public Criteria andUniqueTokenIsNull() {
             addCriterion("UNIQUE_TOKEN is null");
             return (Criteria) this;

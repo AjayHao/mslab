@@ -13,7 +13,6 @@ import com.ajayhao.mslab.crawler.orm.entity.BaseEntDataEntity;
 import com.ajayhao.mslab.crawler.orm.entity.EntControlEntity;
 import com.ajayhao.mslab.crawler.orm.entity.EntEquityDetailEntity;
 import com.ajayhao.mslab.crawler.orm.entity.EntGsInfoEntity;
-import com.ajayhao.mslab.crawler.orm.mapper.ManagerInfoEntityMapper;
 import com.ajayhao.mslab.crawler.remote.ElecreditRemoteService;
 import com.ajayhao.mslab.crawler.remote.enums.ElsaicQryVersion;
 import com.ajayhao.mslab.crawler.repository.EntEquityInfoRepository;
