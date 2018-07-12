@@ -24,10 +24,13 @@ public final class EnumUtil {
      * @return
      */
     public static <E extends IBaseEnum> E valueOf(Class<E> enumClass, String code) {
-        if (enumClass != null && StringUtils.isNotBlank(code))
-            for (E e : enumClass.getEnumConstants())
-                if (StringUtils.equals(code, e.getCode()))
+        if (enumClass != null && StringUtils.isNotBlank(code)){
+            for (E e : enumClass.getEnumConstants()) {
+                if (StringUtils.equals(code, e.getCode())) {
                     return e;
+                }
+            }
+        }
         return null;
     }
 
