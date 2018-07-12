@@ -21,9 +21,9 @@ CREATE TABLE COMBS_ZXCJ_GQMX
   cer_type       VARCHAR2(10),
   address        VARCHAR2(600),
   unique_token   VARCHAR2(36) DEFAULT '0' NOT NULL,
-  created_at     TIMESTAMP(6) DEFAULT systimestamp,
+  created_at     NUMBER(15) NOT NULL,
   creator        VARCHAR2(20) DEFAULT 'system',
-  updated_at     TIMESTAMP(6) DEFAULT systimestamp,
+  updated_at     NUMBER(15) NOT NULL,
   updater        VARCHAR2(20) DEFAULT 'system',
   is_delete      NUMBER(1) DEFAULT 0      NOT NULL
 )

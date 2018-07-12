@@ -32,11 +32,11 @@ CREATE TABLE COMBS_ZXCJ_GSXX
   amac_flag        VARCHAR2(1),
   custody_flag     VARCHAR2(1),
   unique_token     VARCHAR2(36) DEFAULT '0' NOT NULL,
-  created_at       TIMESTAMP(6) DEFAULT systimestamp,
+  created_at       NUMBER(15)  NOT NULL,
   creator          VARCHAR2(20) DEFAULT 'system',
-  updated_at       TIMESTAMP(6) DEFAULT systimestamp,
+  updated_at      NUMBER(15)  NOT NULL,
   updater          VARCHAR2(20) DEFAULT 'system',
-  is_delete        NUMBER(1) DEFAULT 0      NOT NULL
+  is_delete        VARCHAR2(1) DEFAULT 'N'      NOT NULL
 )
 TABLESPACE AJAY_DATA;
 -- Add comments to the table
@@ -112,7 +112,7 @@ IS '修改日期';
 COMMENT ON COLUMN COMBS_ZXCJ_GSXX.updater
 IS '修改人';
 COMMENT ON COLUMN COMBS_ZXCJ_GSXX.is_delete
-IS '是否失效 0-否 1-是';
+IS '是否失效 N-否 Y-是';
 -- Create/Recreate indexes
 CREATE INDEX IDX_COMBS_ZXCJ_GSXX_1 ON COMBS_ZXCJ_GSXX (ENT_NAME)
 TABLESPACE AJAY_IDX;
