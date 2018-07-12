@@ -44,14 +44,14 @@ public class EntControlInfo implements Serializable {
 
     private String capitalChain;
 
-    private Date createdAt;
+    private Long createdAt;
 
     private String creator;
 
-    private Date updatedAt;
+    private Long updatedAt;
 
     private String updater;
 
-    private Integer isDelete;
+    private String isDelete;
 
 }

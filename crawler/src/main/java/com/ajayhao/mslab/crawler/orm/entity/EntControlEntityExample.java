@@ -2,7 +2,6 @@ package com.ajayhao.mslab.crawler.orm.entity;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 public class EntControlEntityExample {
@@ -1136,52 +1135,52 @@ public class EntControlEntityExample {
             return (Criteria) this;
         }
 
-        public Criteria andCreatedAtEqualTo(Date value) {
+        public Criteria andCreatedAtEqualTo(Long value) {
             addCriterion("CREATED_AT =", value, "createdAt");
             return (Criteria) this;
         }
 
-        public Criteria andCreatedAtNotEqualTo(Date value) {
+        public Criteria andCreatedAtNotEqualTo(Long value) {
             addCriterion("CREATED_AT <>", value, "createdAt");
             return (Criteria) this;
         }
 
-        public Criteria andCreatedAtGreaterThan(Date value) {
+        public Criteria andCreatedAtGreaterThan(Long value) {
             addCriterion("CREATED_AT >", value, "createdAt");
             return (Criteria) this;
         }
 
-        public Criteria andCreatedAtGreaterThanOrEqualTo(Date value) {
+        public Criteria andCreatedAtGreaterThanOrEqualTo(Long value) {
             addCriterion("CREATED_AT >=", value, "createdAt");
             return (Criteria) this;
         }
 
-        public Criteria andCreatedAtLessThan(Date value) {
+        public Criteria andCreatedAtLessThan(Long value) {
             addCriterion("CREATED_AT <", value, "createdAt");
             return (Criteria) this;
         }
 
-        public Criteria andCreatedAtLessThanOrEqualTo(Date value) {
+        public Criteria andCreatedAtLessThanOrEqualTo(Long value) {
             addCriterion("CREATED_AT <=", value, "createdAt");
             return (Criteria) this;
         }
 
-        public Criteria andCreatedAtIn(List<Date> values) {
+        public Criteria andCreatedAtIn(List<Long> values) {
             addCriterion("CREATED_AT in", values, "createdAt");
             return (Criteria) this;
         }
 
-        public Criteria andCreatedAtNotIn(List<Date> values) {
+        public Criteria andCreatedAtNotIn(List<Long> values) {
             addCriterion("CREATED_AT not in", values, "createdAt");
             return (Criteria) this;
         }
 
-        public Criteria andCreatedAtBetween(Date value1, Date value2) {
+        public Criteria andCreatedAtBetween(Long value1, Long value2) {
             addCriterion("CREATED_AT between", value1, value2, "createdAt");
             return (Criteria) this;
         }
 
-        public Criteria andCreatedAtNotBetween(Date value1, Date value2) {
+        public Criteria andCreatedAtNotBetween(Long value1, Long value2) {
             addCriterion("CREATED_AT not between", value1, value2, "createdAt");
             return (Criteria) this;
         }
@@ -1267,52 +1266,52 @@ public class EntControlEntityExample {
             return (Criteria) this;
         }
 
-        public Criteria andUpdatedAtEqualTo(Date value) {
+        public Criteria andUpdatedAtEqualTo(Long value) {
             addCriterion("UPDATED_AT =", value, "updatedAt");
             return (Criteria) this;
         }
 
-        public Criteria andUpdatedAtNotEqualTo(Date value) {
+        public Criteria andUpdatedAtNotEqualTo(Long value) {
             addCriterion("UPDATED_AT <>", value, "updatedAt");
             return (Criteria) this;
         }
 
-        public Criteria andUpdatedAtGreaterThan(Date value) {
+        public Criteria andUpdatedAtGreaterThan(Long value) {
             addCriterion("UPDATED_AT >", value, "updatedAt");
             return (Criteria) this;
         }
 
-        public Criteria andUpdatedAtGreaterThanOrEqualTo(Date value) {
+        public Criteria andUpdatedAtGreaterThanOrEqualTo(Long value) {
             addCriterion("UPDATED_AT >=", value, "updatedAt");
             return (Criteria) this;
         }
 
-        public Criteria andUpdatedAtLessThan(Date value) {
+        public Criteria andUpdatedAtLessThan(Long value) {
             addCriterion("UPDATED_AT <", value, "updatedAt");
             return (Criteria) this;
         }
 
-        public Criteria andUpdatedAtLessThanOrEqualTo(Date value) {
+        public Criteria andUpdatedAtLessThanOrEqualTo(Long value) {
             addCriterion("UPDATED_AT <=", value, "updatedAt");
             return (Criteria) this;
         }
 
-        public Criteria andUpdatedAtIn(List<Date> values) {
+        public Criteria andUpdatedAtIn(List<Long> values) {
             addCriterion("UPDATED_AT in", values, "updatedAt");
             return (Criteria) this;
         }
 
-        public Criteria andUpdatedAtNotIn(List<Date> values) {
+        public Criteria andUpdatedAtNotIn(List<Long> values) {
             addCriterion("UPDATED_AT not in", values, "updatedAt");
             return (Criteria) this;
         }
 
-        public Criteria andUpdatedAtBetween(Date value1, Date value2) {
+        public Criteria andUpdatedAtBetween(Long value1, Long value2) {
             addCriterion("UPDATED_AT between", value1, value2, "updatedAt");
             return (Criteria) this;
         }
 
-        public Criteria andUpdatedAtNotBetween(Date value1, Date value2) {
+        public Criteria andUpdatedAtNotBetween(Long value1, Long value2) {
             addCriterion("UPDATED_AT not between", value1, value2, "updatedAt");
             return (Criteria) this;
         }
@@ -1397,52 +1396,52 @@ public class EntControlEntityExample {
             return (Criteria) this;
         }
 
-        public Criteria andIsDeleteEqualTo(Integer value) {
+        public Criteria andIsDeleteEqualTo(String value) {
             addCriterion("IS_DELETE =", value, "isDelete");
             return (Criteria) this;
         }
 
-        public Criteria andIsDeleteNotEqualTo(Integer value) {
+        public Criteria andIsDeleteNotEqualTo(String value) {
             addCriterion("IS_DELETE <>", value, "isDelete");
             return (Criteria) this;
         }
 
-        public Criteria andIsDeleteGreaterThan(Integer value) {
+        public Criteria andIsDeleteGreaterThan(String value) {
             addCriterion("IS_DELETE >", value, "isDelete");
             return (Criteria) this;
         }
 
-        public Criteria andIsDeleteGreaterThanOrEqualTo(Integer value) {
+        public Criteria andIsDeleteGreaterThanOrEqualTo(String value) {
             addCriterion("IS_DELETE >=", value, "isDelete");
             return (Criteria) this;
         }
 
-        public Criteria andIsDeleteLessThan(Integer value) {
+        public Criteria andIsDeleteLessThan(String value) {
             addCriterion("IS_DELETE <", value, "isDelete");
             return (Criteria) this;
         }
 
-        public Criteria andIsDeleteLessThanOrEqualTo(Integer value) {
+        public Criteria andIsDeleteLessThanOrEqualTo(String value) {
             addCriterion("IS_DELETE <=", value, "isDelete");
             return (Criteria) this;
         }
 
-        public Criteria andIsDeleteIn(List<Integer> values) {
+        public Criteria andIsDeleteIn(List<String> values) {
             addCriterion("IS_DELETE in", values, "isDelete");
             return (Criteria) this;
         }
 
-        public Criteria andIsDeleteNotIn(List<Integer> values) {
+        public Criteria andIsDeleteNotIn(List<String> values) {
             addCriterion("IS_DELETE not in", values, "isDelete");
             return (Criteria) this;
         }
 
-        public Criteria andIsDeleteBetween(Integer value1, Integer value2) {
+        public Criteria andIsDeleteBetween(String value1, String value2) {
             addCriterion("IS_DELETE between", value1, value2, "isDelete");
             return (Criteria) this;
         }
 
-        public Criteria andIsDeleteNotBetween(Integer value1, Integer value2) {
+        public Criteria andIsDeleteNotBetween(String value1, String value2) {
             addCriterion("IS_DELETE not between", value1, value2, "isDelete");
             return (Criteria) this;
         }

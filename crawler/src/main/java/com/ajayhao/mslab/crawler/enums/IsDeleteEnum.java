@@ -14,10 +14,10 @@ import lombok.Getter;
 @Getter
 @AllArgsConstructor
 public enum IsDeleteEnum{
-    YES(1),
-    NO(0);
+    YES("Y"),
+    NO("N");
 
-    private final Integer code;
+    private final String code;
 
     /**
      * Get yes no enum.
@@ -25,11 +25,14 @@ public enum IsDeleteEnum{
      * @param code the code
      * @return the yes no enum
      */
-    public static IsDeleteEnum get(Integer code) {
-        if (code != null)
-            for (IsDeleteEnum e : IsDeleteEnum.values())
-                if (e.getCode().equals(code))
+    public static IsDeleteEnum get(String code) {
+        if (code != null) {
+            for (IsDeleteEnum e : IsDeleteEnum.values()) {
+                if (e.getCode().equals(code)) {
                     return e;
+                }
+            }
+        }
         return null;
     }
 }

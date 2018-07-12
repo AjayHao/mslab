@@ -24,8 +24,8 @@ public abstract class AbstractRepository{
      **/
     public void prepareInsert(final BaseEntity baseEntity) {
         //填入isDelete
-        if(baseEntity.getIsDelete() == null){
-            baseEntity.setIsDelete(0);
+        if(StringUtils.isBlank(baseEntity.getIsDelete())){
+            baseEntity.setIsDelete("N");
         }
 
         if(StringUtils.isBlank(baseEntity.getCreator())){
@@ -37,11 +37,11 @@ public abstract class AbstractRepository{
         }
 
         if(baseEntity.getCreatedAt() ==  null){
-            baseEntity.setCreatedAt(new Date());
+            baseEntity.setCreatedAt(System.currentTimeMillis());
         }
 
         if(baseEntity.getUpdatedAt() ==  null){
-            baseEntity.setUpdatedAt(new Date());
+            baseEntity.setUpdatedAt(System.currentTimeMillis());
         }
 
     }

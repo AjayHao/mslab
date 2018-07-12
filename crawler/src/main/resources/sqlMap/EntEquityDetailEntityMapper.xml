@@ -18,11 +18,11 @@
     <result column="CER_TYPE" jdbcType="VARCHAR" property="cerType" />
     <result column="ADDRESS" jdbcType="VARCHAR" property="address" />
     <result column="UNIQUE_TOKEN" jdbcType="VARCHAR" property="uniqueToken" />
-    <result column="CREATED_AT" jdbcType="TIMESTAMP" property="createdAt" />
+    <result column="CREATED_AT" jdbcType="BIGINT" property="createdAt" />
     <result column="CREATOR" jdbcType="VARCHAR" property="creator" />
-    <result column="UPDATED_AT" jdbcType="TIMESTAMP" property="updatedAt" />
+    <result column="UPDATED_AT" jdbcType="BIGINT" property="updatedAt" />
     <result column="UPDATER" jdbcType="VARCHAR" property="updater" />
-    <result column="IS_DELETE" jdbcType="DECIMAL" property="isDelete" />
+    <result column="IS_DELETE" jdbcType="VARCHAR" property="isDelete" />
     <result column="NODE_ID" jdbcType="VARCHAR" property="nodeId" />
     <result column="PARENT_NODE_ID" jdbcType="VARCHAR" property="parentNodeId" />
     <result column="REG_AMT" jdbcType="DECIMAL" property="regAmt" />

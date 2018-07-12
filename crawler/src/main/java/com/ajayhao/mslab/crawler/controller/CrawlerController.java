@@ -1,15 +1,11 @@
 package com.ajayhao.mslab.crawler.controller;
 
-import com.ajayhao.mslab.core.common.enums.RespCodeType;
 import com.ajayhao.mslab.crawler.dto.response.EntCommonResp;
-import com.ajayhao.mslab.crawler.dto.response.EntEquityFullResp;
 import com.ajayhao.mslab.crawler.dto.response.EntGsInfoResp;
-import com.ajayhao.mslab.crawler.enums.EntParamType;
 import com.ajayhao.mslab.crawler.service.EntCreditService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -39,6 +35,18 @@ public class CrawlerController {
     public EntGsInfoResp getEleCreditInfo(@RequestParam("companyId") String companyId,
                                           @RequestParam("category") String category) {
         return crawlerService.crawlEleCreditInfo(companyId,category);
+    }
+
+    @ApiOperation("根据简称查询企业全称 - Remote")
+    @RequestMapping(value = "/fullcompname", method = GET)
+    public EntCommonResp getFullCompName(@RequestParam("keyword") String keyword){
+        return crawlerService.pullCompanyFullName(keyword);
+    }
+
+    @ApiOperation("根据企业全称取entId - Remote")
+    @RequestMapping(value = "/getentid", method = GET)
+    public EntCommonResp getEntId(@RequestParam("keyword") String keyword){
+        return crawlerService.pullEntId(keyword, "3");
     }
 
     @ApiOperation("根据工商企业号查询企业全称 - Remote")

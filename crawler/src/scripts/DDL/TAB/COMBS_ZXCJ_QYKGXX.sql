@@ -17,9 +17,9 @@ CREATE TABLE COMBS_ZXCJ_QYKGXX
   position       VARCHAR2(64),
   capital_chain  VARCHAR2(3000),
   unique_token   VARCHAR2(36) DEFAULT '0' NOT NULL,
-  created_at     NUMBER(15)  NOT NULL,
+  created_at     NUMBER(15)               NOT NULL,
   creator        VARCHAR2(20) DEFAULT 'system',
-  updated_at     NUMBER(15)  NOT NULL,
+  updated_at     NUMBER(15)               NOT NULL,
   updater        VARCHAR2(20) DEFAULT 'system',
   is_delete      NUMBER(1) DEFAULT 0      NOT NULL
 )

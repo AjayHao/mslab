@@ -50,14 +50,14 @@ public class EntEquityDetailInfo implements Serializable{
 
     private String address;
 
+    private Long createdAt;
+
     private String creator;
 
-    private Date createdAt;
+    private Long updatedAt;
 
     private String updater;
 
-    private Date updatedAt;
-
-    private Integer isDelete;
+    private String isDelete;
 
 }

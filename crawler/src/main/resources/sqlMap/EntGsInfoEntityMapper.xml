@@ -32,11 +32,11 @@
     <result column="AMAC_FLAG" jdbcType="VARCHAR" property="amacFlag" />
     <result column="CUSTODY_FLAG" jdbcType="VARCHAR" property="custodyFlag" />
     <result column="UNIQUE_TOKEN" jdbcType="VARCHAR" property="uniqueToken" />
-    <result column="CREATED_AT" jdbcType="TIMESTAMP" property="createdAt" />
+    <result column="CREATED_AT" jdbcType="BIGINT" property="createdAt" />
     <result column="CREATOR" jdbcType="VARCHAR" property="creator" />
-    <result column="UPDATED_AT" jdbcType="TIMESTAMP" property="updatedAt" />
+    <result column="UPDATED_AT" jdbcType="BIGINT" property="updatedAt" />
     <result column="UPDATER" jdbcType="VARCHAR" property="updater" />
-    <result column="IS_DELETE" jdbcType="DECIMAL" property="isDelete" />
+    <result column="IS_DELETE" jdbcType="VARCHAR" property="isDelete" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>

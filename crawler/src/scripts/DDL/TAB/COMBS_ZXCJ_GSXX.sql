@@ -2,7 +2,7 @@
 -- Create table
 CREATE TABLE COMBS_ZXCJ_GSXX
 (
-  id               VARCHAR2(36)             NOT NULL,
+  id               VARCHAR2(36)                 NOT NULL,
   ent_id           VARCHAR2(20),
   ent_name         VARCHAR2(100),
   pull_date        VARCHAR2(10),
@@ -31,10 +31,10 @@ CREATE TABLE COMBS_ZXCJ_GSXX
   op_scope         VARCHAR2(3000),
   amac_flag        VARCHAR2(1),
   custody_flag     VARCHAR2(1),
-  unique_token     VARCHAR2(36) DEFAULT '0' NOT NULL,
-  created_at       NUMBER(15)  NOT NULL,
+  unique_token     VARCHAR2(36) DEFAULT '0'     NOT NULL,
+  created_at       NUMBER(15)                   NOT NULL,
   creator          VARCHAR2(20) DEFAULT 'system',
-  updated_at      NUMBER(15)  NOT NULL,
+  updated_at       NUMBER(15)                   NOT NULL,
   updater          VARCHAR2(20) DEFAULT 'system',
   is_delete        VARCHAR2(1) DEFAULT 'N'      NOT NULL
 )

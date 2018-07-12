@@ -72,13 +72,13 @@ public class EntGsInfo implements Serializable{
 
     private String custodyFlag;
 
-    private Date createdAt;
+    private Long createdAt;
 
     private String creator;
 
-    private Date updatedAt;
+    private Long updatedAt;
 
     private String updater;
 
-    private Short isDelete;
+    private String isDelete;
 }

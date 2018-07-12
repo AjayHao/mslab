@@ -11,14 +11,14 @@ public class BaseEntity {
 
     protected String id;
 
-    protected Integer isDelete = 0;
+    protected String isDelete = "Y";
 
     protected String creator;
 
-    protected Date createdAt;
+    protected Long createdAt;
 
     protected String updater;
 
-    protected Date updatedAt;
+    protected Long updatedAt;
 
 }
