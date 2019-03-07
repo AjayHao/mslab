@@ -133,12 +133,12 @@ public class EntCreditServiceImpl implements EntCreditService {
      * @return java.lang.String
      **/
     @Override
-    public EntGsInfoResp crawlEleCreditInfo(String entId, String category){
-        EntGsInfoResp entGsInfoResp = new EntGsInfoResp();
-        entGsInfoResp.buildSuccess();
-        EntGsInfo entGsInfo = elecreditRemoteService.pullEleCreditInfo(entId, ElsaicQryVersion.BASIC.getCode());
-        entGsInfoResp.setResult(entGsInfo);
-        return entGsInfoResp;
+    public EntCommonResp crawlEleCreditInfoRaw(String entId, String category){
+        EntCommonResp elecreditResp = new EntCommonResp();
+        elecreditResp.buildSuccess();
+        String info = elecreditRemoteService.pullEleCreditInfoRaw(entId, category);
+        elecreditResp.setResult(info);
+        return elecreditResp;
     }
 
     /**

@@ -38,6 +38,8 @@ public class EntControlInfo implements Serializable {
 
     private BigDecimal finalAccNum;
 
+    private BigDecimal finalRegCap;
+
     private String ratioRoad;
 
     private String position;

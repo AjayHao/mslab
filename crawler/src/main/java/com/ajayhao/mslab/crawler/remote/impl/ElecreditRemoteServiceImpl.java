@@ -44,6 +44,28 @@ public class ElecreditRemoteServiceImpl implements ElecreditRemoteService{
     @Autowired
     private ElecreditConfig elecreditConfig;
 
+
+    /**
+     * @Description 获取企业征信信息
+     * @Param [entId, category]
+     * @return java.lang.String
+     **/
+    @Override
+    public String pullEleCreditInfoRaw(String entId, String category) {
+        //构造参数
+        Map<String,String> paramMap = elecreditHelper.buildElsaicParam(entId, category);
+
+        //构造请求entity
+        HttpEntity<MultiValueMap> requestEntity = elecreditHelper.buildRequestEntity(paramMap);
+
+        //提交post请求
+        RestTemplate restTemplate = new RestTemplate();
+        ResponseEntity<String> responseEntity = restTemplate.postForEntity(elecreditConfig.getElsaicUrl(), requestEntity, String.class);
+        String respEntityBody = responseEntity.getBody();
+        String jsonStr = UnicodeUtil.unicodeToString(respEntityBody);
+        return jsonStr;
+    }
+
     /**
      * @Description 获取企业征信信息
      * @Param [entId, category]

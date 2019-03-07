@@ -20,6 +20,7 @@
     <modules>
         <module>core-common</module>
         <module>swagger-support</module>
+        <module>proxy-support</module>
     </modules>
 
 </project>

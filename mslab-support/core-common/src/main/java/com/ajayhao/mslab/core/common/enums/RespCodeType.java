@@ -40,6 +40,10 @@ public enum RespCodeType implements BaseResultType {
 
     FULL_NAME_NOT_FOUND("0200", "通过简称找不到该企业全称"),
     TOO_MANY_FULL_NAMES("0201", "通过简称找到的企业全称不唯一:{0}"),
+    /**
+     * 通过简称找到的企业全称不唯一
+     */
+    TOO_MANY_RESULTS("0203", "返回的管理人信息不唯一"),
 
     // 9000-9999 失败相关
     FAIL("9000", "业务处理失败"),

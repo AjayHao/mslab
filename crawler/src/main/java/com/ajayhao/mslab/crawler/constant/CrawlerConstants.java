@@ -14,4 +14,8 @@ public class CrawlerConstants {
     public static final String DEFAULT_OPERATOR = "system";
 
     public static final String UNIQUE_TOKEN_VALID = "0";
+
+    public static final Integer DEFAULT_MAP_SIZE = 16;
+
+    public static final Integer DEFAULT_PAGE_SIZE = 1000;
 }

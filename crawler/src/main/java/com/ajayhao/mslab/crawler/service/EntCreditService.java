@@ -37,7 +37,7 @@ public interface EntCreditService {
      * @Param [entId, category]
      * @return java.lang.String
      **/
-    EntGsInfoResp crawlEleCreditInfo(String entId, String category);
+    EntCommonResp crawlEleCreditInfoRaw(String entId, String category);
 
     /**
      * @Description 获取企业信息entId

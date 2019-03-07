@@ -1,6 +1,7 @@
 package com.ajayhao.mslab.crawler.controller;
 
 import com.ajayhao.mslab.core.common.enums.RespCodeType;
+import com.ajayhao.mslab.crawler.dto.response.EntCommonResp;
 import com.ajayhao.mslab.crawler.dto.response.EntEquityDetailResp;
 import com.ajayhao.mslab.crawler.dto.response.EntEquityFullResp;
 import com.ajayhao.mslab.crawler.dto.response.EntGsInfoResp;
@@ -91,22 +92,23 @@ public class EntCreditController {
     @RequestMapping(value = "/syncAll", method = GET)
     public EntCommonResp syncAll() {
         return entCreditService.syncAll();
-    }
+    }*/
 
     @ApiOperation("指定列表补数据 - 临时接口")
     @RequestMapping(value = "/leakDataByList", method = GET)
     public EntCommonResp leakDataByList() {
         EntCommonResp entEquityInfoResp = new EntCommonResp().buildSuccess();
-        String[] list = null;//{"资邦元达（上海）互联网金融信息服务有限公司","深圳五星财富互联网金融服务有限公司","惠州市富轩投资管理有限公司","上海成雨投资控股集团有限公司","安信国恒（北京）互联网信息有限公司","上海融腾金融信息服务有限公司","深圳前海大福资本管理有限公司","杭州怀瑜信息科技有限公司","杭州民华金融信息服务有限公司","上海晟垣金融信息服务有限公司","深圳中银华融金融控股有限公司","上海联璧电子科技有限公司","杭州荣旭信息科技有限公司","永康市稳展汽车信息咨询有限公司","广西桂一族投资咨询有限公司","上海驹秀网络科技有限公司","上海龙响网络科技有限公司","宁波汇博金融服务外包有限公司","广州达为尊投资管理有限公司","上海翥鑫投资管理有限公司","佛山市安稳投资管理咨询有限公司","宜辀金融服务（深圳）有限公司","上海普艺邮风投资管理有限公司","北京弘盛鼎世网络科技有限公司","萨飞投资管理（上海）有限公司","宁波煜庭互联网信息科技有限公司","杭州昊隆互联网科技有限公司","张掖安邦伟业商务咨询有限责任公司","山东青联投资有限公司","津魁互联网金融信息服务（攸县）有限公司","福建云朗网络科技有限公司","浙江昕昕资产管理有限公司","杭州艾慕杰信息技术有限公司","宁波鼎亨汇通企业管理咨询有限公司","北京世通嘉华众筹投资管理有限公司","深圳小马资本管理有限公司","深圳市稳通金融服务有限公司","上海金庞金融信息服务有限公司","上海桢曦金融信息服务有限公司","北京花果信息技术有限公司"};
+        String[] list = {"杭州金雕资产管理有限公司","深圳市兆富资本管理有限公司","深圳前海佰盛资产管理有限公司","华宇浩海（宁波）投资管理有限公司","华夏恒天资本管理有限公司","华宇华高资产管理有限公司","上海常圣资产管理有限公司","北京中兴天元投资管理有限公司","华融优创投资基金管理有限公司","上海众盈财富投资管理有限公司","深圳荧兴源资产管理集团有限公司","华宇国信投资基金（北京）有限公司","汇德华融（平潭）资产管理有限公司","上海云枫股权投资基金管理有限公司","信达海胜（深圳）基金管理有限公司","北京未来能源投资基金管理股份有限公司","国投信达（北京）投资基金集团有限公司","中隆华夏（北京）投资基金管理有限公司","中新鸿泰（北京）投资基金管理有限公司","中洲博远（北京）投资管理咨询有限公司","中贵首控（成都）股权投资基金管理有限公司"};
         for(String keyword : list){
             try {
                 EntCommonResp fullNameResp = entCreditService.pullCompanyFullName(keyword);
+                entCreditService.queryGsBaseInfo(EntParamType.BY_NAME, fullNameResp.getResult());
                 entCreditService.queryEquityInfo(EntParamType.BY_NAME, fullNameResp.getResult());
             }catch(Exception e){
-
+                e.printStackTrace();
             }
         }
         return entEquityInfoResp;
     }
-    */
+
 }

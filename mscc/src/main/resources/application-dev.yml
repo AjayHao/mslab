@@ -1,5 +1,9 @@
 #配置中心
 spring:
+  profiles:
+    active: native
+
+spring:
   cloud:
     config:
       server:
@@ -9,14 +13,15 @@ spring:
           username: ajay.hao@gmail.com
           password: jzH130168
       label: master
-
+      native:
+        search-locations: classpath:/${running.env:local}
 #配置中心服务注册
 eureka:
   client:
     healthcheck:
       enabled: true
     serviceUrl:
-      defaultZone: ${EUREKA_SERVICE_URL:http://localhost:8761/eureka/}
+      defaultZone: ${EUREKA_SERVICE_URL:http://localhost:8761/registry-center/eureka/}
   instance:
-    lease-renewal-interval-in-seconds: 5
-    lease-expiration-duration-in-seconds: 20
+    lease-renewal-interval-in-seconds: 30
+    lease-expiration-duration-in-seconds: 90

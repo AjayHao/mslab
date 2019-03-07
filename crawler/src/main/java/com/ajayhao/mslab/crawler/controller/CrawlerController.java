@@ -32,9 +32,9 @@ public class CrawlerController {
 
     @ApiOperation("企业工商信息查询 - Remote")
     @RequestMapping(value = "/elsaic", method = GET)
-    public EntGsInfoResp getEleCreditInfo(@RequestParam("companyId") String companyId,
+    public EntCommonResp getEleCreditInfoRaw(@RequestParam("companyId") String companyId,
                                           @RequestParam("category") String category) {
-        return crawlerService.crawlEleCreditInfo(companyId,category);
+        return crawlerService.crawlEleCreditInfoRaw(companyId,category);
     }
 
     @ApiOperation("根据简称查询企业全称 - Remote")
