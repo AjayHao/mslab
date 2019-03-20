@@ -435,11 +435,12 @@ public class AmacCrawlerHelper {
             creditInfo.setRegisterNo(regNo);
             Element tdElement = element.child(0);
             String creditTypeStr = tdElement.child(0).html();
-            AmacCreditInfoType creditInfoType = AmacCreditInfoType.getByMessage(creditTypeStr);
-            String creditTypeCode = (creditInfoType == null) ? AmacCreditInfoType.OTHERS.getCode() : creditInfoType.getCode();
-            creditInfo.setCreditType(creditTypeStr); //中文写入
+            AmacCreditInfoType creditInfoType = (AmacCreditInfoType.getByMessage(creditTypeStr) == null) ?
+                    AmacCreditInfoType.OTHERS : AmacCreditInfoType.getByMessage(creditTypeStr);
+            //中文写入
+            creditInfo.setCreditType(creditTypeStr);
             String creditInfoStr;
-            if (AmacCreditInfoType.LOST_CONTACT == AmacCreditInfoType.get(creditTypeCode)) {
+            if (AmacCreditInfoType.LOST_CONTACT == creditInfoType) {
                 creditInfoStr = resolveLostContactStr(tdElement);
             }else{
                 creditInfoStr = tdElement.child(1).html();

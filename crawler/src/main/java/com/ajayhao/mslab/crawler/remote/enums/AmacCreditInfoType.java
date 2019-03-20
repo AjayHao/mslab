@@ -41,7 +41,7 @@ public enum AmacCreditInfoType implements IBaseEnum {
      */
     BAD_CREDIT("badCredit", "相关主体存在不良诚信记录"),
     /**
-     * 相关主体存在不良诚信记录
+     * 行政监管措施
      */
     ADMIN_SUPERVISION("adminSupervision", "行政监管措施"),
     /**
