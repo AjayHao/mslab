@@ -7,7 +7,7 @@ spring:
       label: ${DEPLOY_ENV:master} #配置服务器远程文件分支
       profile: dev,common
       discovery:
-        enabled: true
+        enabled: false
         serviceId: mslab-mscc
 
 #高可用配置中心，替代配置中心的固定ip

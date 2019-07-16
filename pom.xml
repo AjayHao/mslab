@@ -19,7 +19,7 @@
         <module>filecrawler</module>
         <module>msmc</module>
         <module>crawler</module>
-        <module>service-proxy</module>
+        <module>whatIsLambda</module>
     </modules>
 
 </project>

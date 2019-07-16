@@ -7,10 +7,12 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import static org.springframework.web.bind.annotation.RequestMethod.GET;
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
 /**
@@ -20,6 +22,7 @@ import static org.springframework.web.bind.annotation.RequestMethod.POST;
 @Api("股票信息")
 @RestController
 @RequestMapping(value = "/stockInfo")
+//@CrossOrigin(origins = "*",maxAge = 3600)
 public class StockInfoController {
 
     @Autowired
@@ -31,5 +34,16 @@ public class StockInfoController {
         StockInfoReq req = new StockInfoReq();
         req.setGid(gid);
         return stockInfoService.recordLatestStockInfo(req);
+    }
+
+    @RequestMapping(value = "/query", method = GET)
+    public StockInfoResp queryStockInfo() {
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        return new StockInfoResp();
     }
 }
