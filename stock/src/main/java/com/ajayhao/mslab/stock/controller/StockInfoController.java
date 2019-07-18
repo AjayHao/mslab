@@ -1,5 +1,6 @@
 package com.ajayhao.mslab.stock.controller;
 
+import com.ajayhao.mslab.core.common.BaseResp;
 import com.ajayhao.mslab.stock.dto.StockInfoReq;
 import com.ajayhao.mslab.stock.dto.StockInfoResp;
 import com.ajayhao.mslab.stock.service.StockInfoService;
@@ -36,14 +37,14 @@ public class StockInfoController {
         return stockInfoService.recordLatestStockInfo(req);
     }
 
-    @RequestMapping(value = "/query", method = GET)
-    public StockInfoResp queryStockInfo() {
+    @RequestMapping(value = "/sleep/{milliSeconds}", method = GET)
+    public BaseResp sleep(@PathVariable Integer milliSeconds) {
         try {
-            Thread.sleep(1000);
+            Thread.sleep(milliSeconds);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
 
-        return new StockInfoResp();
+        return BaseResp.of("0", String.valueOf(milliSeconds));
     }
 }
