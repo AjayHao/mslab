@@ -19,7 +19,13 @@ import static com.ajayhao.mslab.core.common.enums.RespCodeType.*;
 @ToString
 @AllArgsConstructor
 @NoArgsConstructor
-public class BaseResp implements Serializable {
+public class BaseResp<E> implements Serializable {
+
+    public BaseResp(Date date, String respCode, String respMsg){
+        this.respDate = date;
+        this.respCode = respCode;
+        this.respMsg = respMsg;
+    }
 
     /**  **/
     private static final long serialVersionUID = -5027854375055011927L;
@@ -35,6 +41,8 @@ public class BaseResp implements Serializable {
     private String            respMsg;
 
 
+    private E                 data;
+
     /**
      * <P> 初始化成功 <P>
      */
@@ -42,6 +50,13 @@ public class BaseResp implements Serializable {
     public <T extends BaseResp> T buildSuccess() {
         respCode = SUCCESS.getCode();
         respMsg = SUCCESS.getMessage();
+        return (T) this;
+    }
+
+    public <T extends BaseResp<E>> T buildSuccess(E data) {
+        respCode = SUCCESS.getCode();
+        respMsg = SUCCESS.getMessage();
+        this.data = data;
         return (T) this;
     }
 

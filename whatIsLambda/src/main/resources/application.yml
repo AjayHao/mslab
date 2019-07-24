@@ -1,0 +1,11 @@
+#Application
+spring:
+  application:
+    name: lambda-lab
+#profile
+  profiles:
+    active: dev
+
+#Server
+server:
+  port: 30001

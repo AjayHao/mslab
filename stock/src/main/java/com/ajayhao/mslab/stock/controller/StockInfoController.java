@@ -37,14 +37,4 @@ public class StockInfoController {
         return stockInfoService.recordLatestStockInfo(req);
     }
 
-    @RequestMapping(value = "/sleep/{milliSeconds}", method = GET)
-    public BaseResp sleep(@PathVariable Integer milliSeconds) {
-        try {
-            Thread.sleep(milliSeconds);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-
-        return BaseResp.of("0", String.valueOf(milliSeconds));
-    }
 }

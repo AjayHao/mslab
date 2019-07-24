@@ -1,0 +1,30 @@
+###  当配置中心失效时，该配置文件生效
+
+
+# 数据库
+jdbc:
+  oracle:
+    driver: oracle.jdbc.driver.OracleDriver
+    url: jdbc:oracle:thin:@192.168.137.1:1521:orcl
+    username: ajlab
+    password: ajlab
+
+#swagger配置
+swagger:
+  switch: true
+  config:
+    basePackage: com.ajayhao.mslab.lambdalab
+    title: Spring Boot中使用Swagger2构建RESTful APIs,动态刷新
+    description: Micro Service Lab,/mslab/lambdalab
+    version: 1.0
+
+
+#Actuator
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  endpoint:
+    health:
+      show-details: always
