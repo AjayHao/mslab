@@ -41,6 +41,9 @@ public class MockController {
         }
 
         String retStr = "foo".equals(userId) ? "T001" : "T002";
+        if("bar".equals(userId)){
+            return resp.buildFail();
+        }
         return resp.buildSuccess(retStr);
     }
 

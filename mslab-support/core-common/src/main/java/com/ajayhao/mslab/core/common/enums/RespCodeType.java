@@ -16,7 +16,7 @@ import lombok.Getter;
 @AllArgsConstructor
 public enum RespCodeType implements BaseResultType {
 
-    SUCCESS("0000", "业务成功"),
+    SUCCESS("0", "业务成功"),
 
     //0000-0099 公共错误返回码
     PARAM_EMPTY("0002", "参数为空"),
