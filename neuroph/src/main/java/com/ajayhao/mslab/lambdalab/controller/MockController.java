@@ -21,14 +21,14 @@ import static org.springframework.web.bind.annotation.RequestMethod.GET;
 public class MockController {
 
     @RequestMapping(value = "/sleep/{milliSeconds}", method = GET)
-    public BaseResp sleep(@PathVariable Integer milliSeconds) {
+    public BaseResp<String> sleep(@PathVariable Integer milliSeconds) {
         try {
             Thread.sleep(milliSeconds);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
 
-        return BaseResp.of("0", String.valueOf(milliSeconds));
+        return BaseResp.buildSuccess(String.valueOf(milliSeconds));
     }
 
     @GetMapping("/team/")
@@ -42,9 +42,11 @@ public class MockController {
 
         String retStr = "foo".equals(userId) ? "T001" : "T002";
         if("bar".equals(userId)){
-            return resp.buildFail();
+            resp = BaseResp.buildFail();
+        } else {
+            resp = BaseResp.buildSuccess(retStr);
         }
-        return resp.buildSuccess(retStr);
+        return resp;
     }
 
     @GetMapping("/resource/")
@@ -57,7 +59,8 @@ public class MockController {
         }
 
         String retStr = "T001".equals(teamId) ? "R001" : "R002";
-        return resp.buildSuccess(retStr);
+        resp = BaseResp.buildSuccess(retStr);
+        return resp;
     }
 
     @GetMapping("/file/")
@@ -69,13 +72,13 @@ public class MockController {
             e.printStackTrace();
         }
 
-        String retStr;
         if("R001".equals(resourceId)) {
-            retStr = "F001";
-            return resp.buildSuccess(retStr);
+            resp = BaseResp.buildSuccess("F001");
         }else{
-            return resp.buildFail();
+            resp = BaseResp.buildFail();
         }
+
+        return resp;
 
     }
 }

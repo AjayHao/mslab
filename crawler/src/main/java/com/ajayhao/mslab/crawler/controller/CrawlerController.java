@@ -1,7 +1,6 @@
 package com.ajayhao.mslab.crawler.controller;
 
-import com.ajayhao.mslab.crawler.dto.response.EntCommonResp;
-import com.ajayhao.mslab.crawler.dto.response.EntGsInfoResp;
+import com.ajayhao.mslab.core.common.BaseResp;
 import com.ajayhao.mslab.crawler.service.EntCreditService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -32,32 +31,32 @@ public class CrawlerController {
 
     @ApiOperation("企业工商信息查询 - Remote")
     @RequestMapping(value = "/elsaic", method = GET)
-    public EntCommonResp getEleCreditInfoRaw(@RequestParam("companyId") String companyId,
-                                          @RequestParam("category") String category) {
+    public BaseResp<String> getEleCreditInfoRaw(@RequestParam("companyId") String companyId,
+                                                @RequestParam("category") String category) {
         return crawlerService.crawlEleCreditInfoRaw(companyId,category);
     }
 
     @ApiOperation("根据简称查询企业全称 - Remote")
     @RequestMapping(value = "/fullcompname", method = GET)
-    public EntCommonResp getFullCompName(@RequestParam("keyword") String keyword){
+    public BaseResp<String> getFullCompName(@RequestParam("keyword") String keyword){
         return crawlerService.pullCompanyFullName(keyword);
     }
 
     @ApiOperation("根据企业全称取entId - Remote")
     @RequestMapping(value = "/getentid", method = GET)
-    public EntCommonResp getEntId(@RequestParam("keyword") String keyword){
+    public BaseResp<String> getEntId(@RequestParam("keyword") String keyword){
         return crawlerService.pullEntId(keyword, "3");
     }
 
     @ApiOperation("根据工商企业号查询企业全称 - Remote")
     @RequestMapping(value = "/compname", method = GET)
-    public EntCommonResp getCompNameByCreditCode(@RequestParam("keyword") String keyword){
+    public BaseResp<String> getCompNameByCreditCode(@RequestParam("keyword") String keyword){
         return crawlerService.crawlCompanyNameByCreditCode(keyword);
     }
 
     @ApiOperation("舆情查询 - Remote")
     @RequestMapping(value = "/publicvoice", method = GET)
-    public EntCommonResp getPublicVoices(@RequestParam("companyId") String companyId,
+    public BaseResp<String> getPublicVoices(@RequestParam("companyId") String companyId,
                                          @RequestParam(name = "begin",required = false) String begin,
                                          @RequestParam(name = "end",required = false) String end) {
         return crawlerService.crawlPublicVoices(companyId, begin, end);
@@ -66,7 +65,7 @@ public class CrawlerController {
 
     @ApiOperation("股权结构查询 - Remote")
     @RequestMapping(value = "/saicinv", method = GET)
-    public EntCommonResp getRemoteEquityInfo(@RequestParam("companyId") String companyId,
+    public BaseResp<String> getRemoteEquityInfo(@RequestParam("companyId") String companyId,
                                              @RequestParam(name = "version",required = false) String version) {
         return crawlerService.crawlEntEquityControl(companyId, version);
     }

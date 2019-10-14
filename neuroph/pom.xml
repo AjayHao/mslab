@@ -11,7 +11,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.ajayhao</groupId>
-    <artifactId>what-is-lambda</artifactId>
+    <artifactId>neuroph</artifactId>
 
     <dependencies>
         <dependency>
@@ -45,6 +45,11 @@
             </exclusions>
         </dependency>
 
+        <dependency>
+            <groupId>org.neuroph</groupId>
+            <artifactId>neuroph-core</artifactId>
+        </dependency>
+
         <!--************* lombok 编译辅助  *************** -->
         <dependency>
             <groupId>org.projectlombok</groupId>
@@ -52,5 +57,6 @@
         </dependency>
 
     </dependencies>
+
 
 </project>

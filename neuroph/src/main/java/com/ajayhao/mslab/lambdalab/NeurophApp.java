@@ -17,10 +17,10 @@ import java.util.ArrayList;
 @SpringBootApplication
 @EnableAutoConfiguration
 @EnableSwaggerConfig
-public class LambdaLabApp {
+public class NeurophApp {
 
     public static void main(String[] args) throws Exception {
-        SpringApplication.run(LambdaLabApp.class, args);
+        SpringApplication.run(NeurophApp.class, args);
     }
 
     @Bean

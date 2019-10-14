@@ -19,7 +19,7 @@
         <module>filecrawler</module>
         <module>msmc</module>
         <module>crawler</module>
-        <module>whatIsLambda</module>
+        <module>neuroph</module>
     </modules>
 
 </project>

@@ -1,10 +1,12 @@
 package com.ajayhao.mslab.crawler.service;
 
-import com.ajayhao.mslab.crawler.dto.response.EntCommonResp;
-import com.ajayhao.mslab.crawler.dto.response.EntEquityDetailResp;
-import com.ajayhao.mslab.crawler.dto.response.EntEquityFullResp;
-import com.ajayhao.mslab.crawler.dto.response.EntGsInfoResp;
+import com.ajayhao.mslab.core.common.BaseResp;
+import com.ajayhao.mslab.crawler.dto.EntEquityDetailInfo;
+import com.ajayhao.mslab.crawler.dto.EntEquityInfo;
+import com.ajayhao.mslab.crawler.dto.EntGsInfo;
 import com.ajayhao.mslab.crawler.enums.EntParamType;
+
+import java.util.List;
 
 /**
  * @ClassName EntCreditService
@@ -20,7 +22,7 @@ public interface EntCreditService {
      * @Param
      * @return java.lang.String
      **/
-    EntGsInfoResp queryGsBaseInfo(EntParamType type, String key);
+    BaseResp<EntGsInfo> queryGsBaseInfo(EntParamType type, String key);
 
     /**
      * @Description 查询公司股权结构
@@ -28,44 +30,44 @@ public interface EntCreditService {
      * @Param type  "1"-entId "2"-企业全名
      * @return
      **/
-    EntEquityFullResp queryEquityInfo(EntParamType type, String key);
+    BaseResp<EntEquityInfo> queryEquityInfo(EntParamType type, String key);
 
-    EntEquityDetailResp queryEquityDetailByParent(String entId, String parentNodeId);
+    BaseResp<List<EntEquityDetailInfo>> queryEquityDetailByParent(String entId, String parentNodeId);
 
     /**
      * @Description 爬取企业征信信息
      * @Param [entId, category]
      * @return java.lang.String
      **/
-    EntCommonResp crawlEleCreditInfoRaw(String entId, String category);
+    BaseResp<String> crawlEleCreditInfoRaw(String entId, String category);
 
     /**
      * @Description 获取企业信息entId
      * @Param [key, type]
      * @return java.lang.String
      **/
-    EntCommonResp pullEntId(String keyword, String type);
+    BaseResp<String> pullEntId(String keyword, String type);
 
     /**
      * @Description 根据简称取企业全称
      * @Param key 公司名称关键字
      * @return java.lang.String
      **/
-    EntCommonResp pullCompanyFullName(String key);
+    BaseResp<String> pullCompanyFullName(String key);
 
     /**
      * @Description 根据工商企业号取企业全称
      * @Param key 工商企业号
      * @return java.lang.String
      **/
-    EntCommonResp crawlCompanyNameByCreditCode(String key);
+    BaseResp<String> crawlCompanyNameByCreditCode(String key);
 
     /**
      * @Description 查询公司新闻
      * @Param companyId,公司entId
      * @return java.lang.String
      **/
-    EntCommonResp crawlPublicVoices(String companyId, String begin, String end);
+    BaseResp<String> crawlPublicVoices(String companyId, String begin, String end);
 
 
     /**
@@ -74,6 +76,6 @@ public interface EntCreditService {
      * @Param version 类型 1-全部展现 2-部分脱敏 3-全部脱敏
      * @return java.lang.String
      **/
-    EntCommonResp crawlEntEquityControl(String companyId, String version);
+    BaseResp<String> crawlEntEquityControl(String companyId, String version);
 
 }

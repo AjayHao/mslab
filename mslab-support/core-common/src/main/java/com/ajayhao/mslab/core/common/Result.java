@@ -2,9 +2,7 @@ package com.ajayhao.mslab.core.common;
 
 
 import com.ajayhao.mslab.core.common.enums.RespCodeType;
-import com.ajayhao.mslab.core.common.exception.IErrorCodeType;
 import com.ajayhao.mslab.core.util.JsonUtil;
-import com.sun.xml.internal.ws.api.model.ExceptionType;
 
 import java.io.Serializable;
 
@@ -139,9 +137,5 @@ public class Result<T> implements Serializable {
         return null != result && "0".equals(result.getCode());
     }
 
-    @SuppressWarnings({"unchecked","rawtypes"})
-    public static String formatCode(ExceptionType exceptionType, int code, String appId){
-        return String.format(CODE_FORMAT, exceptionType.value(), code, appId);
-    }
 
 }

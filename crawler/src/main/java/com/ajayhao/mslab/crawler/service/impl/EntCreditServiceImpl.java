@@ -1,20 +1,16 @@
 package com.ajayhao.mslab.crawler.service.impl;
 
+import com.ajayhao.mslab.core.common.BaseResp;
 import com.ajayhao.mslab.core.util.DateUtil;
 import com.ajayhao.mslab.crawler.dto.EntEquityDetailInfo;
 import com.ajayhao.mslab.crawler.dto.EntEquityInfo;
 import com.ajayhao.mslab.crawler.dto.EntGsInfo;
-import com.ajayhao.mslab.crawler.dto.response.EntCommonResp;
-import com.ajayhao.mslab.crawler.dto.response.EntEquityDetailResp;
-import com.ajayhao.mslab.crawler.dto.response.EntEquityFullResp;
-import com.ajayhao.mslab.crawler.dto.response.EntGsInfoResp;
 import com.ajayhao.mslab.crawler.enums.EntParamType;
 import com.ajayhao.mslab.crawler.orm.entity.BaseEntDataEntity;
 import com.ajayhao.mslab.crawler.orm.entity.EntControlEntity;
 import com.ajayhao.mslab.crawler.orm.entity.EntEquityDetailEntity;
 import com.ajayhao.mslab.crawler.orm.entity.EntGsInfoEntity;
 import com.ajayhao.mslab.crawler.remote.ElecreditRemoteService;
-import com.ajayhao.mslab.crawler.remote.enums.ElsaicQryVersion;
 import com.ajayhao.mslab.crawler.repository.EntEquityInfoRepository;
 import com.ajayhao.mslab.crawler.repository.EntGsInfoRepository;
 import com.ajayhao.mslab.crawler.service.EntCreditService;
@@ -62,8 +58,8 @@ public class EntCreditServiceImpl implements EntCreditService {
      * @return EntGsInfoResp
      **/
     @Override
-    public EntGsInfoResp queryGsBaseInfo(EntParamType type, String key){
-        EntGsInfoResp entGsInfoResp = new EntGsInfoResp().buildSuccess();
+    public BaseResp<EntGsInfo> queryGsBaseInfo(EntParamType type, String key){
+        BaseResp<EntGsInfo> entGsInfoResp = BaseResp.buildSuccess();
         String entId = entBaseInfoService.getEntIdByKey(type, key);
         //local查询
         final EntGsInfoEntity oldEntGsInfoEntity = entGsInfoRepository.queryGsInfoByEntId(entId);
@@ -74,7 +70,7 @@ public class EntCreditServiceImpl implements EntCreditService {
         }else{
             entGsInfo = entBaseInfoService.resolveEntBaseInfo(oldEntGsInfoEntity);
         }
-        entGsInfoResp.setResult(entGsInfo);
+        entGsInfoResp.setData(entGsInfo);
         return entGsInfoResp;
     }
 
@@ -85,8 +81,8 @@ public class EntCreditServiceImpl implements EntCreditService {
      * @return
      **/
     @Override
-    public EntEquityFullResp queryEquityInfo(EntParamType type, String key) {
-        EntEquityFullResp equityInfoResp = new EntEquityFullResp().buildSuccess();
+    public BaseResp<EntEquityInfo> queryEquityInfo(EntParamType type, String key) {
+        BaseResp<EntEquityInfo> equityInfoResp = BaseResp.buildSuccess();
         String entId = entBaseInfoService.getEntIdByKey(type, key);
         //local查询
         final List<EntControlEntity> oldEntControlEntityList = entEquityInfoRepository.queryEntControlByEntId(entId);
@@ -99,7 +95,7 @@ public class EntCreditServiceImpl implements EntCreditService {
             final List<EntEquityDetailEntity> oldEquityDetailEntityList = entEquityInfoRepository.queryEquityDetailEntity(key);
             equityInfo = entEquityInfoService.resolveEquityInfo(oldEntControlEntityList, oldEquityDetailEntityList);
         }
-        equityInfoResp.setResult(equityInfo);
+        equityInfoResp.setData(equityInfo);
         return equityInfoResp;
     }
 
@@ -110,12 +106,12 @@ public class EntCreditServiceImpl implements EntCreditService {
      * @return
      **/
     @Override
-    public EntEquityDetailResp queryEquityDetailByParent(String entId, String parentNodeId) {
-        EntEquityDetailResp equityDetailResp = new EntEquityDetailResp().buildSuccess();
+    public BaseResp<List<EntEquityDetailInfo>> queryEquityDetailByParent(String entId, String parentNodeId) {
+        BaseResp equityDetailResp = BaseResp.buildSuccess();
 
         final List<EntEquityDetailEntity> equityDetailEntityList = entEquityInfoRepository.queryEquityDetailByParentNode(entId, parentNodeId);
         List<EntEquityDetailInfo> equityDetailList = entEquityInfoService.resolveEntEquityDetailInfo(equityDetailEntityList);
-        equityDetailResp.setResult(equityDetailList);
+        equityDetailResp.setData(equityDetailList);
         return equityDetailResp;
     }
 
@@ -133,11 +129,10 @@ public class EntCreditServiceImpl implements EntCreditService {
      * @return java.lang.String
      **/
     @Override
-    public EntCommonResp crawlEleCreditInfoRaw(String entId, String category){
-        EntCommonResp elecreditResp = new EntCommonResp();
-        elecreditResp.buildSuccess();
+    public BaseResp<String> crawlEleCreditInfoRaw(String entId, String category){
+        BaseResp elecreditResp = BaseResp.buildSuccess();
         String info = elecreditRemoteService.pullEleCreditInfoRaw(entId, category);
-        elecreditResp.setResult(info);
+        elecreditResp.setData(info);
         return elecreditResp;
     }
 
@@ -147,11 +142,10 @@ public class EntCreditServiceImpl implements EntCreditService {
      * @return java.lang.String
      **/
     @Override
-    public EntCommonResp pullEntId(String key, String type){
-        EntCommonResp elecreditResp = new EntCommonResp();
-        elecreditResp.buildSuccess();
+    public BaseResp<String> pullEntId(String key, String type){
+        BaseResp<String> elecreditResp = BaseResp.buildSuccess();
         String info = elecreditRemoteService.pullEntId(key, type);
-        elecreditResp.setResult(info);
+        elecreditResp.setData(info);
         return elecreditResp;
     }
 
@@ -161,10 +155,10 @@ public class EntCreditServiceImpl implements EntCreditService {
      * @return java.lang.String
      **/
     @Override
-    public EntCommonResp pullCompanyFullName(String key) {
-        EntCommonResp elecreditResp = new EntCommonResp().buildSuccess();
+    public BaseResp<String> pullCompanyFullName(String key) {
+        BaseResp<String> elecreditResp = BaseResp.buildSuccess();
         String companyName = elecreditRemoteService.pullCompanyFullName(key);
-        elecreditResp.setResult(companyName);
+        elecreditResp.setData(companyName);
         return elecreditResp;
     }
 
@@ -174,11 +168,10 @@ public class EntCreditServiceImpl implements EntCreditService {
      * @return java.lang.String
      **/
     @Override
-    public EntCommonResp crawlCompanyNameByCreditCode(String key) {
-        EntCommonResp elecreditResp = new EntCommonResp();
-        elecreditResp.buildSuccess();
+    public BaseResp<String> crawlCompanyNameByCreditCode(String key) {
+        BaseResp<String> elecreditResp = BaseResp.buildSuccess();
         String info = elecreditRemoteService.pullCompanyNameByCreditCode(key);
-        elecreditResp.setResult(info);
+        elecreditResp.setData(info);
         return elecreditResp;
     }
 
@@ -188,11 +181,10 @@ public class EntCreditServiceImpl implements EntCreditService {
      * @return java.lang.String
      **/
     @Override
-    public EntCommonResp crawlPublicVoices(String companyId, String begin, String end) {
-        EntCommonResp elecreditResp = new EntCommonResp();
-        elecreditResp.buildSuccess();
+    public BaseResp<String> crawlPublicVoices(String companyId, String begin, String end) {
+        BaseResp<String> elecreditResp = BaseResp.buildSuccess();
         String info = elecreditRemoteService.pullPublicVoices(companyId, begin, end);
-        elecreditResp.setResult(info);
+        elecreditResp.setData(info);
         return elecreditResp;
     }
 
@@ -203,11 +195,10 @@ public class EntCreditServiceImpl implements EntCreditService {
      * @return java.lang.String
      **/
     @Override
-    public EntCommonResp crawlEntEquityControl(String companyId, String version) {
-        EntCommonResp elecreditResp = new EntCommonResp();
-        elecreditResp.buildSuccess();
+    public BaseResp<String> crawlEntEquityControl(String companyId, String version) {
+        BaseResp<String> elecreditResp = BaseResp.buildSuccess();
         String info = elecreditRemoteService.pullEntEquityControl(companyId, version);
-        elecreditResp.setResult(info);
+        elecreditResp.setData(info);
         return elecreditResp;
     }
 

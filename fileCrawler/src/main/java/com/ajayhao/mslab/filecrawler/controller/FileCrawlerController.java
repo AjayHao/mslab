@@ -1,9 +1,10 @@
 package com.ajayhao.mslab.filecrawler.controller;
 
-import com.ajayhao.mslab.filecrawler.dto.FileCrawlerReq;
-import com.ajayhao.mslab.filecrawler.dto.FileCrawlerResp;
-import com.ajayhao.mslab.filecrawler.service.manager.FileStatManager;
+import com.ajayhao.mslab.core.common.BaseResp;
 import com.ajayhao.mslab.core.common.enums.RespCodeType;
+import com.ajayhao.mslab.filecrawler.dto.FileCrawlerInfo;
+import com.ajayhao.mslab.filecrawler.dto.FileCrawlerReq;
+import com.ajayhao.mslab.filecrawler.service.manager.FileStatManager;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,7 +22,9 @@ public class FileCrawlerController {
 
     @PostMapping
     public String post(@RequestBody FileCrawlerReq request) {
-        if(StringUtils.isBlank(request.getTaskId())) return "fuck!empty task";
+        if (StringUtils.isBlank(request.getTaskId())) {
+            return "warning!empty task";
+        }
 
         FileStatManager fileStatManager = fileStatManagerMap.get(request.getTaskId());
         //TODO 判断线程池状态
@@ -35,14 +38,17 @@ public class FileCrawlerController {
 
     @GetMapping
     @RequestMapping("/tasks/{taskId}")
-    public FileCrawlerResp getByTaskId(@PathVariable String taskId) {
-        FileCrawlerResp response = null;
+    public BaseResp<FileCrawlerInfo> getByTaskId(@PathVariable String taskId) {
+        FileCrawlerInfo dto = null;
+        BaseResp<FileCrawlerInfo> response = null;
         FileStatManager fileStatManager = fileStatManagerMap.get(taskId);
         if(fileStatManager == null){
-            response = new FileCrawlerResp(RespCodeType.FAIL, "扫描任务编号:"+taskId+"不存在或已过期");
+            response = BaseResp.buildFail(RespCodeType.FAIL, "扫描任务编号:"+taskId+"不存在或已过期");
         }else{
-            response = new FileCrawlerResp(RespCodeType.SUCCESS, "执行成功");
-            response.setDataMapList(fileStatManager.getStatInfoList());
+            dto = new FileCrawlerInfo();
+            response = BaseResp.buildSuccess();
+            dto.setDataMapList(fileStatManager.getStatInfoList());
+            response.setData(dto);
             //response.setMap(fileStatManager.getStatInfoDetailMap());
         }
         return response;
@@ -50,15 +56,17 @@ public class FileCrawlerController {
 
     @GetMapping
     @RequestMapping("/tasks/{taskId}/ext/{ext}")
-    public FileCrawlerResp get(@PathVariable String taskId, @PathVariable String ext) {
-        FileCrawlerResp response = null;
+    public BaseResp<FileCrawlerInfo> get(@PathVariable String taskId, @PathVariable String ext) {
+        FileCrawlerInfo dto = null;
+        BaseResp<FileCrawlerInfo> response = null;
         FileStatManager fileStatManager = fileStatManagerMap.get(taskId);
         if(fileStatManager == null){
-            response = new FileCrawlerResp(RespCodeType.FAIL, "扫描任务编号:"+taskId+"不存在或已过期");
+            response = BaseResp.buildFail(RespCodeType.FAIL, "扫描任务编号:"+taskId+"不存在或已过期");
         }else{
-            response = new FileCrawlerResp(RespCodeType.SUCCESS, "执行成功");
-            response.setDetailList(fileStatManager.getStatInfoDetailByExt(ext));
-            //response.setMap(fileStatManager.getStatInfoDetailMap());
+            dto = new FileCrawlerInfo();
+            response = BaseResp.buildSuccess();
+            dto.setDataMapList(fileStatManager.getStatInfoList());
+            response.setData(dto);
         }
         return response;
     }

@@ -1,5 +1,6 @@
 package com.ajayhao.mslab.core.common;
 
+import com.ajayhao.mslab.core.common.enums.RespCodeType;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.*;
 
@@ -14,18 +15,10 @@ import static com.ajayhao.mslab.core.common.enums.RespCodeType.*;
  * @author haozhenjie
  * @version $Id: BaseResp.java, v 0.1 2018年4月17日 下午4:16:57
  */
-@Getter
-@Setter
-@ToString
+
 @AllArgsConstructor
 @NoArgsConstructor
 public class BaseResp<E> implements Serializable {
-
-    public BaseResp(Date date, String respCode, String respMsg){
-        this.respDate = date;
-        this.respCode = respCode;
-        this.respMsg = respMsg;
-    }
 
     /**  **/
     private static final long serialVersionUID = -5027854375055011927L;
@@ -43,41 +36,58 @@ public class BaseResp<E> implements Serializable {
 
     private E                 data;
 
-    /**
-     * <P> 初始化成功 <P>
-     */
-    @SuppressWarnings("unchecked")
-    public <T extends BaseResp> T buildSuccess() {
-        respCode = SUCCESS.getCode();
-        respMsg = SUCCESS.getMessage();
-        return (T) this;
+
+
+    public BaseResp setRespCode(String respCode) {
+        this.respCode = respCode;
+        return this;
     }
 
-    public <T extends BaseResp<E>> T buildSuccess(E data) {
-        respCode = SUCCESS.getCode();
-        respMsg = SUCCESS.getMessage();
+    public BaseResp setRespMsg(String respMsg) {
+        this.respMsg = respMsg;
+        return this;
+    }
+
+    public BaseResp setData(E data) {
         this.data = data;
-        return (T) this;
+        return this;
+    }
+
+    /**
+     * <P> 初始化成功 无参数<P>
+     */
+    public static BaseResp buildSuccess() {
+        return BaseResp.buildSuccess(null);
+    }
+
+    /**
+     * <P> 初始化成功 带参<P>
+     */
+    public static BaseResp buildSuccess(Object data) {
+        return new BaseResp().setRespCode(SUCCESS.getCode())
+                .setRespMsg(SUCCESS.getMessage())
+                .setData(data);
     }
 
     /**
      * <P> 初始化失败 <P>
      */
-    @SuppressWarnings("unchecked")
-    public <T extends BaseResp> T buildFail() {
-        respCode = FAIL.getCode();
-        respMsg = FAIL.getMessage();
-        return (T) this;
+    public static BaseResp buildFail() {
+        return new BaseResp().setRespCode(FAIL.getCode())
+                .setRespMsg(FAIL.getMessage());
+    }
+
+    public static BaseResp buildFail(RespCodeType respCodeType, String respMsg) {
+        return new BaseResp().setRespCode(respCodeType.getCode())
+                .setRespMsg(respCodeType.getMessage());
     }
 
     /**
      * <P> 初始化幂等 <P>
      */
-    @SuppressWarnings("unchecked")
-    public <T extends BaseResp> T buildIdempotent() {
-        respCode = ORDER_IDEMPOTENT.getCode();
-        respMsg = ORDER_IDEMPOTENT.getMessage();
-        return (T) this;
+    public static BaseResp buildIdempotent() {
+        return new BaseResp().setRespCode(ORDER_IDEMPOTENT.getCode())
+                .setRespMsg(ORDER_IDEMPOTENT.getMessage());
     }
 
     /**
@@ -96,25 +106,7 @@ public class BaseResp<E> implements Serializable {
         return getRespCodeType(respCode) == ORDER_IDEMPOTENT;
     }
 
-    /**
-     * 
-     * <P> <P>
-     * @param respCode
-     * @param respMsg
-     * @return
-     */
-    public static BaseResp of(String respCode, String respMsg) {
-        return new BaseResp(new Date(), respCode, respMsg);
+    public E getData() {
+        return data;
     }
-
-    /**
-     * 
-     * <P> <P>
-     * @param resultType
-     * @return
-     */
-    public static BaseResp of(BaseResultType resultType) {
-        return new BaseResp(new Date(), resultType.getCode(), resultType.getMessage());
-    }
-
 }

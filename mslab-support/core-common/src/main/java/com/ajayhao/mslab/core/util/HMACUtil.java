@@ -1,7 +1,5 @@
 package com.ajayhao.mslab.core.util;
 
-import sun.misc.BASE64Encoder;
-
 import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;
 
