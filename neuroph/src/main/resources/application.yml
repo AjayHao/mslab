@@ -1,11 +1,11 @@
 #Application
 spring:
   application:
-    name: lambda-lab
+    name: neuroph
 #profile
   profiles:
     active: dev
 
 #Server
 server:
-  port: 30001
+  port: 30011
