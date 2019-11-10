@@ -11,6 +11,8 @@ public class PersonVO implements Serializable,Cloneable{
 
     private int id;
     private String name;
+    private int age;
+    private String team;
 
     public PersonVO() {}
 
@@ -40,11 +42,29 @@ public class PersonVO implements Serializable,Cloneable{
         this.name = name;
     }
 
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    public String getTeam() {
+        return team;
+    }
+
+    public void setTeam(String team) {
+        this.team = team;
+    }
+
     @Override
     public String toString() {
         return "PersonVO{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
+                ", age=" + age +
+                ", team='" + team + '\'' +
                 '}';
     }
 }

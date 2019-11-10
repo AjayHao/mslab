@@ -1,0 +1,62 @@
+[
+{
+  "id" : "13",
+  "name" : "James Harden",
+  "age" : 32,
+  "team" : "Hou"
+},
+{
+  "id" : "23",
+  "name" : "LeBron James",
+  "age" : 34,
+  "team" : "Lal"
+},
+{
+  "id" : "0",
+  "name" : "Russell Westbrook",
+  "age" : 30,
+  "team" : "Hou"
+},
+{
+  "id" : "25",
+  "name" : "Giannis Antetokounmpo",
+  "age" : 34,
+  "team" : "Mil"
+},
+{
+  "id" : "11",
+  "name" : "Klay Thompson",
+  "age" : 30,
+  "team" : "Wor"
+},
+{
+  "id" : "2",
+  "name" : "John Wall",
+  "age" : 30,
+  "team" : "Wiz"
+},
+{
+  "id" : "32",
+  "name" : "Karl-Anthony Towns",
+  "age" : 24,
+  "team" : "Min"
+},
+{
+  "id" : "21",
+  "name" : "Joel Embiid",
+  "age" : 26,
+  "team" : "Phi"
+},
+{
+  "id" : "1",
+  "name" : "Devin Booker",
+  "age" : 24,
+  "team" : "Sun"
+},
+{
+  "id" : "33",
+  "name" : "Marc Gasol",
+  "age" : 35,
+  "team" : "Tor"
+}
+]
