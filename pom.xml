@@ -20,6 +20,7 @@
         <module>msmc</module>
         <module>crawler</module>
         <module>neuroph</module>
+        <module>workshop</module>
     </modules>
 
 </project>
