@@ -4,14 +4,12 @@ import com.ajayhao.mslab.core.util.JsonUtil;
 import com.ajayhao.workshop.PersonVO;
 import com.fasterxml.jackson.core.type.TypeReference;
 import jodd.io.FileUtil;
-import org.springframework.core.io.ClassPathResource;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.IntSummaryStatistics;
-import java.util.List;
+import java.util.*;
+import java.util.function.Function;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * CollectorApiDemos
@@ -41,10 +39,61 @@ public class CollectorApiDemos {
 
     public static void main(String[] args){
         CollectorApiDemos demo = new CollectorApiDemos();
+        demo.toList();
+        demo.toSet();
+        demo.toMap();
+        demo.toMapWithMerge();
         demo.filterWithSort();
         demo.logicStat();
         demo.numberStat();
-        demo.peek();
+        demo.skipAndPeek();
+        demo.groupingBy();
+    }
+
+
+    /**
+     * toList
+     */
+    public void toList() {
+        System.out.println("### build to list");
+        List<Date> dateList = Stream.generate(Date::new).limit(10).collect(Collectors.toList());
+
+        print(dateList);
+    }
+
+
+    /**
+     * toSet
+     */
+    public void toSet() {
+        System.out.println("### build to set");
+        HashSet<Date> dateSet = Stream.generate(Date::new)
+                .limit(10)
+                .collect(Collectors.toCollection(HashSet::new));
+
+        print(dateSet);
+    }
+
+    /**
+     * toMap
+     */
+    public void toMap() {
+        System.out.println("### build to map");
+        Map<String, String> mapData = Stream.of("2019-01-01","2018-10-31","2017-02-15")
+                .collect(Collectors.toMap(e -> e.split("-")[0], Function.identity()));
+        print(mapData);
+    }
+
+    /**
+     * toMap
+     */
+    public void toMapWithMerge() {
+        System.out.println("### build to merged map");
+        Map<String, String> mapData = Stream.of("2018-01-01","2018-10-31","2018-02-15")
+                .collect(Collectors.toMap(e -> e.split("-")[0],
+                        Function.identity(),
+                        (v1,v2) -> v1 + "," + v2));
+        print(mapData);
     }
 
 
@@ -89,15 +138,15 @@ public class CollectorApiDemos {
     }
 
     /**
-     * peek
+     * peek is just for debugging
      */
-    public void peek() {
-        System.out.println("### number statistic");
+    public void skipAndPeek() {
+        System.out.println("### skip and peek");
         PersonVO p1 = persons.stream().findFirst().orElse(new PersonVO(){{setName("Jordan");}});
         print(String.format("首个元素: %s", p1));
 
         PersonVO p2 = persons.stream().skip(3).findFirst().get();
-        print(String.format("首个元素: %s", p2));
+        print(String.format("跳开前3个后的首个元素: %s", p2));
 
         List<String> nameList = persons.stream().filter(p -> "Hou".equals(p.getTeam()))
         .peek(e -> System.out.println("Filtered value: " + e))
@@ -105,6 +154,17 @@ public class CollectorApiDemos {
         .peek(e -> System.out.println("Mapped value: " + e))
         .collect(Collectors.toList());
         print(nameList);
+    }
+
+
+    /**
+     * 分组函数
+     */
+    public void groupingBy() {
+        System.out.println("### 分组函数");
+        Map<String, List<PersonVO>> teamMap = persons.stream()
+                .collect(Collectors.groupingBy(PersonVO::getTeam));
+        print(teamMap);
     }
 
     private void print(Object data) {
