@@ -48,6 +48,8 @@ public class CollectorApiDemos {
         demo.numberStat();
         demo.skipAndPeek();
         demo.groupingBy();
+        demo.groupingBySpecificType();
+        demo.partitioningBy();
     }
 
 
@@ -166,6 +168,39 @@ public class CollectorApiDemos {
                 .collect(Collectors.groupingBy(PersonVO::getTeam));
         print(teamMap);
     }
+
+    /**
+     * 分组函数 - 自定义类型
+     */
+    public void groupingBySpecificType() {
+        System.out.println("### 分组函数（指定分组集合类型）");
+        System.out.println("Set");
+        Map<String, Set<PersonVO>> teamSet = persons.stream()
+                .collect(Collectors.groupingBy(PersonVO::getTeam, Collectors.toSet()));
+        print(teamSet);
+        System.out.println("String");
+        Map<String, String> teamString = persons.stream()
+                .collect(Collectors.toMap(PersonVO::getTeam, PersonVO::getName, (name1, name2) -> name1 + "," + name2));
+        print(teamString);
+    }
+
+    /**
+     * 分区函数
+     */
+    public void partitioningBy() {
+        System.out.println("### 分区函数");
+        Map<Boolean, List<String>> partition = Stream.of("1", "2", "3", "4", "5", "6", "7")
+                .collect(Collectors.partitioningBy(t->Integer.valueOf(t)>3));
+        partition.entrySet().forEach(entry->{
+            System.out.println("Key:" + entry.getKey());
+            System.out.println("Value:");
+            entry.getValue().forEach(v -> {
+                System.out.println(" " + v);
+            });
+        });
+        print(partition);
+    }
+
 
     private void print(Object data) {
         System.out.println(JsonUtil.toJson(data));
