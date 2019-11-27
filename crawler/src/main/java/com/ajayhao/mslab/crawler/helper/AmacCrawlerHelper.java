@@ -181,12 +181,15 @@ public class AmacCrawlerHelper {
                     }
                 }
 
-                //员工人数
-                if (TITLE_M_EMPLOYEE_NUM.equals(titleElement.html())) {
-                    Element contentElement = titleElement.nextElementSibling();
-                    String employeeNum = contentElement.html();
-                    if (StringUtils.isNotBlank(employeeNum)) {
-                        amacManagerInfo.setEmployeeNum(Integer.parseInt(employeeNum.replaceAll(",","")));
+                //全职员工人数
+                if (titleElement.childNodeSize() > 1) {
+                    Element subtitleElement = (Element)titleElement.childNode(0);
+                    if (TITLE_M_EMPLOYEE_NUM.equals(subtitleElement.html())) {
+                        Element contentElement = titleElement.nextElementSibling();
+                        String employeeNum = contentElement.html();
+                        if (StringUtils.isNotBlank(employeeNum)) {
+                            amacManagerInfo.setEmployeeNum(Integer.parseInt(employeeNum.replaceAll(",", "")));
+                        }
                     }
                 }
 

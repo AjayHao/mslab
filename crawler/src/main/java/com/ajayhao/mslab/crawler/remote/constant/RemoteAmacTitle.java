@@ -38,7 +38,7 @@ public interface RemoteAmacTitle {
 
     String TITLE_M_INVEST_TYPE = "机构类型:";
 
-    String TITLE_M_EMPLOYEE_NUM = "员工人数:";
+    String TITLE_M_EMPLOYEE_NUM = "全职员工人数:";
 
     String TITLE_M_MEMBER_FLAG = "是否为会员:";
 
