@@ -7,8 +7,13 @@ import org.apache.commons.lang3.time.DateUtils;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.*;
+import java.time.format.DateTimeFormatter;
+import java.time.format.TextStyle;
+import java.time.temporal.TemporalAdjusters;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Locale;
 
 import static com.ajayhao.mslab.core.common.enums.RespCodeType.PARSE_DATE_ERROR;
 import static java.lang.Math.ceil;
@@ -19,7 +24,7 @@ import static java.lang.Math.ceil;
  * 
  * @author haozhenjie 2018年5月8日 下午10:58:06
  */
-@Slf4j
+//@Slf4j
 public class DateUtil {
 
     /**
@@ -46,11 +51,6 @@ public class DateUtil {
      */
     public final static String DATE_FORMAT_yyyyMMddHHmmssSSS = "yyyyMMddHHmmssSSS";
 
-    /**
-     * DATE_FORMAT_yyyy-MM-dd'T'HH:mm:ss.sss'+08:00'
-     */
-    public final static String LOG_SPECIMAL_FORMAT           = "yyyy-MM-dd'T'HH:mm:ss.sss'+08:00'";
-    
     /**
      * 年月日
      */
@@ -167,22 +167,6 @@ public class DateUtil {
     public static String formatDateByYYYYMMddHHMMSSChina(Date date) {
         return DateFormatUtils.format(date, DATE_FORMAT_YYYY_MM_DD_HHMMSS_CHINA);
     }
-    
-    /**
-     * 获取某一天中的开始时间
-     * 
-     * @param date
-     * @return
-     */
-    public static Date toBeginDate(Date date) {
-        Calendar calendar = Calendar.getInstance();
-        calendar.setTime(date);
-        calendar.set(Calendar.SECOND, 0);
-        calendar.set(Calendar.MINUTE, 0);
-        calendar.set(Calendar.HOUR, 0);
-        calendar.set(Calendar.MILLISECOND, 0);
-        return calendar.getTime();
-    }
 
     /**
      * 将Date转换成yyyy-MM-dd HH:mm:ss的字符串
@@ -230,41 +214,10 @@ public class DateUtil {
         return DateFormatUtils.format(date, pattern);
     }
 
-    /**
-     * 判断字符串是否是yyyy-MM-dd HH:mm:ss格式
-     * 
-     * @param str 需要判断的字符串
-     * @return boolean
-     */
-    public static boolean isValidByYYYYMMdd_HHmmss(String str) {
-        try {
-            DateUtils.parseDateStrictly(str, DATE_FORMAT_YYYYMMDD_HHMMSS);
-        } catch (ParseException e) {
-            log.error("parse time exception:{}", e);
-            return false;
-        }
-        return true;
-    }
 
     /**
      * 判断字符串是否是yyyy-MM-dd格式
-     * 
-     * @param str 需要判断的字符串
-     * @return boolean
-     */
-    public static boolean isValidByYYYY_MM_DD(String str) {
-        try {
-            DateUtils.parseDateStrictly(str, DATE_FORMAT_YYYY_MM_DD);
-        } catch (ParseException e) {
-            log.error("parse time exception:{}", e);
-            return false;
-        }
-        return true;
-    }
-
-    /**
-     * 判断字符串是否是yyyy-MM-dd格式
-     * 
+     *
      * @param str
      * @param pattern 时间格式字符串
      * @return boolean
@@ -273,7 +226,7 @@ public class DateUtil {
         try {
             DateUtils.parseDateStrictly(str, pattern);
         } catch (ParseException e) {
-            log.error("parse time exception:{}", e);
+            //log.error("parse time exception:{}", e);
             return false;
         }
         return true;
@@ -347,7 +300,7 @@ public class DateUtil {
             long days = (d1.getTime() - d2.getTime()) / (1000 * 3600 * 24);
             return (int) days;
         } catch (ParseException e) {
-            log.error("", e);
+            // log.error("", e);
             return 999999;
         }
     }
@@ -494,7 +447,7 @@ public class DateUtil {
     }
 
     /**
-     * 方法说明 （创建于 2014-6-17）. 描述：根据day日期进行加法计算
+     * 方法说明
      *
      * @param date
      * @param day
@@ -506,5 +459,14 @@ public class DateUtil {
         c.setTime(date);
         c.add(Calendar.DAY_OF_MONTH, day);
         return c.getTime();
+    }
+
+
+    public static void main(String[] args) {
+        LocalDate localDate = LocalDate.of(2020, 2, 23);
+        System.out.println("是否在当天之前：" + localDate.isBefore(LocalDate.now()));
+        System.out.println("是否在当天之后：" + localDate.isAfter(LocalDate.now()));
+        System.out.println("是否在当天：" + localDate.isEqual(LocalDate.now()));
+        System.out.println("今年是否是闰年：" + LocalDate.now().isLeapYear());
     }
 }

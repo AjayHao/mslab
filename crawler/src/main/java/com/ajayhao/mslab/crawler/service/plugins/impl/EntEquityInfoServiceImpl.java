@@ -10,7 +10,7 @@ import com.ajayhao.mslab.crawler.remote.ElecreditRemoteService;
 import com.ajayhao.mslab.crawler.repository.EntEquityInfoRepository;
 import com.ajayhao.mslab.crawler.service.plugins.EntBaseInfoService;
 import com.ajayhao.mslab.crawler.service.plugins.EntEquityInfoService;
-import org.apache.commons.collections.CollectionUtils;
+import org.apache.commons.collections4.CollectionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cglib.beans.BeanCopier;
 import org.springframework.stereotype.Service;

@@ -15,7 +15,7 @@ import com.ajayhao.mslab.stock.remote.dto.request.JuHeStockReq;
 import com.ajayhao.mslab.stock.remote.dto.response.JuHeRemoteResp;
 import com.ajayhao.mslab.stock.repository.StockRepository;
 import com.ajayhao.mslab.stock.service.StockInfoService;
-import org.apache.commons.collections.CollectionUtils;
+import org.apache.commons.collections4.CollectionUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cglib.beans.BeanCopier;

@@ -1,10 +1,12 @@
-package com.ajayhao.workshop.stream;
+package com.ajayhao.workshop.demos;
+
 
 import com.ajayhao.mslab.core.util.JsonUtil;
 import com.ajayhao.workshop.PersonVO;
 import com.fasterxml.jackson.core.type.TypeReference;
-import jodd.io.FileUtil;
+import org.apache.commons.io.FileUtils;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.*;
 import java.util.function.Function;
@@ -12,7 +14,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 /**
- * CollectorApiDemos
+ * StreamCollectorApiDemos
  * <p>
  * TODO
  *
@@ -20,15 +22,15 @@ import java.util.stream.Stream;
  * @version 1.0
  * @date 2019/11/10 10:13
  */
-public class CollectorApiDemos {
+public class StreamCollectorApiDemos {
 
     private static List<PersonVO> persons;
 
     static {
         String jsonStr = null;
         try {
-            String path = CollectorApiDemos.class.getResource("/").getPath();
-            jsonStr = FileUtil.readString(path+"person.txt");
+            String path = StreamCollectorApiDemos.class.getResource("/").getPath();
+            jsonStr = FileUtils.readFileToString(new File(path+"person.txt"), "UTF-8");
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -38,7 +40,7 @@ public class CollectorApiDemos {
 
 
     public static void main(String[] args){
-        CollectorApiDemos demo = new CollectorApiDemos();
+        StreamCollectorApiDemos demo = new StreamCollectorApiDemos();
         demo.toList();
         demo.toSet();
         demo.toMap();

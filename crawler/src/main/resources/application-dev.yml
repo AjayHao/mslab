@@ -7,12 +7,6 @@ eureka:
     lease-renewal-interval-in-seconds: 5
     lease-expiration-duration-in-seconds: 20
 
-#元素征信配置
-elecredit:
-  cfg:
-    userId: Z2HO3fdC
-    userKey: jeEZwWbR
-    elsaicUrl: http://open.elecredit.com/elsaic/?isjson=1
 
 #基金业协会数据分页捞取配置
 amac:
@@ -23,6 +17,30 @@ amac:
     size: 100
     timeout: 60000
 
+
+#元素征信配置
+elecredit:
+  cfg:
+    userId: Z2HO3fdC
+    userKey: jeEZwWbR
+    elsaicUrl: http://open.elecredit.com/elsaic/?isjson=1
+    getEntIdUrl: http://open.elecredit.com/getentid/
+    mohuUrl: http://open.elecredit.com/mohu/
+    comnameUrl: http://open.elecredit.com/comname/
+    newGuoTaiUrl: http://open.elecredit.com/new_guotai/
+    saicInvUrl: http://open.elecredit.com/saicinv/
+
+#数据库
+jdbc:
+  oracle:
+    driver: oracle.jdbc.driver.OracleDriver
+    url: jdbc:oracle:thin:@192.168.137.1:1521:orcl
+    username: combs_info
+    password: combs
+    #username: ajlab
+    #password: ajlab
+
+
 #swagger配置
 swagger:
   switch: true
@@ -31,6 +49,7 @@ swagger:
     title: 元素征信服务相关接口API
     description: 元数聚test,/mslab/crawler
     version: 1.0
+
 
 #Actuator
 #management:

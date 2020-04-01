@@ -12,7 +12,7 @@ import com.ajayhao.mslab.crawler.remote.dto.InvRoad;
 import com.ajayhao.mslab.crawler.remote.dto.SaicInvRemoteResp;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
-import org.apache.commons.collections.CollectionUtils;
+import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;

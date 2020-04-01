@@ -4,7 +4,7 @@ import com.ajayhao.mslab.stock.dal.dataobject.StockInfoDO;
 import com.ajayhao.mslab.stock.dal.mapper.StockInfoMapper;
 import com.ajayhao.mslab.stock.dal.dataobject.StockInfoDOExample;
 import com.ajayhao.mslab.stock.repository.StockRepository;
-import org.apache.commons.collections.CollectionUtils;
+import org.apache.commons.collections4.CollectionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 

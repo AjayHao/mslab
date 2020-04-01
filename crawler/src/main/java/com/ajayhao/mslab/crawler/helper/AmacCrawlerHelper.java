@@ -6,7 +6,7 @@ import com.ajayhao.mslab.crawler.dto.AmacFundInfo;
 import com.ajayhao.mslab.crawler.dto.AmacManagerCreditInfo;
 import com.ajayhao.mslab.crawler.dto.AmacManagerInfo;
 import com.ajayhao.mslab.crawler.remote.enums.AmacCreditInfoType;
-import org.apache.commons.collections.CollectionUtils;
+import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.RandomUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.jsoup.nodes.Document;
@@ -71,17 +71,24 @@ public class AmacCrawlerHelper {
      * 解析管理人明细
      */
     public AmacManagerInfo resolveAmacManagerInfoResp(Document document) {
-        Elements elements = document.select("div.m-manager-list>table>tbody>tr>td.td-title");
+        Elements ruleElements = document.select("div.info-body>div.rule>div.table-response>table>tbody>tr>td");
+        Elements elements = document.select("div.table-response>table>tbody>tr>td.title");
         AmacManagerInfo amacManagerInfo = null;
         if (CollectionUtils.isNotEmpty(elements)) {
             amacManagerInfo = new AmacManagerInfo();
-            for(Element titleElement : elements) {
-                //诚信信息
-                if (TITLE_M_INTEGRITY_INFO.equals(titleElement.html())) {
-                    Element integrityElement = titleElement.nextElementSibling();
-                    String integrityInfo = integrityElement.select("span.htmltext").html();
-                    amacManagerInfo.setIntegrityInfo(integrityInfo);
+            // 诚信信息
+            if(CollectionUtils.isNotEmpty(ruleElements)) {
+                for (Element ruleElement : ruleElements) {
+                    //诚信信息
+                    if (TITLE_M_INTEGRITY_INFO.equals(ruleElement.html())) {
+                        Element integrityElement = ruleElement.nextElementSibling();
+                        String integrityInfo = integrityElement.select("span.htmltext").html();
+                        amacManagerInfo.setIntegrityInfo(integrityInfo);
+                    }
                 }
+            }
+
+            for(Element titleElement : elements) {
                 //管理人名称
                 if (TITLE_M_MANANGER_NAME.equals(titleElement.html())) {
                     Element contentElement = titleElement.nextElementSibling();
@@ -138,8 +145,33 @@ public class AmacCrawlerHelper {
                     amacManagerInfo.setOfficeAddress(HtmlEscaper.unescape(officeAddress));
                 }
 
+                //注册资本实缴比例
+                if (TITLE_M_SUB_RATIO.equals(titleElement.html())) {
+                    Element contentElement = titleElement.nextElementSibling();
+                    String subscribedRatio = contentElement.html();
+                    if (StringUtils.isNotBlank(subscribedRatio)) {
+                        amacManagerInfo.setSubscribeRatio(new BigDecimal(HtmlEscaper.unescape(subscribedRatio.replaceAll("%|,", ""))));
+                    }
+                }
+
+                //企业性质
+                if (TITLE_M_ENT_TYPE.equals(titleElement.html())) {
+                    Element contentElement = titleElement.nextElementSibling();
+                    String entType = contentElement.html();
+                    amacManagerInfo.setEntType(HtmlEscaper.unescape(entType));
+                }
+
                 //注册资本(万元)(人民币)
                 if (TITLE_M_SUB_CAPITAL.equals(titleElement.html())) {
+                    Element contentElement = titleElement.nextElementSibling();
+                    String subsCaptail = contentElement.html();
+                    if (StringUtils.isNotBlank(subsCaptail)) {
+                        amacManagerInfo.setSubscribedCapital(new BigDecimal(HtmlEscaper.unescape(subsCaptail.replaceAll(",", ""))));
+                    }
+                }
+
+                //注册资本(万元)(美元)
+                if (TITLE_M_SUB_CAPITAL_D.equals(titleElement.html())) {
                     Element contentElement = titleElement.nextElementSibling();
                     String subsCaptail = contentElement.html();
                     if (StringUtils.isNotBlank(subsCaptail)) {
@@ -156,28 +188,12 @@ public class AmacCrawlerHelper {
                     }
                 }
 
-                //企业性质
-                if (TITLE_M_ENT_TYPE.equals(titleElement.html())) {
+                //实缴资本(万元)(美元)
+                if (TITLE_M_PAIDIN_CAPITAL_D.equals(titleElement.html())) {
                     Element contentElement = titleElement.nextElementSibling();
-                    String entType = contentElement.html();
-                    amacManagerInfo.setEntType(HtmlEscaper.unescape(entType));
-                }
-
-                //注册资本实缴比例
-                if (TITLE_M_SUB_RATIO.equals(titleElement.html())) {
-                    Element contentElement = titleElement.nextElementSibling();
-                    String subscribeRatio = contentElement.html();
-                    if (StringUtils.isNotBlank(subscribeRatio)) {
-                        amacManagerInfo.setSubscribeRatio(new BigDecimal(HtmlEscaper.unescape(subscribeRatio.replaceAll("%|,", ""))));
-                    }
-                }
-
-                //管理基金主要类别
-                if (TITLE_M_INVEST_TYPE.equals(titleElement.html())) {
-                    Element contentElement = titleElement.nextElementSibling();
-                    String investType = contentElement.html();
-                    if (StringUtils.isNotBlank(investType)) {
-                        amacManagerInfo.setInvestType(HtmlEscaper.unescape(investType));
+                    String paidInCaptail = contentElement.html();
+                    if (StringUtils.isNotBlank(paidInCaptail)) {
+                        amacManagerInfo.setPaidInCapital(new BigDecimal(HtmlEscaper.unescape(paidInCaptail.replaceAll(",", ""))));
                     }
                 }
 
@@ -241,7 +257,7 @@ public class AmacCrawlerHelper {
     public List<AmacExecutiveInfo> resolveAmacEmployerInfoResp(Document document) {
         List<AmacExecutiveInfo> amacEmployerInfoList = null;
         String regNo = null;
-        Elements outerElements = document.select("div.m-manager-list>table>tbody>tr>td.td-title");
+        Elements outerElements = document.select("div.table-response>table>tbody>tr>td.title");
         if (CollectionUtils.isNotEmpty(outerElements)) {
             for (Element titleElement : outerElements) {
                 //协会登记编号
@@ -397,27 +413,22 @@ public class AmacCrawlerHelper {
      * @param document
      * @return
      */
-    public List<AmacManagerCreditInfo> resolveAmacCreditInfoResp(Document document) {
-        Elements elements = document.select("div.m-manager-list>table>tbody>tr>td.td-title");
+    public List<AmacManagerCreditInfo> resolveAmacCreditInfoResp(String regNo, Document document) {
+        Elements elements = document.select("div.info-body>div.rule>div.table-response>table>tbody>tr>td");
         List<AmacManagerCreditInfo> amacManagerCreditList = null;
         if (CollectionUtils.isNotEmpty(elements)) {
             amacManagerCreditList = new ArrayList<>();
-            Element regNoElement = null, integrityElement = null;
-            String regNo = null;
+            Element integrityElement = null;
             for(Element titleElement : elements) {
                 //诚信信息
                 if (TITLE_M_INTEGRITY_INFO.equals(titleElement.html())) {
                     //table类型
                     integrityElement = titleElement.nextElementSibling();
                 }
-
-                //协会登记编号
-                if (TITLE_M_REG_NO.equals(titleElement.html())) {
-                    regNo = titleElement.nextElementSibling().html();
-                }
             }
 
             if(integrityElement != null) {
+
                 //每项一条
                 Elements integrityInfos = integrityElement.select("table>tbody>tr");
                 if (integrityInfos != null && integrityInfos.size() > 0) {
@@ -436,19 +447,19 @@ public class AmacCrawlerHelper {
         if(element != null) {
             creditInfo = new AmacManagerCreditInfo();
             creditInfo.setRegisterNo(regNo);
-            Element tdElement = element.child(0);
-            String creditTypeStr = tdElement.child(0).html();
-            AmacCreditInfoType creditInfoType = (AmacCreditInfoType.getByMessage(creditTypeStr) == null) ?
-                    AmacCreditInfoType.OTHERS : AmacCreditInfoType.getByMessage(creditTypeStr);
-            //中文写入
-            creditInfo.setCreditType(creditTypeStr);
-            String creditInfoStr;
-            if (AmacCreditInfoType.LOST_CONTACT == creditInfoType) {
-                creditInfoStr = resolveLostContactStr(tdElement);
-            }else{
-                creditInfoStr = tdElement.child(1).html();
+            List<Element> tdElementList = element.select("td");
+            if(CollectionUtils.isNotEmpty(tdElementList)) {
+                String creditTypeStr = tdElementList.get(0).html();
+                //中文写入
+                creditInfo.setCreditType(creditTypeStr);
+                /*if ("失联机构".equals(creditTypeStr)) {
+                    creditInfoStr = resolveLostContactStr(tdElementList.get(0));
+                } else {
+                    creditInfoStr = tdElementList.get(1).html();
+                }*/
+                String creditInfoStr = tdElementList.get(1).html();
+                creditInfo.setCreditInfo(creditInfoStr);
             }
-            creditInfo.setCreditInfo(creditInfoStr);
         }
         return creditInfo;
     }

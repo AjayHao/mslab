@@ -8,7 +8,7 @@ import com.ajayhao.mslab.crawler.orm.mapper.DbIdMapper;
 import com.ajayhao.mslab.crawler.orm.mapper.EntGsInfoEntityMapper;
 import com.ajayhao.mslab.crawler.repository.AbstractRepository;
 import com.ajayhao.mslab.crawler.repository.EntGsInfoRepository;
-import org.apache.commons.collections.CollectionUtils;
+import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;

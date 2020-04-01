@@ -11,7 +11,7 @@ import com.ajayhao.mslab.crawler.remote.AmacRemoteService;
 import com.ajayhao.mslab.crawler.remote.dto.AmacFundRemoteResp;
 import com.ajayhao.mslab.crawler.remote.dto.AmacManagerRemoteResp;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.collections.CollectionUtils;
+import org.apache.commons.collections4.CollectionUtils;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -92,7 +92,7 @@ public class AmacRemoteServiceImpl implements AmacRemoteService {
             Document document = Jsoup.connect(managerUrl).timeout(amacCrawlerConfig.getTimeout()).get();
             amacManagerInfo = amacCrawlerHelper.resolveAmacManagerInfoResp(document);
             amacEmployerInfoList = amacCrawlerHelper.resolveAmacEmployerInfoResp(document);
-            amacManagerCreditInfoList = amacCrawlerHelper.resolveAmacCreditInfoResp(document);
+            amacManagerCreditInfoList = amacCrawlerHelper.resolveAmacCreditInfoResp(amacManagerInfo.getRegisterNo(), document);
             amacManagerInfo.setExecutiveInfo(amacEmployerInfoList);
             amacManagerInfo.setCreditInfo(amacManagerCreditInfoList);
         } catch (Exception e) {
