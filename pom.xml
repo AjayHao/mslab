@@ -21,6 +21,7 @@
         <module>crawler</module>
         <module>neuroph</module>
         <module>workshop</module>
+        <module>weixinwork</module>
     </modules>
 
 </project>

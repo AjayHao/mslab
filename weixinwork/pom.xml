@@ -2,19 +2,18 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <modelVersion>4.0.0</modelVersion>
-
-    <groupId>com.ajayhao.mslab</groupId>
-    <artifactId>crawler</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
-    <packaging>jar</packaging>
-
     <parent>
         <groupId>com.ajayhao.mslab</groupId>
         <artifactId>public-pom</artifactId>
         <version>1.0.0</version>
         <relativePath>../public-pom</relativePath>
     </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <!--<groupId>com.ajayhao.mslab</groupId>-->
+    <artifactId>weixinwork</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <packaging>jar</packaging>
 
 
     <!-- Add typical dependencies for a web application -->
@@ -30,16 +29,6 @@
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
 
-        <!--<dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-config-client</artifactId>
-        </dependency>-->
-
-        <!--<dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
-        </dependency>
--->
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
@@ -61,11 +50,6 @@
         </dependency>
 
         <dependency>
-            <groupId>com.alibaba</groupId>
-            <artifactId>fastjson</artifactId>
-        </dependency>
-
-        <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-collections4</artifactId>
         </dependency>
@@ -79,17 +63,6 @@
             <groupId>commons-codec</groupId>
             <artifactId>commons-codec</artifactId>
         </dependency>
-
-        <!-- html 解析 -->
-        <dependency>
-            <groupId>org.jsoup</groupId>
-            <artifactId>jsoup</artifactId>
-        </dependency>
-
-        <!--<dependency>
-            <groupId>org.jodd</groupId>
-            <artifactId>jodd-vtor</artifactId>
-        </dependency>-->
 
         <dependency>
             <groupId>com.google.guava</groupId>
@@ -110,6 +83,18 @@
         <dependency>
             <groupId>com.oracle.ojdbc</groupId>
             <artifactId>orai18n</artifactId>
+        </dependency>
+
+        <!-- druid -->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>druid-spring-boot-starter</artifactId>
+        </dependency>
+
+        <!-- pager helper -->
+        <dependency>
+            <groupId>com.github.pagehelper</groupId>
+            <artifactId>pagehelper-spring-boot-starter</artifactId>
         </dependency>
 
         <!-- 集成mybatis -->
@@ -159,11 +144,8 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
             </plugin>
-            <!--<plugin>
-                <groupId>org.projectlombok</groupId>
-                <artifactId>lombok-maven-plugin</artifactId>
-            </plugin>-->
         </plugins>
     </build>
+
 
 </project>
