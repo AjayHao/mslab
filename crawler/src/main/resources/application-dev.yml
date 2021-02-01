@@ -51,6 +51,14 @@ swagger:
     version: 1.0
 
 
+mail-server:
+  cfg-list:
+    - protocol: imap
+      host: 10.181.97.50
+      port: 143
+      username: zctggzyw@tg.gtja.com
+      password: gzyw2018
+
 #Actuator
 #management:
 #  endpoints:

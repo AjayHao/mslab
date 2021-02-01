@@ -37,7 +37,6 @@ public class BaseResp<E> implements Serializable {
     private E                 data;
 
 
-
     public BaseResp setRespCode(String respCode) {
         this.respCode = respCode;
         return this;

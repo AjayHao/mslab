@@ -1,0 +1,68 @@
+#FREEMARKER (FreeMarkerAutoConfiguration)
+spring:
+  datasource:
+    druid:
+      master:
+        type: com.alibaba.druid.pool.DruidDataSource
+        url: jdbc:oracle:thin:192.168.137.1:1521:orcl
+        driver-class-name: oracle.jdbc.OracleDriver
+        username: combs_info
+        password: combs
+        filters: config,stat
+        maxActive: 20
+        initialSize: 1
+        max-wait: 60000
+        min-idle: 1
+        timeBetweenEvictionRunsMillis: 60000
+        minEvictableIdleTimeMillis: 300000
+        validationQuery: select 'x' from dual
+        testWhileIdle: true
+        testOnBorrow: false
+        testOnReturn: false
+        poolPreparedStatements: true
+        maxPoolPreparedStatementPerConnectionSize: 20
+        maxOpenPreparedStatements: 20
+        removeAbandoned: true
+      two:
+        type: com.alibaba.druid.pool.DruidDataSource
+        url: jdbc:oracle:thin:192.168.137.1:1521:orcl
+        driver-class-name: oracle.jdbc.OracleDriver
+        username: ajlab
+        password: ajlab
+        filters: config,stat
+        maxActive: 20
+        initialSize: 1
+        max-wait: 60000
+        min-idle: 1
+        timeBetweenEvictionRunsMillis: 60000
+        minEvictableIdleTimeMillis: 300000
+        validationQuery: select 'x' from dual
+        testWhileIdle: true
+        testOnBorrow: false
+        testOnReturn: false
+        poolPreparedStatements: true
+        maxPoolPreparedStatementPerConnectionSize: 20
+        maxOpenPreparedStatements: 20
+        removeAbandoned: true
+  freemarker:
+    allow-request-override: false
+###便于调试，生产环境可考虑调整为true
+    cache: true
+    check-template-location: true
+    charset: UTF-8
+    content-type: text/html
+    expose-request-attributes: false
+    expose-session-attributes: false
+    expose-spring-macro-helpers: false
+    request-context-attribute: request
+#spring.freemarker.prefix: 
+#spring.freemarker.settings.*: 
+#spring.freemarker.suffix: .ftl
+#spring.freemarker.template-loader-path: classpath:/templates/ #comma-separated list
+#spring.freemarker.view-names:  # whitelist of view names that can be resolved
+
+#swagger配置
+swagger:
+  switch: true
+  config:
+    base-package: com.ajayhao.mslab.antxchecker.controller

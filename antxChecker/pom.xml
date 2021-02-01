@@ -21,6 +21,12 @@
             <artifactId>core-common</artifactId>
         </dependency>
 
+        <!-- 集成mybatis -->
+        <dependency>
+            <groupId>org.mybatis.spring.boot</groupId>
+            <artifactId>mybatis-spring-boot-starter</artifactId>
+        </dependency>
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
@@ -42,15 +48,14 @@
         </dependency>
 
         <dependency>
+            <groupId>org.dom4j</groupId>
+            <artifactId>dom4j</artifactId>
+        </dependency>
+
+        <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-collections4</artifactId>
         </dependency>
-
-        <!--<dependency>
-            <groupId>org.jodd</groupId>
-            <artifactId>jodd-vtor</artifactId>
-            <optional>true</optional>
-        </dependency>-->
 
         <dependency>
             <groupId>com.google.guava</groupId>
@@ -63,14 +68,15 @@
             <artifactId>commons-dbcp2</artifactId>
         </dependency>
 
+        <!-- druid -->
         <dependency>
-            <groupId>com.oracle.ojdbc</groupId>
-            <artifactId>ojdbc8</artifactId>
+            <groupId>com.alibaba</groupId>
+            <artifactId>druid-spring-boot-starter</artifactId>
         </dependency>
 
         <dependency>
-            <groupId>com.oracle.ojdbc</groupId>
-            <artifactId>orai18n</artifactId>
+            <groupId>com.oracle.database.jdbc</groupId>
+            <artifactId>ojdbc6</artifactId>
         </dependency>
 
         <dependency>
@@ -78,18 +84,11 @@
             <artifactId>spring-boot-starter-actuator</artifactId>
         </dependency>
 
-        <!--swagger2组件 -->
         <dependency>
-            <groupId>com.ajayhao.mslab.support</groupId>
-            <artifactId>swagger-support</artifactId>
-            <exclusions>
-                <exclusion>
-                    <artifactId>spring-aop</artifactId>
-                    <groupId>org.springframework</groupId>
-                </exclusion>
-            </exclusions>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-boot-starter</artifactId>
+            <version>3.0.0</version>
         </dependency>
-
 
         <!--************* lombok 编译辅助  *************** -->
         <dependency>
@@ -105,32 +104,33 @@
             <scope>test</scope>
         </dependency>
 
-
         <dependency>
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
             <scope>test</scope>
         </dependency>
-
     </dependencies>
 
 
-    <!-- Package as an executable jar -->
-    <!--<build>
+    <build>
         <plugins>
+            <!-- mybatis generator 自动生成代码插件 -->
+            <!--
+                mvn clean install -DskipTests=true
+                cd corp-io-service
+                mvn mybatis-generator:generate
+            -->
             <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
+                <groupId>org.mybatis.generator</groupId>
+                <artifactId>mybatis-generator-maven-plugin</artifactId>
+                <version>1.3.7</version>
+                <configuration>
+                    <configurationFile>${basedir}/src/main/resources/generator/generatorConfig.xml</configurationFile>
+                    <overwrite>true</overwrite>
+                    <verbose>true</verbose>
+                </configuration>
             </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-            </plugin>
-            &lt;!&ndash;<plugin>
-                <groupId>org.projectlombok</groupId>
-                <artifactId>lombok-maven-plugin</artifactId>
-            </plugin>&ndash;&gt;
         </plugins>
-    </build>-->
+    </build>
 
 </project>

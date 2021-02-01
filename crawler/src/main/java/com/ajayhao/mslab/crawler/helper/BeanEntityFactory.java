@@ -5,13 +5,11 @@ import com.ajayhao.mslab.crawler.orm.entity.EntControlEntity;
 import com.ajayhao.mslab.crawler.orm.entity.EntEquityDetailEntity;
 import com.ajayhao.mslab.crawler.orm.entity.EntGsInfoEntity;
 import lombok.extern.slf4j.Slf4j;
-import oracle.sql.TIMESTAMP;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.cglib.beans.BeanCopier;
 
 import java.math.BigDecimal;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -225,7 +223,7 @@ public class BeanEntityFactory {
             entControlInfo.setFinalRegCap((BigDecimal) resultMap.get("FINAL_REG_CAP"));
             entControlInfo.setCreator((String) resultMap.get("CREATOR"));
             entControlInfo.setUpdater((String) resultMap.get("UPDATER"));
-            TIMESTAMP createdAt = (TIMESTAMP) resultMap.get("CREATED_AT");
+            /*TIMESTAMP createdAt = (TIMESTAMP) resultMap.get("CREATED_AT");
             TIMESTAMP updatedAt = (TIMESTAMP) resultMap.get("UPDATED_AT");
             try {
                 if (createdAt != null) {
@@ -236,7 +234,7 @@ public class BeanEntityFactory {
                 }
             } catch (SQLException e) {
                 log.warn(e.getMessage(), e);
-            }
+            }*/
             entControlInfo.setIsDelete((String) resultMap.get("IS_DELETE"));
             entControlInfoList.add(entControlInfo);
         }

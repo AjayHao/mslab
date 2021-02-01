@@ -86,6 +86,11 @@
             <artifactId>jsoup</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>org.simplejavamail</groupId>
+            <artifactId>simple-java-mail</artifactId>
+        </dependency>
+
         <!--<dependency>
             <groupId>org.jodd</groupId>
             <artifactId>jodd-vtor</artifactId>
@@ -123,6 +128,10 @@
             <artifactId>swagger-support</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>org.simplejavamail</groupId>
+            <artifactId>simple-java-mail</artifactId>
+        </dependency>
 
         <!--************* lombok 编译辅助  *************** -->
         <dependency>

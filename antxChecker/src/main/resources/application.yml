@@ -1,0 +1,10 @@
+#PROFILE
+spring:
+  profiles:
+    active: dev
+  application:
+    name: mslab-antxchecker
+
+server:
+  port: 40001
+

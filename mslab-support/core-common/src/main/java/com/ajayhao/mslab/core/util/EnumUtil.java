@@ -3,12 +3,7 @@ package com.ajayhao.mslab.core.util;
 
 
 import com.ajayhao.mslab.core.common.IBaseEnum;
-import com.google.common.base.Function;
-import com.google.common.collect.Lists;
-import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
-
-import java.util.List;
 
 /**
  * <P><P>
@@ -43,18 +38,6 @@ public final class EnumUtil {
         return baseEnum != null ? baseEnum.getCode() : null;
     }
 
-    /**
-     * <P> 获得code 集合 <P>
-     * @param baseEnums
-     * @return
-     */
-    public static <T extends IBaseEnum> List<String> getCodeList(List<T> baseEnums) {
-        return CollectionUtils.isNotEmpty(baseEnums) ? Lists.transform(baseEnums, new Function<IBaseEnum, String>() {
-            @Override
-            public String apply(IBaseEnum input) {
-                return input.getCode();
-            }
-        }) : null;
-    }
+
 
 }

@@ -11,7 +11,6 @@ import org.springframework.stereotype.Component;
 @RefreshScope
 public class SwaggerProperties {
     private String basePackage;
-    private String pathRegex;
     private String title;
     private String description;
     private String version;
