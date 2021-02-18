@@ -147,7 +147,7 @@ public class MailParser {
             throw e;
         }
 
-        List<EmailAttachPO> emailAttachPOList = new ArrayList<>();
+        /*List<EmailAttachPO> emailAttachPOList = new ArrayList<>();
         try {
             parseMailAttaches(message, emailAttachPOList);
         } catch (Exception e) {
@@ -161,7 +161,7 @@ public class MailParser {
         emailPO.setContent(content);
         if(!emailAttachPOList.isEmpty()) {
             emailPO.setAttachPath(emailAttachPOList);
-        }
+        }*/
     }
 
     /**

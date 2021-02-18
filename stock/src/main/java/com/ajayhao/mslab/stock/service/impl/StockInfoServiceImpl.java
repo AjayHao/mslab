@@ -5,7 +5,7 @@ import com.ajayhao.mslab.core.common.enums.YesNoEnum;
 import com.ajayhao.mslab.core.common.exception.BusinessBizException;
 import com.ajayhao.mslab.core.util.DateUtil;
 import com.ajayhao.mslab.stock.config.RemoteConfig;
-import com.ajayhao.mslab.stock.dal.dataobject.StockInfoDO;
+import com.ajayhao.mslab.stock.orm.entity.StockInfoDO;
 import com.ajayhao.mslab.stock.dto.StockInfoReq;
 import com.ajayhao.mslab.stock.dto.StockInfoResp;
 import com.ajayhao.mslab.stock.remote.StockRemoteService;

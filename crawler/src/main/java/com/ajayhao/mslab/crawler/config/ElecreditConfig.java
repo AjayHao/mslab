@@ -2,6 +2,7 @@ package com.ajayhao.mslab.crawler.config;
 
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Component;
 
 /**
@@ -12,7 +13,7 @@ import org.springframework.stereotype.Component;
  * @Version 1.0
  **/
 
-@Component
+@Configuration
 @ConfigurationProperties(prefix = "elecredit.cfg")
 @Data
 public class ElecreditConfig {

@@ -42,7 +42,7 @@
         <jsoup.version>1.13.1</jsoup.version>
         <neuroph.version>2.96</neuroph.version>
         <commons-dbcp2.version>2.3.0</commons-dbcp2.version>
-        <ojdbc.version>11.2.0.4</ojdbc.version>
+        <!--<ojdbc.version>11.2.0.4</ojdbc.version>-->
         <pagehelper-spring-boot-starter.version>1.2.5</pagehelper-spring-boot-starter.version>
         <druid-spring-boot-starter-version>1.1.9</druid-spring-boot-starter-version>
         <swagger.version>3.0.0</swagger.version>
@@ -162,11 +162,11 @@
                 <version>${commons-dbcp2.version}</version>
             </dependency>
 
-            <dependency>
-                <groupId>com.oracle.database.jdbc</groupId>
-                <artifactId>ojdbc6</artifactId>
+            <!--<dependency>
+                <groupId>com.oracle.ojdbc</groupId>
+                <artifactId>ojdbc8</artifactId>
                 <version>${ojdbc.version}</version>
-            </dependency>
+            </dependency>-->
 
             <!-- alibaba的druid数据库连接池 -->
             <dependency>

@@ -1,9 +1,10 @@
 package com.ajayhao.mslab.stock;
 
 import com.ajayhao.mslab.swagger.support.annotation.EnableSwaggerConfig;
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
@@ -12,13 +13,12 @@ import org.springframework.web.filter.CorsFilter;
 import java.util.ArrayList;
 
 /**
- * Created by AjayHao on 2017/6/11.
+ * Created by AjayHao on 2021/2/18.
  */
 @SpringBootApplication
-@EnableAutoConfiguration
-//@EnableEurekaClient
-//@ComponentScan(basePackages = { "com.ajayhao.mslab.stock" })
+@EnableEurekaClient
 @EnableSwaggerConfig
+@MapperScan("com.ajayhao.mslab.**.orm.mapper")
 public class StockApp {
 
     public static void main(String[] args) throws Exception {

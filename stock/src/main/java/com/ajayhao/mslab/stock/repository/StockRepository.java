@@ -1,6 +1,6 @@
 package com.ajayhao.mslab.stock.repository;
 
-import com.ajayhao.mslab.stock.dal.dataobject.StockInfoDO;
+import com.ajayhao.mslab.stock.orm.entity.StockInfoDO;
 
 /**
  * Created by AjayHao on 2018/5/20.

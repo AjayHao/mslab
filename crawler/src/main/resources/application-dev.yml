@@ -7,6 +7,24 @@ eureka:
     lease-renewal-interval-in-seconds: 5
     lease-expiration-duration-in-seconds: 20
 
+# 数据库
+spring:
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    url: jdbc:oracle:thin:@192.168.137.1:1521:orcl
+    driver-class-name: oracle.jdbc.OracleDriver
+    username: ajlab
+    password: ajlab
+    druid:
+      initial-size: 5
+      max-active: 20
+      min-idle: 10
+      max-wait: 10
+
+mybatis:
+  type-aliases-package: com.ajayhao.mslab.**.orm.entity
+  mapper-locations: classpath:sqlMap/*.xml
+
 
 #基金业协会数据分页捞取配置
 amac:

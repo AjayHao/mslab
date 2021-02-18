@@ -1,22 +1,28 @@
 spring:
   application:
-    name: mslab-stock
+    name: gateway
   cloud:
     config:
       #uri: http://192.168.254.132:8888/  #配置中心ip
       label: ${DEPLOY_ENV:master} #配置服务器远程文件分支
       profile: dev,common
       discovery:
-        enabled: false
+        enabled: true
         serviceId: mslab-mscc
+    gateway:
+      routes:
+        - id: mslab-crawler
+          uri: lb://mslab-crawler
+          predicates:
+            - Path=/crawler/**
+        - id: mslab-stock
+          uri: lb://mslab-stock
+          predicates:
+            - Path=/stock/**
+      default-filters:
 
-#高可用配置中心，替代配置中心的固定ip
 eureka:
   client:
     serviceUrl:
       #defaultZone: http://192.168.254.133:8761/eureka/  #可复用Eureka服务，提供高可用配置中心，替代固定ip
       defaultZone: http://localhost:8761/eureka/
-
-server:
-  servlet:
-    context-path: /stock

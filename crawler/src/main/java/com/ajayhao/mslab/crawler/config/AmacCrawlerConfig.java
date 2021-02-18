@@ -2,7 +2,7 @@ package com.ajayhao.mslab.crawler.config;
 
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.stereotype.Component;
+import org.springframework.context.annotation.Configuration;
 
 /**
  * AmacCrawlerConfig
@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
  * @version 1.0
  **/
 
-@Component
+@Configuration
 @ConfigurationProperties(prefix = "amac.cfg")
 @Data
 public class AmacCrawlerConfig {

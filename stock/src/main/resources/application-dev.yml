@@ -15,12 +15,19 @@ eureka:
     #表示eureka server至上一次收到client的心跳之后，等待下一次心跳的超时时间，在这个时间内若没收到下一次心跳，则将移除该instance。 默认为90s
     lease-expiration-duration-in-seconds: 20
 # 数据库
-jdbc:
-  oracle:
-    driver: oracle.jdbc.driver.OracleDriver
+spring:
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
     url: jdbc:oracle:thin:@192.168.137.1:1521:orcl
+    driver-class-name: oracle.jdbc.OracleDriver
     username: ajlab
     password: ajlab
+    druid:
+      initial-size: 5
+      max-active: 20
+      min-idle: 10
+      max-wait: 10
+
 
 #swagger配置
 swagger:
@@ -46,3 +53,7 @@ management:
   endpoint:
     health:
       show-details: always
+
+mybatis:
+  type-aliases-package: com.ajayhao.mslab.**.orm.entity
+  mapper-locations: classpath:sqlMap/*.xml

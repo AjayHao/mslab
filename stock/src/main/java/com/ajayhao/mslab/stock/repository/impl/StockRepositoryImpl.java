@@ -1,8 +1,8 @@
 package com.ajayhao.mslab.stock.repository.impl;
 
-import com.ajayhao.mslab.stock.dal.dataobject.StockInfoDO;
-import com.ajayhao.mslab.stock.dal.mapper.StockInfoMapper;
-import com.ajayhao.mslab.stock.dal.dataobject.StockInfoDOExample;
+import com.ajayhao.mslab.stock.orm.entity.StockInfoDO;
+import com.ajayhao.mslab.stock.orm.mapper.StockInfoMapper;
+import com.ajayhao.mslab.stock.orm.entity.StockInfoDOExample;
 import com.ajayhao.mslab.stock.repository.StockRepository;
 import org.apache.commons.collections4.CollectionUtils;
 import org.springframework.beans.factory.annotation.Autowired;

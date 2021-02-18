@@ -146,6 +146,6 @@ public class MailService {
         }*/
 
         //解析邮件
-        MailParser.analyzeByMimeMessage(message);
+        //MailParser.analyzeByMimeMessage(message);
     }
 }

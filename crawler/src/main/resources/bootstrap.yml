@@ -10,8 +10,13 @@ spring:
         enabled: true
         serviceId: mslab-mscc
 
+
 eureka:
   client:
     serviceUrl:
       #defaultZone: http://192.168.254.133:8761/eureka/  #可复用Eureka服务，提供高可用配置中心，替代固定ip
       defaultZone: http://localhost:8761/eureka/
+
+server:
+  servlet:
+    context-path: /crawler

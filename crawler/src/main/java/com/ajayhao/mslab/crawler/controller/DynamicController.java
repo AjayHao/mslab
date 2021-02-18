@@ -3,6 +3,7 @@ package com.ajayhao.mslab.crawler.controller;
 import com.ajayhao.mslab.core.common.BaseResp;
 import com.ajayhao.mslab.crawler.orm.mapper.DynamicMapper;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.RandomUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,7 +25,7 @@ import static org.springframework.web.bind.annotation.RequestMethod.GET;
  **/
 @Slf4j
 @RestController
-@RequestMapping(value = "/dynamicQuery")
+@RequestMapping(value = "/dynamic")
 public class DynamicController {
 
     @Autowired
@@ -43,5 +44,10 @@ public class DynamicController {
         return baseResp;
     }
 
+
+    @RequestMapping(value = "/random", method = GET)
+    public BaseResp<String> random() {
+        return BaseResp.buildSuccess("Random integer value from Crawler:" + RandomUtils.nextInt());
+    }
 
 }
