@@ -39,7 +39,7 @@
         <!--<jodd.version>3.7.1</jodd.version>-->
         <guava.version>28.2-jre</guava.version>
         <org.dom4j.version>2.1.1</org.dom4j.version>
-        <jsoup.version>1.13.1</jsoup.version>
+        <jsoup.version>1.14.2</jsoup.version>
         <neuroph.version>2.96</neuroph.version>
         <commons-dbcp2.version>2.3.0</commons-dbcp2.version>
         <!--<ojdbc.version>11.2.0.4</ojdbc.version>-->
